@@ -1,0 +1,200 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block content-block  %} <!--endblock 으로 바꿔서 맨아래 삽입  
+	 키워드  1.Logs 2번쨰꺼-->
+   <head>
+    <title>Tables</title>
+    <!-- Bootstrap -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+    <link href="/static/assets/styles.css" rel="stylesheet" media="screen">
+    <link href="/static/assets/DT_bootstrap.css" rel="stylesheet" media="screen">
+    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="vendors/flot/excanvas.min.js"></script><![endif]-->
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="/static/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+</head>
+
+                <!--/span-->
+                <div class="span9" id="content">
+                      <!-- morris stacked chart -->
+                    
+
+                     <div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left">Form Example</div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+
+                                  
+                                    <form class="form-horizontal" action="{% url 'newadmin:event_write'%}" name="eventform" id="eventform" method="post" enctype="multipart/form-data">
+                                      {% csrf_token%}
+                                      <fieldset>
+                                        <legend>NEW 이벤트 작성</legend>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">게시판 번호</label>
+                                          <div class="controls">
+                                            <input type="text" class="span1" id="event_no" name="event_no"  data-provide="eventtitle" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                                           {% comment %} 막번호 받아와야겠다 {% endcomment %}
+                                          </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="select01">진행중,종료</label>
+                                          <div class="controls">
+                                            <select type='text' id="progress" name="progress" class="select">
+                                              <option value='진행중'>진행중</option>
+                                              <option value='종료'>종료</option>
+                                            </select>
+                                          </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">이벤트 타이틀 </label>
+                                          <div class="controls">
+                                            <input type="text" class="span6" id="event_title" name="event_title"  data-provide="eventtitle" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                                           
+                                          </div>
+                                        </div>
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="textarea2">이벤트 내용</label>
+                                          <div class="controls">
+                                            <textarea class="input-xlarge textarea" id='event_content' name='event_content' placeholder="Enter text ..." style="width: 810px; height: 200px"></textarea>
+                                          </div>
+                                        </div>
+
+                                
+                                        
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">이벤트 시작일</label>
+                                          <div class="controls">
+                                            <input type="text" class="span6" id="event_srart" name="event_srart" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                                           
+                                          </div>
+                                        </div>
+                                        
+                                        <div class="control-group">
+                                          <label class="control-label" for="typeahead">이벤트 종료일</label>
+                                          <div class="controls">
+                                            <input type="text" class="span6" id="event_end" name="event_end" data-provide="typeahead" data-items="4" data-source='["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]'>
+                                           
+                                          </div>
+                                        </div>
+
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="fileInput">표지 이벤트 사진</label>
+                                          <div class="controls">
+                                            <input class="input-file uniform_on" id="fileInput" name='image02' type="file">
+                                          </div>
+                                        </div>
+                                      
+
+                                        <div class="control-group">
+                                          <label class="control-label" for="fileInput">이벤트 사진</label>
+                                          <div class="controls">
+                                            <input class="input-file uniform_on" id="fileInput" name='image' type="file">
+                                          </div>
+                                        </div>
+
+
+                                  
+                                        
+                                        <div class="form-actions">
+                                          <button type="submit" class="btn btn-primary">Save</button>
+                                          <button type="reset" class="btn">Cancel</button>
+                                        </div>
+                                      </fieldset>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /block -->
+                    </div>
+
+                     
+            
+				</div>
+			    </div>
+			</div>
+                     	<!-- /block -->
+		    </div>
+                     <!-- /validation -->
+
+
+                </div>
+            </div>
+            <hr>
+            <footer>
+                <p>&copy; Vincent Gabriel 2013</p>
+            </footer>
+        </div>
+        <!--/.fluid-container-->
+        <link href="/static/vendors/datepicker.css" rel="stylesheet" media="screen">
+        <link href="/static/vendors/uniform.default.css" rel="stylesheet" media="screen">
+        <link href="/static/vendors/chosen.min.css" rel="stylesheet" media="screen">
+
+        <link href="/static/vendors/wysiwyg/bootstrap-wysihtml5.css" rel="stylesheet" media="screen">
+        
+        <script src="/static/vendors/jquery-1.9.1.js"></script>
+        <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/static/vendors/jquery.uniform.min.js"></script>
+        <script src="/static/vendors/chosen.jquery.min.js"></script>
+        <script src="/static/vendors/bootstrap-datepicker.js"></script>
+
+        <script src="/static/vendors/wysiwyg/wysihtml5-0.3.0.js"></script>
+        <script src="/static/vendors/wysiwyg/bootstrap-wysihtml5.js"></script>
+
+        <script src="/static/vendors/wizard/jquery.bootstrap.wizard.min.js"></script>
+
+	<script type="text/javascript" src="/static/vendors/jquery-validation/dist/jquery.validate.min.js"></script>
+	<script src="/static/assets/form-validation.js"></script>
+        
+	<script src="/static/assets/scripts.js"></script>
+        <script>
+
+	jQuery(document).ready(function() {   
+	   FormValidation.init();
+	});
+	
+
+        $(function() {
+            $(".datepicker").datepicker();
+            $(".uniform_on").uniform();
+            $(".chzn-select").chosen();
+            $('.textarea').wysihtml5();
+
+            $('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
+                var $total = navigation.find('li').length;
+                var $current = index+1;
+                var $percent = ($current/$total) * 100;
+                $('#rootwizard').find('.bar').css({width:$percent+'%'});
+                // If it's the last tab then hide the last button and show the finish instead
+                if($current >= $total) {
+                    $('#rootwizard').find('.pager .next').hide();
+                    $('#rootwizard').find('.pager .finish').show();
+                    $('#rootwizard').find('.pager .finish').removeClass('disabled');
+                } else {
+                    $('#rootwizard').find('.pager .next').show();
+                    $('#rootwizard').find('.pager .finish').hide();
+                }
+            }});
+            $('#rootwizard .finish').click(function() {
+                alert('Finished!, Starting over!');
+                $('#rootwizard').find("a[href*='tab1']").trigger('click');
+            });
+        });
+        </script>
+    </body>
+
+</html>
+
+{% endblock content-block  %} 

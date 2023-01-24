@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content-block  %} <!--endblock 으로 바꿔서 맨아래 삽입  
+	 키워드  1.대량구매  2.개인정보 -->
+	<!-- container -->
+	<script>
+		function conntent_btn(){
+			console.log('by')
+			return $("#content_board").submit()
+		}
+	</script>
+	<div id="container">
+
+		<div id="location">
+			<ol>
+				<li><a href="#">HOME</a></li>
+				<li><a href="#">COMMUNITY</a></li>
+				<li class="last">사용 후기</li>
+			</ol>
+		</div>
+		
+		<div id="outbox">		
+			<div id="left">
+				<div id="title2">COMMUNITY<span>Q&A</span></div>
+				<ul>	
+					{% comment %} <li><a href="#" id="leftNavi1">체험단</a></li> {% endcomment %}
+					<li><a href="#" id="leftNavi2">Q&A</a></li>
+					{% comment %} <li class="last"><a href={%url "fboard:f_event"%} id="event">EVENT</a></li> {% endcomment %}
+				</ul>		
+			</div><script type="text/javascript">initSubmenu(2,0);</script>
+
+
+			<!-- contents -->
+			<div id="contents">
+				<div id="mypage">
+					<h2><strong>Q&A</strong><span>회원님들의 소중한 Q&A 입니다.</span></h2>
+					
+					<div class="productTab normaltab">
+						<ul>
+							<li class="last"><a href="#" class="on">상품평</a></li>
+						</ul>						
+					</div>
+
+					<div class="checkDivTab">
+						<table summary="분류, 구매여부, 평가, 제목, 상세 내용 순으로 상품평을 작성 하실수 있습니다." class="checkTable" border="1" cellspacing="0">
+							<caption>상품평 작성</caption>
+							<colgroup>
+							<col width="19%" class="tw30" />
+							<col width="*" />
+							</colgroup>
+							<form name='content_board' action="{%url "fboard:f_reply" nowpage f_board.f_No%}" method='POST' id='content_board'>
+								{%csrf_token%}
+							<tbody>
+								<tr>
+									<th scope="row" ><span>답글 제목</span></th>
+									<td>
+										<input type="text" class="wlong" name="title" value='[답글] {{f_board.f_Title}}'/>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row" ><span >상세 내용</span></th>
+									<td>
+										<input class="tta" name="detail"></input>
+									</td>
+									<input type='hidden' name='f_group' value='{{f_board.f_group}}'>
+									<input type='hidden' name='f_step' value='{{f_board.f_step}}'>
+									<input type='hidden' name='f_indent' value='{{f_board.f_indent}}'>
+								</tr>								
+							</tbody>
+							</form>
+						</table>
+					</div>
+
+					<!-- Btn Area -->
+					<div class="btnArea">
+						<div class="bCenter">
+							<ul>																
+								<li><a href="{%url "fboard:f_list" nowpage%}" class="nbtnbig">취소</a></li>
+								<li><a onclick="conntent_btn()" class="sbtnMini">확인</a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- //Btn Area -->
+					
+				</div>
+			</div>
+			<!-- //contents -->
+
+
+		</div>
+	</div>
+	<!-- //container -->
+
+	{% endblock content-block  %} 

@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content-block  %} <!--endblock 으로 바꿔서 맨아래 삽입  
+	 키워드  1.대량구매  2.개인정보 -->
+\<script>
+	 function Delete_btn(){
+		confirm_R=confirm('정말 삭제 하시겠습니까?')
+		if(confirm_R){
+	location.href="{%url 'fboard:f_delete' nowpage f_board.f_No %}"
+		}
+	}
+</script>
+	<!-- container -->
+	<div id="container">
+
+		<div id="location">
+			<ol>
+				<li><a href="#">HOME</a></li>
+				<li><a href="#">COMMUNITY</a></li>
+				<li class="last">사용 후기</li>
+			</ol>
+		</div>
+		
+		<div id="outbox">		
+			<div id="left">
+				<div id="title2">COMMUNITY<span>Q&A</span></div>
+				<ul>	
+					{% comment %} <li><a href="#" id="leftNavi1">체험단</a></li> {% endcomment %}
+					<li><a href="#" id="leftNavi2">Q&A</a></li>
+					{% comment %} <li class="last"><a href={%url "fboard:f_event"%} id="event">EVENT</a></li> {% endcomment %}
+				</ul>		
+			</div><script type="text/javascript">initSubmenu(3,0);</script>
+
+
+			<!-- contents -->
+			<div id="contents">
+				<div id="mypage">
+					<h2><strong>Q&A</strong><span>회원님들의 소중한 Q&A 입니다.</span></h2>
+					
+					<div class="viewDivMt">
+						<div class="viewHead">
+							<div class="subject">
+								<ul>
+									<li>{{f_board.f_Title}}</li>
+								</ul>
+							</div>
+							<div class="data">
+								<ul>
+									<li class="tnone">작성자<span>{{f_board.f_writer}}</span></li>
+									<li class="tnone">조회수<span>{{f_board.f_hit}}</span></li>
+									<li class="tnone">등록일<span>{{f_board.f_createdate}}</span></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="viewContents">
+							{{f_board.f_Detail}}
+						</div>
+					</div>
+
+					<!-- 이전다음글 -->
+					<div class="pnDiv web">
+						<table summary="이전다음글을 선택하여 보실 수 있습니다." class="preNext" border="1" cellspacing="0">
+							<caption>이전다음글</caption>
+							<colgroup>
+							<col width="100px" />
+							<col width="*" />
+							<col width="100px" />
+							</colgroup>
+							<tbody>
+								<tr>
+									<th class="pre">PREV</th>
+									<td>{%if beforeboard %}<a href={%url "fboard:f_view" nowpage beforeboard.f_No%}{%endif%}>{%if beforeboard %}{{beforeboard.f_Title}}{%endif%}{%if not beforeboard %}이전글이 존재하지 않습니다.{%endif%}</a></td>
+									<td>&nbsp;</td>
+								</tr>
+
+								<tr>
+									<th class="next">NEXT</th>
+									<td>{%if afterboard %}<a href={%url "fboard:f_view" nowpage afterboard.f_No%}{%endif%}>{%if afterboard %}{{afterboard.f_Title}}{%endif%}{%if not afterboard %}다음글이 존재하지 않습니다.{%endif%}</a></td>
+									<td>&nbsp;</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- //이전다음글 -->
+					{% comment %} <form action="{%url "fboard:low_comment"%}" method="POST">
+						{%csrf_token%}
+						<input type="submit" value="Comment" class="btn btn-outline-primary">
+					</form> {% endcomment %}
+
+
+
+
+					{% comment %} <tabel class="table table-striped">
+						{%for comment in comments%}
+						<tr>
+							<td><a>삭제하기</a></td>
+							<td><a>수정하기</a></td>
+						</tr>
+						{%endfor%}
+						</table> {% endcomment %}
+
+					<!-- Btn Area -->
+					<div class="btnArea btline">
+						<div class="bRight">
+							<ul>
+								{%if f_board.f_writer in request.session.session_ID%}
+								<li><a href="{%url 'fboard:f_modify' nowpage f_board.f_No %}" class="sbtnMini mw">수정</a></li>
+								<li><a onclick="Delete_btn()" class="sbtnMini mw">삭제</a></li>
+								{%endif%}
+								<li><a href="{%url 'fboard:f_reply' nowpage f_board.f_No%}" class="sbtnMini mw">답글</a></li>
+								<li><a href="{%url 'fboard:f_list' nowpage%}" class="sbtnMini mw">목록</a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- //Btn Area -->
+					
+				</div>
+			</div>
+			<!-- //contents -->
+
+
+		</div>
+	</div>
+	<!-- //container -->
+
+	{% endblock content-block %}

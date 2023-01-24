@@ -1,0 +1,641 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content-block  %} <!--endblock 으로 바꿔서 맨아래 삽입  
+	 키워드  1.대량구매  2.개인정보 -->
+<head>
+	<script>
+        $.ajaxSetup({
+          headers: { "X-CSRFToken": '{{csrf_token}}' }
+        });
+      </script>
+	  
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+		function addressBtn(){
+			new daum.Postcode({
+				oncomplete: function(data) {
+					var roadAddr = data.roadAddress; 
+					$('input[name=address]').attr('value',roadAddr);
+					//data는 사용자가 선택한 주소 정보를 담고 있는 객체
+
+				}
+			}).open(); 
+		}
+	</script>
+<script>
+	$(function(){
+		console.log('hi function')
+		//$('#myname').text('홍예나됐다')
+		
+		const div=document.getElementById('same');
+		const div2=document.getElementById('diff');
+		div.style.display='none';
+		div2.style.display='none';
+
+			
+		$("#password02").blur(function(){ //해당 id를 벗어 났을때 동작
+			console.log('1')
+			if($("#password").val()!=$('#password02').val()){
+				$("#password02").val('');
+				//$("#password02").focus();
+				const div=document.getElementById('same');
+				const div2=document.getElementById('diff');
+				div.style.display='none';
+				div2.style.display='';
+				console.log('1_1');
+			}
+			else{
+				const div=document.getElementById('same');
+				const div2=document.getElementById('diff');
+				div.style.display=''
+				div2.style.display='none';
+				console.log('2')
+			}
+		}),
+		
+		//타당성 검증
+		
+		$('#name').keyup(function (e) {
+			let content = $(this).val();
+			console.log(content)
+			// 글자수 세기
+			if (content.length == 0 || content == '') {
+				console.log(content.length)
+			} else {
+				console.log(content.length)
+			}
+			
+			// 글자수 제한
+			if (content.length > 10) {
+				// 200자 부터는 타이핑 되지 않도록
+				$(this).val($(this).val().substring(0, 10));
+				// 200자 넘으면 알림창 뜨도록
+				alert('글자수는 10자까지 입력 가능합니다.');
+			};
+		});
+		
+		$('#id').keyup(function (e) {
+			let content = $(this).val();
+			console.log(content)
+			// 글자수 세기
+			if (content.length == 0 || content == '') {
+				console.log(content.length)
+			} else {
+				console.log(content.length)
+			}
+			
+			// 글자수 제한
+			if (content.length > 16) {
+				// 200자 부터는 타이핑 되지 않도록
+				$(this).val($(this).val().substring(0, 16));
+				// 200자 넘으면 알림창 뜨도록
+				alert('글자수는 20자까지 입력 가능합니다.');
+			};
+		});
+
+		$('#password').keyup(function (e) {
+			let content = $(this).val();
+			console.log(content)
+			// 글자수 세기
+			if (content.length == 0 || content == '') {
+				console.log(content.length)
+			} else {
+				console.log(content.length)
+			}
+			
+			// 글자수 제한
+			if (content.length > 16) {
+				// 200자 부터는 타이핑 되지 않도록
+				$(this).val($(this).val().substring(0, 16));
+				// 200자 넘으면 알림창 뜨도록
+				alert('글자수는 16자까지 입력 가능합니다.');
+			};
+		});
+
+		$('#password02').keyup(function (e) {
+			let content = $(this).val();
+			console.log(content)
+			// 글자수 세기
+			if (content.length == 0 || content == '') {
+				console.log(content.length)
+			} else {
+				console.log(content.length)
+			}
+			
+			// 글자수 제한
+			if (content.length > 20) {
+				// 200자 부터는 타이핑 되지 않도록
+				$(this).val($(this).val().substring(0, 20));
+				// 200자 넘으면 알림창 뜨도록
+				alert('글자수는 20자까지 입력 가능합니다.');
+			};
+		});
+
+		$('#address').keyup(function (e) {
+			let content = $(this).val();
+			console.log(content)
+			// 글자수 세기
+			if (content.length == 0 || content == '') {
+				console.log(content.length)
+			} else {
+				console.log(content.length)
+			}
+			
+			// 글자수 제한
+			if (content.length > 20) {
+				// 200자 부터는 타이핑 되지 않도록
+				$(this).val($(this).val().substring(0, 100));
+				// 200자 넘으면 알림창 뜨도록
+				alert('글자수는 20자까지 입력 가능합니다.');
+			};
+		});
+
+		$('#address02').keyup(function (e) {
+			let content = $(this).val();
+			console.log(content)
+			// 글자수 세기
+			if (content.length == 0 || content == '') {
+				console.log(content.length)
+			} else {
+				console.log(content.length)
+			}
+			
+			// 글자수 제한
+			if (content.length > 30) {
+				// 200자 부터는 타이핑 되지 않도록
+				$(this).val($(this).val().substring(0, 100));
+				// 200자 넘으면 알림창 뜨도록
+				alert('글자수는 30자까지 입력 가능합니다.');
+			};
+		});
+		$('#sms02').keyup(function (e) {
+			let content = $(this).val();
+			console.log(content)
+			// 글자수 세기
+			if (content.length == 0 || content == '') {
+				console.log(content.length)
+			} else {
+				console.log(content.length)
+			}
+			
+			// 글자수 제한
+			if (content.length > 4) {
+				// 200자 부터는 타이핑 되지 않도록
+				$(this).val($(this).val().substring(0, 4));
+				// 200자 넘으면 알림창 뜨도록
+				alert('글자수는 4자까지 입력 가능합니다.');
+			};
+		});
+		$('#sms03').keyup(function (e) {
+			let content = $(this).val();
+			console.log(content)
+			// 글자수 세기
+			if (content.length == 0 || content == '') {
+				console.log(content.length)
+			} else {
+				console.log(content.length)
+			}
+			
+			// 글자수 제한
+			if (content.length > 4) {
+				// 200자 부터는 타이핑 되지 않도록
+				$(this).val($(this).val().substring(0, 4));
+				// 200자 넘으면 알림창 뜨도록
+				alert('글자수는 4자까지 입력 가능합니다.');
+			};
+		});
+
+	})
+	
+
+	function signform_btn(){
+		console.log('signform')
+
+		if($('#name').val().length!=0 && $('#id').val().length!=0 && $('#password').val().length!=0 && $('#password02').val().length!=0 && $('#address').val().length!=0 && $('#address02').val().length!=0 && $('#sms02').val().length!=0 && $('#sms02').val().length!=0 && $('#sms03').val().length!=0){
+
+			if  ($('#name').val().length<1 || $('#id').val().length<4 || $('#password').val().length<4 || $('#password02').val().length<4 || $('#address').val().length<1 || $('#address02').val().length<1 || $('#sms02').val().length<4 || $('#sms03').val().length<4){
+				alert('각 항목의 최소 글자수를 조건에 맞게 입력했는지 다시 확인해주세요')
+			}
+			else{
+				return $("#signform").submit()
+			}
+		}
+		else{
+			alert('필수 항목들은 반드시 입력해주세요.')
+		}
+		
+	}
+
+	function nbtnMini(){
+		console.log('nbtnMini_start')
+		
+		var check_id = document.getElementById('id').value;
+        
+        $.ajax({
+                  url:"{%url 'member:check_id'%}", //서버저장주소
+                  data:{'id':check_id},
+                  type:'GET',
+                  dataType:"json",
+                  success:function(data){
+					console.log('success')
+					console.log(data['msg'])
+					alert(data['msg'])
+
+					if (data['msg']=='이미 존재하는 아이디 입니다. 다른 아이디를 입력해주세요.'){
+						$("#id").val('')
+					}
+					else{
+						$("#password").focus()
+					}
+
+
+					
+/*
+		 $.ajax({
+			url:"{% url 'member:check_id' %}",
+			data:{}, //중복 확인
+			type:'GET',
+			success: function(data)
+			{
+			console.log('data')
+			console.log(data)
+			// json에서
+			var html=""
+			
+			if(data.length>=1){
+				console.log('imimimim')
+				for(var i in data){
+				html += '<ul>';
+				html += '<li class="name">'+data[i].L_Title+'</li>';
+				html += '<li class="txt">'+data[i].L_Detail+'</li>';	
+				html += '</ul>';
+				}
+				$(".reply").html(html)
+			}else{
+			html="<tr><td>데이터 없음</td></tr>";}*/
+
+			 
+			}, //성공시의 if 마무리
+			error: function(error) {
+				console.log('error')
+			console.log(error);}
+			})
+	}
+</script>
+
+{%if msg%}
+<script>
+	alert('{{msg}}')
+</script>
+{%endif%}
+
+{%if msg2%}
+<script>
+	alert('{{msg2}}')
+</script>
+{%endif%}
+
+<script>
+
+</script>
+
+</head>
+	<!-- container -->
+	<div id="container">
+
+		<div id="location">
+			<ol>
+				<li><a href="#">HOME</a></li>
+				<li><a href="#">MEMBERSHIP</a></li>
+				<li class="last">회원가입</li>
+			</ol>
+		</div>
+		
+		<div id="outbox">		
+			<div id="left">
+				<div id="title2">MEMBERSHIP<span>멤버쉽</span></div>
+				<ul>	
+					<li><a href="#" id="leftNavi1">로그인</a></li>
+					<li><a href="#" id="leftNavi2">회원가입</a></li>
+					<li><a href="#" id="leftNavi3">아이디/<span>비밀번호 찾기</span></a></li>
+					<li><a href="#" id="leftNavi4">회원약관</a></li>
+					<li><a href="#" id="leftNavi5">개인정보<span>취급방침</span></a></li>
+					<li class="last"><a href="#" id="leftNavi6">이메일무단<span>수집거부</span></a></li>
+				</ul>			
+			</div>
+			{% comment %} <script type="text/javascript">initSubmenu(2,0);</script> {% endcomment %}
+
+
+			<!-- contents -->
+			<div id="contents">
+				<div id="member">
+					<h2><strong>회원가입</strong><span>회원으로 가입하시면 보다 더 다양한 혜택을 누리실 수 있습니다.</span></h2>
+					
+					<!-- STEP -->
+					<div class="stepWrap">
+						<div class="step">
+							<p class="web">STEP 01</p>
+							<p class="txt">실명확인</p>
+							
+						</div>
+
+						<div class="step">
+							<p class="web">STEP 02</p>
+							<p class="txt">약관 동의</p>
+						</div>
+
+						<div class="step stepon">
+							<p class="web">STEP 03</p>
+							<p class="txt"><span>회원정보</span> <span>입력</span></p>
+							<p class="ck"><img src="/static/images/bg/bg_step.png" alt="현재위치" /></p>
+						</div>
+
+						<div class="step">
+							<p class="web">STEP 04</p>
+							<p class="txt"><span>회원가입</span> <span>완료</span></p>
+						</div>
+					</div>
+					<!-- //STEP -->
+						
+
+					<div class="attention">
+						<ul>
+							<li>* 표시된 항목은 필수 항목이므로 반드시 입력하셔야 회원가입이 진행됩니다.</li>
+						</ul>
+					</div>
+
+					<form action="{% url 'member:register04'%}" name="signform" id="signform" method="post" enctype="multipart/form-data"> 
+						{% comment %} 파일도 가능한 form enctype="multipart/form-data"{% endcomment %}
+					{% csrf_token %}
+					<div class="memberbd">
+						<table summary="이름, 아이디, 비밀번호, 비밀번호 확인, 이메일, 이메일수신여부, 주소, 휴대폰, 유선전화, 생년월일 순으로 회원가입 정보를 등록할수 있습니다." class="memberWrite" border="1" cellspacing="0">
+							<caption>회원가입 입력</caption>
+							<colgroup>
+							<col width="22%" class="tw30" />
+							<col width="*" />
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row"><span>이름 *</span></th>
+									<td id='myname' ><input type="text" name="name" id='name'></input></td>
+									{% comment %} <input type='hidden' name='name' value='김슬기'> {% endcomment %}
+
+									{% comment %} <script>
+										document.write("<option value='"+i+"'>" + i + "년"+ "</option>")
+									</script> {% endcomment %}
+
+									{% comment %} value='{{f_board.f_group}}'> {% endcomment %}
+								</tr>
+								<tr>
+									<th scope="row"><span>아이디 *</span></th>
+									<td>
+										<ul class="pta">
+											<li class="r10"><input type="text" class="w134" name='id' id='id'/></li>
+											<li><a href="#" class="nbtnMini" onclick="nbtnMini()">중복확인</a></li>
+											<li class="pt5"><span class="mvalign">첫 글자는 영문으로 4~16자 까지 가능, 영문, 숫자와 특수기호(_)만 사용 가능</span></li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"><span>비밀번호 *</span></th>
+									<td>
+										<ul class="pta">
+											<li class="r10"><input type="password" class="w134" name='password' id='password'/></li>
+											<li><span class="mvalign">※ 영문 / 숫자 혼용으로 4~20자 까지 가능.</span></li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"><span>비밀번호 확인 *</span></th>
+									<td>
+										<ul class="pta">
+											<li class="r10"><input type="password" class="w134" name='password02' id='password02'/></li>
+											<li>
+												<span class="mvalign black" id='same'>* 비밀번호가 일치입니다.</span>
+												<span class="mvalign orange" id='diff'>* 비밀번호가 일치하지 않습니다.</span>
+											</li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"><span>이메일</span></th>
+									<td>
+										<ul class="pta">
+											<li><input type="text" class="w134" name='email' id='email' /></li>
+											<li><span class="valign">&nbsp;@&nbsp;</span></li>
+											<li class="r10"><input type="text" class="w134" name='email02' id='email02'/></li>
+											<li>
+												<select id="emailList" name="email_tail">
+													<option value="#" selected="selected">직접입력</option>
+													<option value="naver.com">naver.com</option>
+													<option value="daum.net">daum.net</option>
+													<option value="hanmail.net">hanmail.net</option>
+													<option value="nate.com">nate.com</option>    
+													<option value="yahoo.co.kr">yahoo.co.kr</option>    
+													<option value="paran.com">paran.com</option>    
+													<option value="empal.com">empal.com</option>    
+													<option value="hotmail.com">hotmail.com</option>    
+													<option value="korea.com">korea.com</option>    
+													<option value="lycos.co.kr">lycos.co.kr</option>    
+													<option value="dreamwiz.com">dreamwiz.com</option>    
+													<option value="hanafos.com">hanafos.com</option>    
+													<option value="chol.com">chol.com</option>    
+													<option value="gmail.com">gmail.com</option>    
+													<option value="empas.com">empas.com</option>
+												</select>&nbsp;&nbsp;&nbsp;
+											</li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"><span>이메일 수신여부 *</span></th>
+									<td>
+										<p>쟈뎅에서 진행되는 이벤트와 쇼핑에 대한 정보를 이메일로 받아보시겠습니까?</p>
+										<ul class="question">
+											<li>
+												<input type="radio" name="email_check" id="email_yes" class="radio_t" checked="checked" value="True"/><label for="email_no">예</label>
+											</li>
+											<li>
+												<input type="radio" name="email_check" id="email_no" class="radio_t" value="False"/><label for="email_yes">아니오</label>
+											</li>
+											{% comment %} label속 for은 id끼리 결합을 해줌 {% endcomment %}
+										</ul>
+										<p class="gray">* 거래관련 정보는 고객님의 거래안전을 위하여 이메일 수신거부와 관계없이 발송됩니다.</p>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"><span>주소 *</span></th>
+									<td>
+										<ul class="pta">
+											<li>
+												<input type="text" id="address" class="w134" name="address" readonly/>&nbsp;
+											</li>
+											<li><a href="#" class="addressBtn" onclick="addressBtn()"><span>우편번호 찾기</span></a></li>
+											<li class="pt5"><input type="text" id="address02" name="address02"class="addressType" /></li>
+											<li class="cb">
+												<span class="mvalign">※ 상품 배송 시 받으실 주소입니다. 주소를 정확히 적어 주세요.</span>
+											</li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"><span>휴대폰 *</span></th>
+									<td>
+										<ul class="pta">
+											<li>
+												<select name='sms'>
+													<option value="010" selected="selected" >010</option>
+													<option value="011">011</option>
+													<option value="016">016</option>
+													<option value="017">017</option>
+													<option value="018">018</option>    
+													<option value="019">019</option>    
+												</select>
+											</li>
+											<li>&nbsp;<span class="valign">-</span>&nbsp;</li>
+											<li><input type="text" class="w74" maxlength="4" name='sms02' id='sms02'/> <span class="valign">-</span>&nbsp;</li>
+											<li class="r10"><input type="text" class="w74" name='sms03' id='sms03' maxlength="4" /></li>
+											<li class="cb pt5"><span class="mvalign">※ SMS 서비스를 받아보시겠습니까?</span></li>
+											<li class="pt5">
+												<ul class="baseQues">
+													<li>
+														<input type="radio" name="sms_check" id="sms_yes" class="radio_t" checked="checked" value="True"/><label for="sms_yes">예</label>
+													</li>
+													<li>
+														<input type="radio" name="sms_check" id="sms_no" class="radio_t" value="False"/><label for="sms_no">아니오</label>
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row"><span>생년월일</span></th>
+									<td>
+										<ul class="pta">
+											<li>
+												<select name="year">
+													<option value='#' selected="selected" >선택하세요</option>
+													<script type="text/javascript">
+													//<![CDATA[
+														for(var i=1940; i<=2014; i++){
+															document.write("<option value='"+i+"'>" + i + "년"+ "</option>");	
+														};
+													//]]>
+													</script>
+												</select>
+											</li>
+											<li>&nbsp;<span class="valign">년</span>&nbsp;&nbsp;&nbsp;</li>
+											<li>
+												<select name="month" >
+													<option value='#' selected="selected">선택하세요</option>
+													<script type="text/javascript">
+													//<![CDATA[
+														for(var i=1; i<=12; i++){
+															if(i<10){
+																document.write("<option value='"+i+"'>0" + i + "월"+"</option>");
+															}else{
+																document.write("<option value='"+i+"'>" + i + "월"+ "</option>");
+															};
+														};
+													//]]>
+													</script>
+												</select>
+											</li>
+											<li>&nbsp;<span class="valign">월</span>&nbsp;&nbsp;&nbsp;</li>
+											<li>
+												<select name="date">
+													<option value='#' selected="selected">선택하세요</option>
+													<script type="text/javascript">
+													//<![CDATA[
+														for(var i=1; i<=31; i++){
+															if(i<10){
+																document.write("<option value='"+i+"'>0" + i + "일"+"</option>");
+															}else{
+																document.write("<option value='"+i+"'>" + i + "일"+ "</option>");
+															};
+														};
+													//]]>
+													</script>
+												</select>
+											</li>
+											<li class="r20">&nbsp;<span class="valign">일</span></li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+							</table>
+						</div>
+						
+					</div>
+				</form>
+					
+					<!-- Btn Area -->
+					<div class="btnArea">
+						<div class="bCenter">
+							<ul>
+								<li><a href="{%url 'home:home'%}" class="nbtnbig">취소하기</a></li>
+								<li><a href="#" class="sbtnMini" type="button" id="signfrom_btn" onclick="signform_btn()">가입하기</a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- //Btn Area -->
+
+
+<script type="text/javascript" src="/static/js/jquery.fancybox-1.3.4.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/jquery.fancybox-1.3.4.css" />
+<script type="text/javascript">
+$(function(){
+
+	// business input
+	var firstchk = $("input:radio[name=business]:checked").attr("id");
+	$(".businessTy").css("display","none");
+	$("#partner").click(function(){
+		$(".businessTy").css("display","block");
+	});
+	$("#general").click(function(){
+		$(".businessTy").css("display","none");
+	});
+	$("#"+firstchk).click();
+	
+
+	// popup
+	var winWidth = $(window).width();
+	if(winWidth > 767){
+		var layerCheck = 540;
+	}else{
+		var layerCheck = 320;
+	}
+
+	/*
+	$(".addressBtn").fancybox({
+		'autoDimensions'    : false,
+		'showCloseButton'	: false,
+		'width' : layerCheck,
+		'padding' : 0,
+		'type'			: 'iframe',
+		'onComplete' : function() {
+			$('#fancybox-frame').load(function() { // wait for frame to load and then gets it's height
+			$('#fancybox-content').height($(this).contents().find('body').height());
+			});
+		}
+	});
+	*/
+
+});
+</script>
+
+
+				</div>
+			</div>
+			<!-- //contents -->
+
+
+		</div>
+	</div>
+	<!-- //container -->
+
+
+{% endblock content-block  %}

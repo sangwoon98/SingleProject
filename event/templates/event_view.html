@@ -1,0 +1,451 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content-block  %} <!--endblock 으로 바꿔서 맨아래 삽입  
+	 키워드  1.대량구매  2.개인정보 -->
+
+	<!-- container -->
+<script>
+	function codeAddress() {
+		console.log('hello world')
+		var lowcontent = document.getElementById('lowcontent').value; //<---여기에 #lowcontent 라고 쓰면 인생 망함
+		var E_no= document.getElementById('E_no').value;
+		//ajax 두개라는거 항상 명심
+        $.ajax({
+                  url:"{%url 'event:event_reply_write' board.E_no%}", //서버저장주소
+                  data:{'lowcontent':lowcontent,'E_no':E_no},
+                  type:'GET',
+                  success:function(data){
+					  console.log('success')
+					  const inner_html=[]
+					  $("#orange").text(data.reply_list.length);
+					  var myid= $("#myid").val()
+					  console.log(myid)
+					  
+						/*for(var i=0;i<data.reply_list.length;i++){
+						console.log('data: ',(data.reply_list[i].fields.R_content))
+						console.log('data: ',typeof(data.reply_list[i].fields.R_content))*/
+						
+
+						var html='';
+						console.log(html)
+						if(data.reply_list.length>=1){ for(var i in data.reply_list){
+						html +='<ul>';
+						html +='<li class="name">'+data.reply_list[i].fields.R_writer+'<span>['+data.reply_list[i].fields.R_createdate.substring(0,10)+'&nbsp&nbsp'+data.reply_list[i].fields.R_createdate.substring(11,19)+']</span></li>';
+						
+						html +='<li class="txt">'+data.reply_list[i].fields.R_content+'</li>';
+						html +='<li class="btn">';
+
+						if (myid==data.reply_list[i].fields.R_writer){
+								html +='<a onclick="reply_repair('+i+')" class="rebtn">수정</a>';
+								html +='<a onclick="reply_delete('+i+')" class="rebtn">삭제</a>';
+						}	
+						html +='</li>';
+						html+='</ul>';
+						}
+
+						}else{
+						html="<tr><td>데이터 없음</td></tr>"; 
+						}
+						$('#replyBox').html(html);
+						
+					
+
+				}, //성공시의 if 마무리
+				error: function(error) {
+					console.log('error')
+					console.log(error);}
+				})
+
+			
+
+	}
+	window.onload = codeAddress;
+</script>
+
+
+<script>
+	
+	function reply_submit(){
+		console.log('nbtnMini_start')
+		
+		var lowcontent = document.getElementById('lowcontent').value; //<---여기에 #lowcontent 라고 쓰면 인생 망함
+        $.ajax({
+                  url:"{%url 'event:event_reply_write' board.E_no %}", //서버저장주소
+                  data:{'lowcontent':lowcontent},
+                  type:'GET',
+                  success:function(data){
+					console.log('success')
+					const inner_html=[]
+					$("#orange").text(data.reply_list.length);
+					var myid= $("#myid").val()
+					/*for(var i=0;i<data.reply_list.length;i++){
+					console.log('data: ',(data.reply_list[i].fields.R_content))
+					console.log('data: ',typeof(data.reply_list[i].fields.R_content))*/
+					
+
+					var html='';
+					console.log(html)
+					if(data.reply_list.length>=1){ for(var i in data.reply_list){
+					html +='<ul>';
+					html +='<li class="name">'+data.reply_list[i].fields.R_writer+'<span>['+data.reply_list[i].fields.R_createdate.substring(0,10)+'&nbsp&nbsp'+data.reply_list[i].fields.R_createdate.substring(11,19)+']</span></li>';
+					if (myid!=data.reply_list[i].fields.R_writer){
+					html +='<li class="txt">'+data.reply_list[i].fields.R_content+'</li>';
+					html +='<li class="btn">';
+					}
+					if (myid==data.reply_list[i].fields.R_writer){
+						html +='<li class="txt">'+data.reply_list[i].fields.R_content+'</li>';
+						html +='<li class="btn">';
+							html +='<a onclick="reply_repair('+i+')" class="rebtn">수정</a>';
+							html +='<a onclick="reply_delete('+i+')" class="rebtn">삭제</a>';
+
+					}	
+					html +='</li>';
+					html+='</ul>';
+					}
+
+					}else{
+					html="<tr><td>데이터 없음</td></tr>"; 
+					}
+						$('#replyBox').html(html);
+						$("#lowcontent").val('');
+					
+
+				}, //성공시의 if 마무리
+				error: function(error) {
+					console.log('error')
+					console.log(error);}
+				})
+	}
+
+	//하단 댓글 수정
+
+	function reply_repair(a){
+		console.log('nbtnMini_start')
+		console.log(a)
+		var lowcontent = document.getElementById('lowcontent').value; //<---여기에 #lowcontent 라고 쓰면 인생 망함
+        $.ajax({
+                  url:"{%url 'event:event_reply_write' board.E_no %}", //서버저장주소
+                  data:{'lowcontent':lowcontent},
+                  type:'GET',
+                  success:function(data){
+					  console.log('success')
+					  const inner_html=[]
+					  $("#orange").text(data.reply_list.length);
+					  var myid= $("#myid").val()
+					/*for(var i=0;i<data.reply_list.length;i++){
+					console.log('data: ',(data.reply_list[i].fields.R_content))
+					console.log('data: ',typeof(data.reply_list[i].fields.R_content))*/
+					
+
+					var html='';
+					console.log(html)
+					if(data.reply_list.length>=1){ for(var i in data.reply_list){
+						console.log(data.reply_list[i].fields.R_no)
+					html +='<ul>';
+					html +='<li class="name">'+data.reply_list[i].fields.R_writer+'<span>['+data.reply_list[i].fields.R_createdate.substring(0,10)+'&nbsp&nbsp'+data.reply_list[i].fields.R_createdate.substring(11,19)+']</span></li>';
+					if (i!=a){
+					html +='<li class="txt">'+data.reply_list[i].fields.R_content+'</li>';
+					html +='<li class="btn">';
+						if (myid==data.reply_list[i].fields.R_writer){
+							html +='<a onclick="reply_repair('+i+')" class="rebtn">수정</a>';
+							html +='<a onclick="reply_delete('+i+')" class="rebtn">삭제</a>';
+						}
+					}
+					if (i==a){
+						html +='<textarea id="text'+i+'">'+data.reply_list[i].fields.R_content+'</textarea>';
+						html +='<li class="btn">';
+							html +='<a onclick="reply_enter('+data.reply_list[i].fields.R_no+','+i+')" class="rebtn">확인</a>';
+							html +='<a onclick="reply_delete('+i+')" class="rebtn">삭제</a>';
+					}
+					else 
+					html +='</li>';
+					html+='</ul>';
+					}
+
+					}else{
+					html="<tr><td>데이터 없음</td></tr>"; 
+					}
+						$('#replyBox').html(html);
+						$("#lowcontent").val('');
+					
+
+				}, //성공시의 if 마무리
+				error: function(error) {
+					console.log('error')
+					console.log(error);}
+				})
+	}
+
+
+	function reply_enter(b,a){
+		console.log('nbtnMini_start')
+		console.log(a)
+		console.log('b: ',b)
+		var text= $("#text"+a).val()
+		console.log('text:',text)
+		var lowcontent = document.getElementById('lowcontent').value; //<---여기에 #lowcontent 라고 쓰면 인생 망함  #lowcontent 하단댓글을 의미
+        $.ajax({
+                  url:"{%url 'event:event_reply_repair' board.E_no %}", //서버저장주소
+                  data:{'lowcontent':lowcontent,'num':a,'text':text},
+                  type:'GET',
+                  success:function(data){
+					  console.log('success')
+					  const inner_html=[]
+					  $("#orange").text(data.reply_list.length);
+					  var myid= $("#myid").val()
+					  
+					/*for(var i=0;i<data.reply_list.length;i++){
+					console.log('data: ',(data.reply_list[i].fields.R_content))
+					console.log('data: ',typeof(data.reply_list[i].fields.R_content))*/
+					
+
+					var html='';
+					console.log(html)
+					if(data.reply_list.length>=1){ for(var i in data.reply_list){
+					html +='<ul>';
+					html +='<li class="name">'+data.reply_list[i].fields.R_writer+'<span>['+data.reply_list[i].fields.R_createdate.substring(0,10)+'&nbsp&nbsp'+data.reply_list[i].fields.R_createdate.substring(11,19)+']</span></li>';
+					html +='<li class="txt">'+data.reply_list[i].fields.R_content+'</li>';
+					html +='<li class="btn">';
+					if (myid==data.reply_list[i].fields.R_writer){
+							html +='<a onclick="reply_repair('+i+')" class="rebtn">수정</a>';
+							html +='<a onclick="reply_delete('+i+')" class="rebtn">삭제</a>';
+					}	
+					html +='</li>';
+					html+='</ul>';
+					}
+
+					}else{
+					html="<tr><td>데이터 없음</td></tr>"; 
+					}
+						$('#replyBox').html(html);
+						$("#lowcontent").val('');
+					
+
+				}, //성공시의 if 마무리
+				error: function(error) {
+					console.log('error')
+					console.log(error);}
+				})
+	}
+	
+	
+	function reply_delete(a){
+		confirm_R=confirm('댓글을 정말 삭제 하시겠습니까?')
+			if(confirm_R){
+		console.log('delete_start')
+		console.log(a)
+		var lowcontent = document.getElementById('lowcontent').value; //<---여기에 #lowcontent 라고 쓰면 인생 망함  #lowcontent 하단댓글을 의미
+        $.ajax({
+                  url:"{%url 'event:event_reply_delete' board.E_no %}", //서버저장주소
+                  data:{'lowcontent':lowcontent,'num':a},
+                  type:'GET',
+                  success:function(data){
+					  console.log('success')
+					  const inner_html=[]
+					  $("#orange").text(data.reply_list.length);
+					  var myid= $("#myid").val()
+					  
+					/*for(var i=0;i<data.reply_list.length;i++){
+					console.log('data: ',(data.reply_list[i].fields.R_content))
+					console.log('data: ',typeof(data.reply_list[i].fields.R_content))*/
+					
+
+					var html='';
+					console.log(html)
+					if(data.reply_list.length>=1){ for(var i in data.reply_list){
+					html +='<ul>';
+					html +='<li class="name">'+data.reply_list[i].fields.R_writer+'<span>['+data.reply_list[i].fields.R_createdate.substring(0,10)+'&nbsp&nbsp'+data.reply_list[i].fields.R_createdate.substring(11,19)+']</span></li>';
+					html +='<li class="txt">'+data.reply_list[i].fields.R_content+'</li>';
+					html +='<li class="btn">';
+					if (myid==data.reply_list[i].fields.R_writer){
+							html +='<a onclick="reply_repair('+i+')" class="rebtn">수정</a>';
+							html +='<a onclick="reply_delete('+i+')" class="rebtn">삭제</a>';
+					}	
+					html +='</li>';
+					html+='</ul>';
+					}
+
+					}else{
+					html="<tr><td>데이터 없음</td></tr>"; 
+					}
+						$('#replyBox').html(html);
+						$("#lowcontent").val('');
+					
+
+				}, //성공시의 if 마무리
+				error: function(error) {
+					console.log('error')
+					console.log(error);}
+				})
+	}}
+	{% comment %} function reply_submit(){
+		
+		//ajax 내부에 프린트를 넣으면 ;; 찾을수 없는 엄청난 문제점을 발견..!;;
+		var content = document.getElementById('#content');
+		$.ajax({
+			url:"{%url 'event:event_reply_write'%}", //서버저장주소
+			data:{'content':content},
+			type:'GET',
+			dataType:"json",
+
+			success:function(data){
+				console.log('success')
+				console.log(data)
+		
+				
+			}, //성공시의 if 마무리
+			error: function(error) {
+				console.log('error')
+				console.log(error);}
+			})
+		} {% endcomment %}
+
+</script>
+	<input type='hidden' id='myid' value={{request.session.session_ID}}></input>
+	<input type='hidden' id='E_no' value={{board.E_no}}></input>
+
+	<div id="container">
+
+		<div id="location">
+			<ol>
+				<li><a href="#">HOME</a></li>
+				<li><a href="#">EVENT</a></li>
+				<li class="last">진행중 이벤트</li>
+			</ol>
+		</div>
+		
+		<div id="outbox">		
+			<div id="left">
+				<div id="title2">EVENT<span>이벤트</span></div>
+				<ul>	
+					<li><a href="#" id="leftNavi1">진행중 이벤트</a></li>
+					{% comment %} <li><a href="#" id="leftNavi2">종료된 이벤트</a></li>
+					<li class="last"><a href="#" id="leftNavi3">당첨자 발표</span></a></li> {% endcomment %}
+				</ul>			
+			</div>
+
+
+			<!-- contents -->
+			<div id="contents">
+				<div id="mypage">
+					<h2><strong>진행중 이벤트</strong><span>쟈뎅샵의 특별한 혜택이 가득한 이벤트에 참여해 보세요.</span></h2>
+					
+					<div class="viewDivMt">
+						<div class="viewHead">
+							<div class="subject">
+								<ul>
+									<li>{{board.E_title}}</li>
+								</ul>	
+							</div>
+							<div class="day">
+								<p class="txt">이벤트 기간<span>{{board.E_start_day}} ~ {{board.E_end_day}}</span></p>
+							</div>
+						</div>
+
+						<div class="viewContents">
+							{%if board.E_image%} <img src={{board.E_image.url}} alt="" />{%endif%}
+						</div>
+							<div class="viewDivMt">
+								<div class="viewHead">
+								<div class="day">
+									<p class="text"><span>
+										{% autoescape off %}
+										{{board.E_content}}
+										<br><br><br>
+										{% endautoescape %}
+										
+									</span></p>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<!-- 이전다음글 -->
+					<div class="pnDiv web">
+						<table summary="이전다음글을 선택하여 보실 수 있습니다." class="preNext" border="1" cellspacing="0">
+							<caption>이전다음글</caption>
+							<colgroup>
+							<col width="100px" />
+							<col width="*" />
+							<col width="100px" />
+							</colgroup>
+							<tbody>
+								<tr>
+									<th class="pre">PREV</th>
+									{%if prevboard.E_event_no%}
+									<td><a href="{%url 'event:event_view' nowpage prevboard.E_event_no%}">{{prevboard.E_title}}</a></td>
+									{%else%}
+									<td><a href="#;">이전 페이지가 존재하지 않습니다.</a></td>
+									{%endif%}
+									<td>&nbsp;</td>
+								</tr>
+
+								<script>
+									var danger=1+2
+								</script>
+
+								<tr>
+									<th class="next">NEXT</th>
+									{%if nextboard.E_event_no%}
+									<td><a href="{%url 'event:event_view' nowpage nextboard.E_event_no%}">{{nextboard.E_title}}</a></td>
+									{%else%}
+									<td><a href="#;">다음 페이지가 존재하지 않습니다.</a></td>
+									{%endif%}
+									
+									<td>&nbsp;</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="btnArea">
+						<div class="bRight">
+							<ul>
+								<li><a href="{%url 'event:event' nowpage%}" class="sbtnMini mw">목록</a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- //Btn Area -->
+					<!-- //이전다음글 -->
+
+
+					     {% comment %} R_no=models.AutoField(primary_key=True)
+					     R_writer=models.CharField(max_length=100)
+					     R_content=models.CharField(max_length=1000)
+					     R_createdate =models.DateTimeField(default=datetime.now(),blank=True) {% endcomment %}
+					<!-- 댓글-->
+					<div class="replyWrite">
+						<ul>
+							<li class="in">
+								<p class="txt">총 <span class="orange" id="orange">0</span> 개의 댓글이 달려있습니다.</p>
+								{% comment %} <p class="password">비밀번호&nbsp;&nbsp;<input type="password" class="replynum" /></p> {% endcomment %}
+								<textarea class="replyType" id="lowcontent"></textarea>
+							</li>
+							<li class="btn"><a onclick="reply_submit()" class="replyBtn">등록</a></li>
+						</ul>
+						{% comment %} <p class="ntic">※ 비밀번호를 입력하시면 댓글이 비밀글로 등록 됩니다.</p> {% endcomment %}
+					</div>
+
+					<div class="replyBox" id="replyBox">
+			
+					</div>
+					<!-- //댓글 -->
+
+
+					<!-- Btn Area -->
+
+					
+				</div>
+			</div>
+			<!-- //contents -->
+
+
+<script type="text/javascript" src="/static/js/jquery.fancybox-1.3.4.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/jquery.fancybox-1.3.4.css" />
+<script type="text/javascript">
+
+</script>
+
+
+	{% endblock content-block  %}
