@@ -1,61 +1,60 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>Fun with jQuery</title>
+    <title>Fun with jQuery</title>
 
-<script src="http://www.google.com/jsapi"></script>
-<script>
-  google.load("jquery", "1");
-</script>
+    <script src="http://www.google.com/jsapi"></script>
+    <script>
+      google.load("jquery", "1");
+    </script>
 
-<script type="text/javascript">
+    <script type="text/javascript">
+      $.fn.options = function (selector) {
+        return this.each(function () {
+          function container(select) {
+            if (select.next().is(".option-container")) {
+              return $(select).next();
+            }
+            return $('<select class="option-container" />')
+              .append(select.children())
+              .insertAfter(select)
+              .hide();
+          }
+          var container = container($(this));
+          $(this).empty().append(container.children(selector).clone());
+        });
+      };
 
-$.fn.options = function(selector) {
-	return this.each(function() {
-		function container(select) {
-			if (select.next().is(".option-container")) {
-				return $(select).next();
-			}
-			return $('<select class="option-container" />').append(select.children()).insertAfter(select).hide();
-		}
-		var container = container($(this));
-		$(this).empty().append(container.children(selector).clone());
-	});
-}
+      $(document).ready(function () {
+        $("#State").hide();
 
-$(document).ready(function(){
+        $("#Country")
+          .change(function () {
+            var selected = this.options[this.selectedIndex].value;
+            if (selected == "US") {
+              $("#State").show().options(".state");
+            } else if (selected == "CA") {
+              $("#State").show().options(".province");
+            } else {
+              $("#State").hide();
+            }
+          })
+          .change();
+      });
+    </script>
+  </head>
 
-	$("#State").hide()
+  <body>
+    Mission:
 
-	$("#Country").change(function() {
-		var selected = this.options[this.selectedIndex].value;
-		if (selected == "US") {
-			$("#State").show().options(".state");
-		} else if (selected == "CA") {
-			$("#State").show().options(".province");
-		} else {
-			$("#State").hide();
-		}
-	}).change();
-
-
-});
-</script>
-
-
-
-</head>
-
-<body>
-Mission:
-
-<xmp>
+    <xmp
+>
 CODE
 
-</xmp>
-
+</xmp
+    >
 
     <select size="1" id="Country" name="country">
       <option value="">Select One</option>
@@ -346,12 +345,10 @@ CODE
       <option value="ZR">Zaire</option>
       <option value="ZM">Zambia</option>
       <option value="ZW">Zimbabwe</option>
-
     </select>
-<br />
+    <br />
 
-<select  id="State" name="State">
-
+    <select id="State" name="State">
       <option value="" class="selectone">Select One</option>
       <option value="AB" class="province">Alberta</option>
       <option value="BC" class="province">British Columbia</option>
@@ -369,68 +366,67 @@ CODE
       <option value="SK" class="province">Saskatchewan</option>
       <option value="YT" class="province">Yukon Territory</option>
 
-        <option value="AK" class="state">Alaska</option>
-        <option value="AL" class="state">Alabama</option>
+      <option value="AK" class="state">Alaska</option>
+      <option value="AL" class="state">Alabama</option>
 
-        <option value="AR" class="state">Arkansas</option>
-        <option value="AZ" class="state">Arizona</option>
-        <option value="CA" class="state">California</option>
-        <option value="CO" class="state">Colorado</option>
-        <option value="CT" class="state">Connecticut</option>
-        <option value="DC" class="state">District of Columbia</option>
+      <option value="AR" class="state">Arkansas</option>
+      <option value="AZ" class="state">Arizona</option>
+      <option value="CA" class="state">California</option>
+      <option value="CO" class="state">Colorado</option>
+      <option value="CT" class="state">Connecticut</option>
+      <option value="DC" class="state">District of Columbia</option>
 
-        <option value="DE" class="state">Delaware</option>
-        <option value="FL" class="state">Florida</option>
-        <option value="GA" class="state">Georgia</option>
-        <option value="HI" class="state">Hawaii</option>
-        <option value="IA" class="state">Iowa</option>
-        <option value="ID" class="state">Idaho</option>
+      <option value="DE" class="state">Delaware</option>
+      <option value="FL" class="state">Florida</option>
+      <option value="GA" class="state">Georgia</option>
+      <option value="HI" class="state">Hawaii</option>
+      <option value="IA" class="state">Iowa</option>
+      <option value="ID" class="state">Idaho</option>
 
-        <option value="IL" class="state">Illinois</option>
-        <option value="IN" class="state">Indiana</option>
-        <option value="KS" class="state">Kansas</option>
-        <option value="KY" class="state">Kentucky</option>
-        <option value="LA" class="state">Louisiana</option>
-        <option value="MA" class="state">Massachusetts</option>
+      <option value="IL" class="state">Illinois</option>
+      <option value="IN" class="state">Indiana</option>
+      <option value="KS" class="state">Kansas</option>
+      <option value="KY" class="state">Kentucky</option>
+      <option value="LA" class="state">Louisiana</option>
+      <option value="MA" class="state">Massachusetts</option>
 
-        <option value="MD" class="state">Maryland</option>
-        <option value="ME" class="state">Maine</option>
-        <option value="MI" class="state">Michigan</option>
-        <option value="MN" class="state">Minnesota</option>
-        <option value="MO" class="state">Missouri</option>
-        <option value="MS" class="state">Mississippi</option>
+      <option value="MD" class="state">Maryland</option>
+      <option value="ME" class="state">Maine</option>
+      <option value="MI" class="state">Michigan</option>
+      <option value="MN" class="state">Minnesota</option>
+      <option value="MO" class="state">Missouri</option>
+      <option value="MS" class="state">Mississippi</option>
 
-        <option value="MT" class="state">Montana</option>
-        <option value="NC" class="state">North Carolina</option>
-        <option value="ND" class="state">North Dakota</option>
-        <option value="NE" class="state">Nebraska</option>
-        <option value="NH" class="state">New Hampshire</option>
-        <option value="NJ" class="state">New Jersey</option>
+      <option value="MT" class="state">Montana</option>
+      <option value="NC" class="state">North Carolina</option>
+      <option value="ND" class="state">North Dakota</option>
+      <option value="NE" class="state">Nebraska</option>
+      <option value="NH" class="state">New Hampshire</option>
+      <option value="NJ" class="state">New Jersey</option>
 
-        <option value="NM" class="state">New Mexico</option>
-        <option value="NV" class="state">Nevada</option>
-        <option value="NY" class="state">New York</option>
-        <option value="OH" class="state">Ohio</option>
-        <option value="OK" class="state">Oklahoma</option>
-        <option value="OR" class="state">Oregon</option>
+      <option value="NM" class="state">New Mexico</option>
+      <option value="NV" class="state">Nevada</option>
+      <option value="NY" class="state">New York</option>
+      <option value="OH" class="state">Ohio</option>
+      <option value="OK" class="state">Oklahoma</option>
+      <option value="OR" class="state">Oregon</option>
 
-        <option value="PA" class="state">Pennsylvania</option>
-        <option value="PR" class="state">Puerto Rico</option>
-        <option value="RI" class="state">Rhode Island</option>
-        <option value="SC" class="state">South Carolina</option>
-        <option value="SD" class="state">South Dakota</option>
-        <option value="TN" class="state">Tennessee</option>
+      <option value="PA" class="state">Pennsylvania</option>
+      <option value="PR" class="state">Puerto Rico</option>
+      <option value="RI" class="state">Rhode Island</option>
+      <option value="SC" class="state">South Carolina</option>
+      <option value="SD" class="state">South Dakota</option>
+      <option value="TN" class="state">Tennessee</option>
 
-        <option value="TX" class="state">Texas</option>
-        <option value="UT" class="state">Utah</option>
-        <option value="VA" class="state">Virginia</option>
-        <option value="VT" class="state">Vermont</option>
-        <option value="WA" class="state">Washington</option>
-        <option value="WI" class="state">Wisconsin</option>
+      <option value="TX" class="state">Texas</option>
+      <option value="UT" class="state">Utah</option>
+      <option value="VA" class="state">Virginia</option>
+      <option value="VT" class="state">Vermont</option>
+      <option value="WA" class="state">Washington</option>
+      <option value="WI" class="state">Wisconsin</option>
 
-        <option value="WV" class="state">West Virginia</option>
-        <option value="WY" class="state">Wyoming</option>
-</select>
-
-</body>
+      <option value="WV" class="state">West Virginia</option>
+      <option value="WY" class="state">Wyoming</option>
+    </select>
+  </body>
 </html>

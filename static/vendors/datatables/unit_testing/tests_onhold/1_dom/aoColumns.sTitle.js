@@ -1,17 +1,17 @@
 // DATA_TEMPLATE: dom_data
-oTest.fnStart( "aoColumns.sTitle" );
+oTest.fnStart("aoColumns.sTitle");
 
-$(document).ready( function () {
+$(document).ready(function () {
 	/* Check the default */
-	var oTable = $('#example').dataTable();
+	var oTable = $("#example").dataTable();
 	var oSettings = oTable.fnSettings();
-	
-	oTest.fnTest( 
+
+	oTest.fnTest(
 		"Column names are read from the DOM by default",
 		null,
 		function () {
-			var jqNodes = $('#example thead tr:eq(0) th');
-			var bReturn = 
+			var jqNodes = $("#example thead tr:eq(0) th");
+			var bReturn =
 				jqNodes[0].innerHTML == "Rendering engine" &&
 				jqNodes[1].innerHTML == "Browser" &&
 				jqNodes[2].innerHTML == "Platform(s)" &&
@@ -20,24 +20,18 @@ $(document).ready( function () {
 			return bReturn;
 		}
 	);
-	
-	oTest.fnTest( 
+
+	oTest.fnTest(
 		"Can set a single column title - and others are read from DOM",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"aoColumns": [
-					null,
-					{ "sTitle": 'unit test' },
-					null,
-					null,
-					null
-				]
-			} );
+			$("#example").dataTable({
+				aoColumns: [null, { sTitle: "unit test" }, null, null, null],
+			});
 		},
 		function () {
-			var jqNodes = $('#example thead tr:eq(0) th');
-			var bReturn = 
+			var jqNodes = $("#example thead tr:eq(0) th");
+			var bReturn =
 				jqNodes[0].innerHTML == "Rendering engine" &&
 				jqNodes[1].innerHTML == "unit test" &&
 				jqNodes[2].innerHTML == "Platform(s)" &&
@@ -46,24 +40,24 @@ $(document).ready( function () {
 			return bReturn;
 		}
 	);
-	
-	oTest.fnTest( 
+
+	oTest.fnTest(
 		"Can set multiple column titles",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"aoColumns": [
+			$("#example").dataTable({
+				aoColumns: [
 					null,
-					{ "sTitle": 'unit test 1' },
+					{ sTitle: "unit test 1" },
 					null,
 					null,
-					{ "sTitle": 'unit test 2' }
-				]
-			} );
+					{ sTitle: "unit test 2" },
+				],
+			});
 		},
 		function () {
-			var jqNodes = $('#example thead tr:eq(0) th');
-			var bReturn = 
+			var jqNodes = $("#example thead tr:eq(0) th");
+			var bReturn =
 				jqNodes[0].innerHTML == "Rendering engine" &&
 				jqNodes[1].innerHTML == "unit test 1" &&
 				jqNodes[2].innerHTML == "Platform(s)" &&
@@ -72,7 +66,6 @@ $(document).ready( function () {
 			return bReturn;
 		}
 	);
-	
-	
+
 	oTest.fnComplete();
-} );
+});

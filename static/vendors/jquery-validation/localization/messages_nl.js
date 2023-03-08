@@ -17,10 +17,18 @@
 		accept: "Vul hier een waarde in met een geldige extensie.",
 		maxlength: $.validator.format("Vul hier maximaal {0} tekens in."),
 		minlength: $.validator.format("Vul hier minimaal {0} tekens in."),
-		rangelength: $.validator.format("Vul hier een waarde in van minimaal {0} en maximaal {1} tekens."),
-		range: $.validator.format("Vul hier een waarde in van minimaal {0} en maximaal {1}."),
-		max: $.validator.format("Vul hier een waarde in kleiner dan of gelijk aan {0}."),
-		min: $.validator.format("Vul hier een waarde in groter dan of gelijk aan {0}."),
+		rangelength: $.validator.format(
+			"Vul hier een waarde in van minimaal {0} en maximaal {1} tekens."
+		),
+		range: $.validator.format(
+			"Vul hier een waarde in van minimaal {0} en maximaal {1}."
+		),
+		max: $.validator.format(
+			"Vul hier een waarde in kleiner dan of gelijk aan {0}."
+		),
+		min: $.validator.format(
+			"Vul hier een waarde in groter dan of gelijk aan {0}."
+		),
 
 		// for validations in additional-methods.js
 		iban: "Vul hier een geldig IBAN in.",
@@ -30,6 +38,6 @@
 		postalcodeNL: "Vul hier een geldige postcode in.",
 		bankaccountNL: "Vul hier een geldig bankrekeningnummer in.",
 		giroaccountNL: "Vul hier een geldig gironummer in.",
-		bankorgiroaccountNL: "Vul hier een geldig bank- of gironummer in."
+		bankorgiroaccountNL: "Vul hier een geldig bank- of gironummer in.",
 	});
-}(jQuery));
+})(jQuery);

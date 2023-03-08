@@ -20,6 +20,6 @@
 		rangelength: $.format("Hãy nhập từ {0} đến {1} kí tự."),
 		range: $.format("Hãy nhập từ {0} đến {1}."),
 		max: $.format("Hãy nhập từ {0} trở xuống."),
-		min: $.format("Hãy nhập từ {1} trở lên.")
+		min: $.format("Hãy nhập từ {1} trở lên."),
 	});
-}(jQuery));
+})(jQuery);

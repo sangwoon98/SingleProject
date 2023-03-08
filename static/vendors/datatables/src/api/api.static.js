@@ -1,5 +1,3 @@
-
-
 /**
  * Provide a common method for plug-ins to check the version of DataTables being used, in order
  * to ensure compatibility.
@@ -13,29 +11,26 @@
  *  @example
  *    alert( $.fn.dataTable.fnVersionCheck( '1.9.0' ) );
  */
-DataTable.fnVersionCheck = function( sVersion )
-{
+DataTable.fnVersionCheck = function (sVersion) {
 	/* This is cheap, but effective */
-	var fnZPad = function (Zpad, count)
-	{
-		while(Zpad.length < count) {
-			Zpad += '0';
+	var fnZPad = function (Zpad, count) {
+		while (Zpad.length < count) {
+			Zpad += "0";
 		}
 		return Zpad;
 	};
-	var aThis = DataTable.ext.sVersion.split('.');
-	var aThat = sVersion.split('.');
-	var sThis = '', sThat = '';
-	
-	for ( var i=0, iLen=aThat.length ; i<iLen ; i++ )
-	{
-		sThis += fnZPad( aThis[i], 3 );
-		sThat += fnZPad( aThat[i], 3 );
+	var aThis = DataTable.ext.sVersion.split(".");
+	var aThat = sVersion.split(".");
+	var sThis = "",
+		sThat = "";
+
+	for (var i = 0, iLen = aThat.length; i < iLen; i++) {
+		sThis += fnZPad(aThis[i], 3);
+		sThat += fnZPad(aThat[i], 3);
 	}
-	
+
 	return parseInt(sThis, 10) >= parseInt(sThat, 10);
 };
-
 
 /**
  * Check if a TABLE node is a DataTable table already or not.
@@ -51,14 +46,15 @@ DataTable.fnVersionCheck = function( sVersion )
  *      $(ex).dataTable();
  *    }
  */
-DataTable.fnIsDataTable = function ( nTable )
-{
+DataTable.fnIsDataTable = function (nTable) {
 	var o = DataTable.settings;
 
-	for ( var i=0 ; i<o.length ; i++ )
-	{
-		if ( o[i].nTable === nTable || o[i].nScrollHead === nTable || o[i].nScrollFoot === nTable )
-		{
+	for (var i = 0; i < o.length; i++) {
+		if (
+			o[i].nTable === nTable ||
+			o[i].nScrollHead === nTable ||
+			o[i].nScrollFoot === nTable
+		) {
 			return true;
 		}
 	}
@@ -66,11 +62,10 @@ DataTable.fnIsDataTable = function ( nTable )
 	return false;
 };
 
-
 /**
  * Get all DataTable tables that have been initialised - optionally you can select to
  * get only currently visible tables.
- *  @param {boolean} [bVisible=false] Flag to indicate if you want all (default) or 
+ *  @param {boolean} [bVisible=false] Flag to indicate if you want all (default) or
  *    visible tables only.
  *  @returns {array} Array of TABLE nodes (not DataTable instances) which are DataTables
  *  @static
@@ -82,17 +77,14 @@ DataTable.fnIsDataTable = function ( nTable )
  *      $(table).dataTable().fnAdjustColumnSizing();
  *    }
  */
-DataTable.fnTables = function ( bVisible )
-{
+DataTable.fnTables = function (bVisible) {
 	var out = [];
 
-	jQuery.each( DataTable.settings, function (i, o) {
-		if ( !bVisible || (bVisible === true && $(o.nTable).is(':visible')) )
-		{
-			out.push( o.nTable );
+	jQuery.each(DataTable.settings, function (i, o) {
+		if (!bVisible || (bVisible === true && $(o.nTable).is(":visible"))) {
+			out.push(o.nTable);
 		}
-	} );
+	});
 
 	return out;
 };
-

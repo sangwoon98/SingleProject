@@ -17,9 +17,11 @@
 		accept: "Inserisci un valore con un&apos;estensione valida.",
 		maxlength: $.validator.format("Non inserire pi&ugrave; di {0} caratteri."),
 		minlength: $.validator.format("Inserisci almeno {0} caratteri."),
-		rangelength: $.validator.format("Inserisci un valore compreso tra {0} e {1} caratteri."),
+		rangelength: $.validator.format(
+			"Inserisci un valore compreso tra {0} e {1} caratteri."
+		),
 		range: $.validator.format("Inserisci un valore compreso tra {0} e {1}."),
 		max: $.validator.format("Inserisci un valore minore o uguale a {0}."),
-		min: $.validator.format("Inserisci un valore maggiore o uguale a {0}.")
+		min: $.validator.format("Inserisci un valore maggiore o uguale a {0}."),
 	});
-}(jQuery));
+})(jQuery);

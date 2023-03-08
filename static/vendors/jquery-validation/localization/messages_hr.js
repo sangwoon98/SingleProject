@@ -17,9 +17,11 @@
 		accept: "Unesite vrijednost sa ispravnom ekstenzijom.",
 		maxlength: $.validator.format("Maksimalni broj znakova je {0} ."),
 		minlength: $.validator.format("Minimalni broj znakova je {0} ."),
-		rangelength: $.validator.format("Unesite vrijednost između {0} i {1} znakova."),
+		rangelength: $.validator.format(
+			"Unesite vrijednost između {0} i {1} znakova."
+		),
 		range: $.validator.format("Unesite vrijednost između {0} i {1}."),
 		max: $.validator.format("Unesite vrijednost manju ili jednaku {0}."),
-		min: $.validator.format("Unesite vrijednost veću ili jednaku {0}.")
+		min: $.validator.format("Unesite vrijednost veću ili jednaku {0}."),
 	});
-}(jQuery));
+})(jQuery);

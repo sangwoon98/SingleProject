@@ -20,6 +20,6 @@
 		rangelength: $.validator.format("Prosím, zadejte od {0} do {1} znaků."),
 		range: $.validator.format("Prosím, zadejte hodnotu od {0} do {1}."),
 		max: $.validator.format("Prosím, zadejte hodnotu menší nebo rovnu {0}."),
-		min: $.validator.format("Prosím, zadejte hodnotu větší nebo rovnu {0}.")
+		min: $.validator.format("Prosím, zadejte hodnotu větší nebo rovnu {0}."),
 	});
-}(jQuery));
+})(jQuery);

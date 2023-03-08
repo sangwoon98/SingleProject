@@ -9,10 +9,10 @@ editor_test.js
 undo_manager.js
 
 These files should be left more or less alone, for purposes of
-maintainability.  Put new tests in the bootstrap_wysihtml5/ directory,
+maintainability. Put new tests in the bootstrap_wysihtml5/ directory,
 and modify index.html to reference any new files you create.
 
 If you're testing the underlying wysihtml5 library rather the
 bootstrap_wysihtml5 jquery plugin wrapper around that library, then
-you're probably contributing to the wrong project :).  See
+you're probably contributing to the wrong project :). See
 https://github.com/xing/wysihtml5 for that.

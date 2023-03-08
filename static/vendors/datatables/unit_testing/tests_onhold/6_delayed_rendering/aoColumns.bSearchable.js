@@ -1,79 +1,93 @@
 // DATA_TEMPLATE: empty_table
-oTest.fnStart( "aoColumns.bSeachable" );
+oTest.fnStart("aoColumns.bSeachable");
 
-$(document).ready( function () {
+$(document).ready(function () {
 	/* Check the default */
-	var oTable = $('#example').dataTable( {
-		"sAjaxSource": "../../../examples/ajax/sources/arrays.txt",
-		"bDeferRender": true
-	} );
+	var oTable = $("#example").dataTable({
+		sAjaxSource: "../../../examples/ajax/sources/arrays.txt",
+		bDeferRender: true,
+	});
 	var oSettings = oTable.fnSettings();
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Columns are searchable by default",
-		function () { oTable.fnFilter("Camino"); },
 		function () {
-			if ( $('#example tbody tr:eq(0) td:eq(1)')[0] )
-				return $('#example tbody tr:eq(0) td:eq(1)').html().match(/Camino/);
-			else
-				return null;
+			oTable.fnFilter("Camino");
+		},
+		function () {
+			if ($("#example tbody tr:eq(0) td:eq(1)")[0])
+				return $("#example tbody tr:eq(0) td:eq(1)")
+					.html()
+					.match(/Camino/);
+			else return null;
 		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Disabling sorting on a column removes it from the global filter",
 		function () {
 			oSession.fnRestore();
-			oTable = $('#example').dataTable( {
-				"sAjaxSource": "../../../examples/ajax/sources/arrays.txt",
-				"bDeferRender": true,
-				"aoColumns": [
-					null,
-					{ "bSearchable": false },
-					null,
-					null,
-					null
-				]
-			} );
+			oTable = $("#example").dataTable({
+				sAjaxSource: "../../../examples/ajax/sources/arrays.txt",
+				bDeferRender: true,
+				aoColumns: [null, { bSearchable: false }, null, null, null],
+			});
 			oSettings = oTable.fnSettings();
 			oTable.fnFilter("Camino");
 		},
-		function () { return $('#example tbody tr:eq(0) td:eq(0)').html() == "No matching records found"; }
+		function () {
+			return (
+				$("#example tbody tr:eq(0) td:eq(0)").html() == "No matching records found"
+			);
+		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Disabled on one column has no effect on other columns",
-		function () { oTable.fnFilter("Webkit"); },
-		function () { return $('#example tbody tr:eq(0) td:eq(0)').html() == "Webkit"; }
+		function () {
+			oTable.fnFilter("Webkit");
+		},
+		function () {
+			return $("#example tbody tr:eq(0) td:eq(0)").html() == "Webkit";
+		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Disable filtering on multiple columns",
 		function () {
 			oSession.fnRestore();
-			oTable = $('#example').dataTable( {
-				"sAjaxSource": "../../../examples/ajax/sources/arrays.txt",
-				"bDeferRender": true,
-				"aoColumns": [
-					{ "bSearchable": false },
-					{ "bSearchable": false },
+			oTable = $("#example").dataTable({
+				sAjaxSource: "../../../examples/ajax/sources/arrays.txt",
+				bDeferRender: true,
+				aoColumns: [
+					{ bSearchable: false },
+					{ bSearchable: false },
 					null,
 					null,
-					null
-				]
-			} );
+					null,
+				],
+			});
 			oSettings = oTable.fnSettings();
 			oTable.fnFilter("Webkit");
 		},
-		function () { return $('#example tbody tr:eq(0) td:eq(0)').html() == "No matching records found"; }
+		function () {
+			return (
+				$("#example tbody tr:eq(0) td:eq(0)").html() == "No matching records found"
+			);
+		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Filter on second disabled column",
-		function () { oTable.fnFilter("Camino"); },
-		function () { return $('#example tbody tr:eq(0) td:eq(0)').html() == "No matching records found"; }
+		function () {
+			oTable.fnFilter("Camino");
+		},
+		function () {
+			return (
+				$("#example tbody tr:eq(0) td:eq(0)").html() == "No matching records found"
+			);
+		}
 	);
-	
-	
+
 	oTest.fnComplete();
-} );
+});

@@ -1,102 +1,120 @@
 // DATA_TEMPLATE: empty_table
-oTest.fnStart( "bSort" );
+oTest.fnStart("bSort");
 
-$(document).ready( function () {
+$(document).ready(function () {
 	/* Check the default */
-	$('#example').dataTable( {
-		"bServerSide": true,
-		"sAjaxSource": "../../../examples/server_side/scripts/server_processing.php"
-	} );
-	
-	oTest.fnWaitTest( 
-		"Sorting is on by default",
-		null,
-		function () { return $('#example tbody td:eq(1)').html() == "Firefox 1.0"; }
-	);
-	
-	oTest.fnWaitTest( 
-		"Sorting Asc by default class applied",
-		null,
-		function () { return $('#example thead th:eq(0)').hasClass("sorting_asc"); }
-	);
-	
+	$("#example").dataTable({
+		bServerSide: true,
+		sAjaxSource: "../../../examples/server_side/scripts/server_processing.php",
+	});
+
+	oTest.fnWaitTest("Sorting is on by default", null, function () {
+		return $("#example tbody td:eq(1)").html() == "Firefox 1.0";
+	});
+
+	oTest.fnWaitTest("Sorting Asc by default class applied", null, function () {
+		return $("#example thead th:eq(0)").hasClass("sorting_asc");
+	});
+
 	oTest.fnWaitTest(
 		"Click on second column",
-		function () { $('#example thead th:eq(1)').click(); },
-		function () { return $('#example tbody td:eq(1)').html() == "All others"; }
+		function () {
+			$("#example thead th:eq(1)").click();
+		},
+		function () {
+			return $("#example tbody td:eq(1)").html() == "All others";
+		}
 	);
-	
-	oTest.fnWaitTest( 
-		"Sorting class removed from first column",
-		null,
-		function () { return $('#example thead th:eq(0)').hasClass("sorting_asc") != true; }
-	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest("Sorting class removed from first column", null, function () {
+		return $("#example thead th:eq(0)").hasClass("sorting_asc") != true;
+	});
+
+	oTest.fnWaitTest(
 		"Sorting asc class applied to second column",
 		null,
-		function () { return $('#example thead th:eq(1)').hasClass("sorting_asc"); }
+		function () {
+			return $("#example thead th:eq(1)").hasClass("sorting_asc");
+		}
 	);
-	
+
 	oTest.fnWaitTest(
 		"Reverse on second column",
-		function () { $('#example thead th:eq(1)').click(); },
-		function () { return $('#example tbody td:eq(1)').html() == "Seamonkey 1.1"; }
+		function () {
+			$("#example thead th:eq(1)").click();
+		},
+		function () {
+			return $("#example tbody td:eq(1)").html() == "Seamonkey 1.1";
+		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Sorting acs class removed from second column",
 		null,
-		function () { return $('#example thead th:eq(1)').hasClass("sorting_asc") != true; }
+		function () {
+			return $("#example thead th:eq(1)").hasClass("sorting_asc") != true;
+		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Sorting desc class applied to second column",
 		null,
-		function () { return $('#example thead th:eq(1)').hasClass("sorting_desc"); }
+		function () {
+			return $("#example thead th:eq(1)").hasClass("sorting_desc");
+		}
 	);
-	
+
 	/* Check can disable */
-	oTest.fnWaitTest( 
+	oTest.fnWaitTest(
 		"Pagiantion can be disabled",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"bServerSide": true,
-		"sAjaxSource": "../../../examples/server_side/scripts/server_processing.php",
-				"bSort": false
-			} );
+			$("#example").dataTable({
+				bServerSide: true,
+				sAjaxSource: "../../../examples/server_side/scripts/server_processing.php",
+				bSort: false,
+			});
 		},
-		function () { return $('#example tbody td:eq(3)').html() == "4"; }
+		function () {
+			return $("#example tbody td:eq(3)").html() == "4";
+		}
 	);
-	
+
 	oTest.fnWaitTest(
 		"Click on second column has no effect",
-		function () { $('#example thead th:eq(1)').click(); },
-		function () { return $('#example tbody td:eq(3)').html() == "4"; }
+		function () {
+			$("#example thead th:eq(1)").click();
+		},
+		function () {
+			return $("#example tbody td:eq(3)").html() == "4";
+		}
 	);
-	
+
 	oTest.fnWaitTest(
 		"Reverse on second column has no effect",
-		function () { $('#example thead th:eq(1)').click(); },
-		function () { return $('#example tbody td:eq(3)').html() == "4"; }
+		function () {
+			$("#example thead th:eq(1)").click();
+		},
+		function () {
+			return $("#example tbody td:eq(3)").html() == "4";
+		}
 	);
-	
+
 	/* Enable makes no difference */
-	oTest.fnWaitTest( 
+	oTest.fnWaitTest(
 		"Sorting enabled override",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"bServerSide": true,
-		"sAjaxSource": "../../../examples/server_side/scripts/server_processing.php",
-				"bSort": true
-			} );
+			$("#example").dataTable({
+				bServerSide: true,
+				sAjaxSource: "../../../examples/server_side/scripts/server_processing.php",
+				bSort: true,
+			});
 		},
-		function () { return $('#example tbody td:eq(1)').html() == "Firefox 1.0"; }
+		function () {
+			return $("#example tbody td:eq(1)").html() == "Firefox 1.0";
+		}
 	);
-	
-	
-	
+
 	oTest.fnComplete();
-} );
+});

@@ -1,5 +1,4 @@
-[jQuery Validation Plugin](http://bassistance.de/jquery-plugins/jquery-plugin-validation/) - Form validation made easy
-================================
+# [jQuery Validation Plugin](http://bassistance.de/jquery-plugins/jquery-plugin-validation/) - Form validation made easy
 
 [![Build Status](https://secure.travis-ci.org/jzaefferer/jquery-validation.png)](http://travis-ci.org/jzaefferer/jquery-validation)
 
@@ -20,22 +19,24 @@ Include jQuery and the plugin on a page. Then select a form to validate and call
 
 ```html
 <form>
-	<input required>
+	<input required />
 </form>
 <script src="jquery.js"></script>
 <script src="jquery.validation.js"></script>
 <script>
-$("form").validate();
+	$("form").validate();
 </script>
 ```
 
 For more information on how to setup a rules and customizations, [check the documentation](http://docs.jquery.com/Plugins/Validation).
 
 ## Contributing
+
 Follow the [jQuery style guide](http://contribute.jquery.com/style-guides/js), even if existing code doesn't. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 If you've wrote custom methods that you'd like to contribute to additional-methods.js, create a branch, add the method there and send a pull request for that branch.
 
 ## License
+
 Copyright (c) 2013 Jörn Zaefferer
 Licensed under the MIT license.

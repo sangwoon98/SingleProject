@@ -17,6 +17,6 @@
 		range: $.validator.format("Angiv en værdi mellem {0} og {1}."),
 		max: $.validator.format("Angiv en værdi der højst er {0}."),
 		min: $.validator.format("Angiv en værdi der mindst er {0}."),
-		creditcard: "Indtast et gyldigt kreditkortnummer."
+		creditcard: "Indtast et gyldigt kreditkortnummer.",
 	});
-}(jQuery));
+})(jQuery);

@@ -1,71 +1,88 @@
 // DATA_TEMPLATE: js_data
-oTest.fnStart( "aoColumns.bSeachable" );
+oTest.fnStart("aoColumns.bSeachable");
 
-$(document).ready( function () {
+$(document).ready(function () {
 	/* Check the default */
-	var oTable = $('#example').dataTable( {
-		"aaData": gaaData
-	} );
+	var oTable = $("#example").dataTable({
+		aaData: gaaData,
+	});
 	var oSettings = oTable.fnSettings();
-	
-	oTest.fnTest( 
+
+	oTest.fnTest(
 		"Columns are searchable by default",
-		function () { oTable.fnFilter("Camino"); },
-		function () { return $('#example tbody tr:eq(0) td:eq(1)').html().match(/Camino/); }
+		function () {
+			oTable.fnFilter("Camino");
+		},
+		function () {
+			return $("#example tbody tr:eq(0) td:eq(1)")
+				.html()
+				.match(/Camino/);
+		}
 	);
-	
-	oTest.fnTest( 
+
+	oTest.fnTest(
 		"Disabling sorting on a column removes it from the global filter",
 		function () {
 			oSession.fnRestore();
-			oTable = $('#example').dataTable( {
-				"aaData": gaaData,
-				"aoColumns": [
-					null,
-					{ "bSearchable": false },
-					null,
-					null,
-					null
-				]
-			} );
+			oTable = $("#example").dataTable({
+				aaData: gaaData,
+				aoColumns: [null, { bSearchable: false }, null, null, null],
+			});
 			oSettings = oTable.fnSettings();
 			oTable.fnFilter("Camino");
 		},
-		function () { return $('#example tbody tr:eq(0) td:eq(0)').html() == "No matching records found"; }
+		function () {
+			return (
+				$("#example tbody tr:eq(0) td:eq(0)").html() == "No matching records found"
+			);
+		}
 	);
-	
-	oTest.fnTest( 
+
+	oTest.fnTest(
 		"Disabled on one column has no effect on other columns",
-		function () { oTable.fnFilter("Webkit"); },
-		function () { return $('#example tbody tr:eq(0) td:eq(0)').html() == "Webkit"; }
+		function () {
+			oTable.fnFilter("Webkit");
+		},
+		function () {
+			return $("#example tbody tr:eq(0) td:eq(0)").html() == "Webkit";
+		}
 	);
-	
-	oTest.fnTest( 
+
+	oTest.fnTest(
 		"Disable filtering on multiple columns",
 		function () {
 			oSession.fnRestore();
-			oTable = $('#example').dataTable( {
-				"aaData": gaaData,
-				"aoColumns": [
-					{ "bSearchable": false },
-					{ "bSearchable": false },
+			oTable = $("#example").dataTable({
+				aaData: gaaData,
+				aoColumns: [
+					{ bSearchable: false },
+					{ bSearchable: false },
 					null,
 					null,
-					null
-				]
-			} );
+					null,
+				],
+			});
 			oSettings = oTable.fnSettings();
 			oTable.fnFilter("Webkit");
 		},
-		function () { return $('#example tbody tr:eq(0) td:eq(0)').html() == "No matching records found"; }
+		function () {
+			return (
+				$("#example tbody tr:eq(0) td:eq(0)").html() == "No matching records found"
+			);
+		}
 	);
-	
-	oTest.fnTest( 
+
+	oTest.fnTest(
 		"Filter on second disabled column",
-		function () { oTable.fnFilter("Camino"); },
-		function () { return $('#example tbody tr:eq(0) td:eq(0)').html() == "No matching records found"; }
+		function () {
+			oTable.fnFilter("Camino");
+		},
+		function () {
+			return (
+				$("#example tbody tr:eq(0) td:eq(0)").html() == "No matching records found"
+			);
+		}
 	);
-	
-	
+
 	oTest.fnComplete();
-} );
+});

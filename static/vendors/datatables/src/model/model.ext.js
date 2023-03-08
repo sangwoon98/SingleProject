@@ -1,11 +1,9 @@
-
-
 /**
  * DataTables extension options and plug-ins. This namespace acts as a collection "area"
  * for plug-ins that can be used to extend the default DataTables behaviour - indeed many
  * of the build in methods use this method to provide their own capabilities (sorting methods
  * for example).
- * 
+ *
  * Note that this namespace is aliased to jQuery.fn.dataTableExt so it can be readily accessed
  * and modified by plug-ins.
  *  @namespace
@@ -40,7 +38,7 @@ DataTable.models.ext = {
 	 *
 	 *  @example
 	 *    // The following example shows custom filtering being applied to the fourth column (i.e.
-	 *    // the aData[3] index) based on two input values from the end-user, matching the data in 
+	 *    // the aData[3] index) based on two input values from the end-user, matching the data in
 	 *    // a certain range.
 	 *    $.fn.dataTableExt.afnFiltering.push(
 	 *      function( oSettings, aData, iDataIndex ) {
@@ -63,8 +61,7 @@ DataTable.models.ext = {
 	 *      }
 	 *    );
 	 */
-	"afnFiltering": [],
-
+	afnFiltering: [],
 
 	/**
 	 * Plug-in sorting functions - this method of sorting is complimentary to the default type
@@ -74,16 +71,16 @@ DataTable.models.ext = {
 	 * static string that DataTables knows of. The way these plug-ins work is that you create
 	 * an array of the values you wish to be sorted for the column in question and then return
 	 * that array. Which pre-sorting function is run here depends on the sSortDataType parameter
-	 * that is used for the column (if any). This is the corollary of <i>ofnSearch</i> for sort 
+	 * that is used for the column (if any). This is the corollary of <i>ofnSearch</i> for sort
 	 * data.
 	 *   <ul>
-     *     <li>
-     *       Function input parameters:
-     *       <ul>
+	 *     <li>
+	 *       Function input parameters:
+	 *       <ul>
 	 *         <li>{object} DataTables settings object: see {@link DataTable.models.oSettings}.</li>
-     *         <li>{int} Target column index</li>
-     *       </ul>
-     *     </li>
+	 *         <li>{int} Target column index</li>
+	 *       </ul>
+	 *     </li>
 	 *     <li>
 	 *       Function return:
 	 *       <ul>
@@ -91,10 +88,10 @@ DataTable.models.ext = {
 	 *       </ul>
 	 *     </il>
 	 *   </ul>
-	 *  
+	 *
 	 * Note that as of v1.9, it is typically preferable to use <i>mData</i> to prepare data for
 	 * the different uses that DataTables can put the data to. Specifically <i>mData</i> when
-	 * used as a function will give you a 'type' (sorting, filtering etc) that you can use to 
+	 * used as a function will give you a 'type' (sorting, filtering etc) that you can use to
 	 * prepare the data as required for the different types. As such, this method is deprecated.
 	 *  @type array
 	 *  @default []
@@ -111,8 +108,7 @@ DataTable.models.ext = {
 	 *      return aData;
 	 *    }
 	 */
-	"afnSortData": [],
-
+	afnSortData: [],
 
 	/**
 	 * Feature plug-ins - This is an array of objects which describe the feature plug-ins that are
@@ -123,18 +119,18 @@ DataTable.models.ext = {
 	 *   <ul>
 	 *     <li>{function} fnInit Initialisation of the plug-in
 	 *       <ul>
-     *         <li>
-     *           Function input parameters:
-     *           <ul>
+	 *         <li>
+	 *           Function input parameters:
+	 *           <ul>
 	 *             <li>{object} DataTables settings object: see {@link DataTable.models.oSettings}.</li>
-     *           </ul>
-     *         </li>
+	 *           </ul>
+	 *         </li>
 	 *         <li>
 	 *           Function return:
 	 *           <ul>
 	 *             <li>{node|null} The element which contains your feature. Note that the return
-	 *                may also be void if your plug-in does not require to inject any DOM elements 
-	 *                into DataTables control (sDom) - for example this might be useful when 
+	 *                may also be void if your plug-in does not require to inject any DOM elements
+	 *                into DataTables control (sDom) - for example this might be useful when
 	 *                developing a plug-in which allows table control via keyboard entry.</li>
 	 *           </ul>
 	 *         </il>
@@ -145,7 +141,7 @@ DataTable.models.ext = {
 	 *   </ul>
 	 *  @type array
 	 *  @default []
-	 * 
+	 *
 	 *  @example
 	 *    // How TableTools initialises itself.
 	 *    $.fn.dataTableExt.aoFeatures.push( {
@@ -156,22 +152,21 @@ DataTable.models.ext = {
 	 *      "sFeature": "TableTools"
 	 *    } );
 	 */
-	"aoFeatures": [],
-
+	aoFeatures: [],
 
 	/**
 	 * Type detection plug-in functions - DataTables utilises types to define how sorting and
 	 * filtering behave, and types can be either  be defined by the developer (sType for the
 	 * column) or they can be automatically detected by the methods in this array. The functions
-	 * defined in the array are quite simple, taking a single parameter (the data to analyse) 
+	 * defined in the array are quite simple, taking a single parameter (the data to analyse)
 	 * and returning the type if it is a known type, or null otherwise.
 	 *   <ul>
-     *     <li>
-     *       Function input parameters:
-     *       <ul>
+	 *     <li>
+	 *       Function input parameters:
+	 *       <ul>
 	 *         <li>{*} Data from the column cell to be analysed</li>
-     *       </ul>
-     *     </li>
+	 *       </ul>
+	 *     </li>
 	 *     <li>
 	 *       Function return:
 	 *       <ul>
@@ -182,22 +177,22 @@ DataTable.models.ext = {
 	 *   </ul>
 	 *  @type array
 	 *  @default []
-	 *  
+	 *
 	 *  @example
 	 *    // Currency type detection plug-in:
 	 *    jQuery.fn.dataTableExt.aTypes.push(
 	 *      function ( sData ) {
 	 *        var sValidChars = "0123456789.-";
 	 *        var Char;
-	 *        
+	 *
 	 *        // Check the numeric part
 	 *        for ( i=1 ; i<sData.length ; i++ ) {
-	 *          Char = sData.charAt(i); 
+	 *          Char = sData.charAt(i);
 	 *          if (sValidChars.indexOf(Char) == -1) {
 	 *            return null;
 	 *          }
 	 *        }
-	 *        
+	 *
 	 *        // Check prefixed by currency
 	 *        if ( sData.charAt(0) == '$' || sData.charAt(0) == '&pound;' ) {
 	 *          return 'currency';
@@ -206,16 +201,15 @@ DataTable.models.ext = {
 	 *      }
 	 *    );
 	 */
-	"aTypes": [],
-
+	aTypes: [],
 
 	/**
-	 * Provide a common method for plug-ins to check the version of DataTables being used, 
+	 * Provide a common method for plug-ins to check the version of DataTables being used,
 	 * in order to ensure compatibility.
 	 *  @type function
-	 *  @param {string} sVersion Version string to check for, in the format "X.Y.Z". Note 
+	 *  @param {string} sVersion Version string to check for, in the format "X.Y.Z". Note
 	 *    that the formats "X" and "X.Y" are also acceptable.
-	 *  @returns {boolean} true if this version of DataTables is greater or equal to the 
+	 *  @returns {boolean} true if this version of DataTables is greater or equal to the
 	 *    required version, or false if this version of DataTales is not suitable
 	 *
 	 *  @example
@@ -224,32 +218,30 @@ DataTable.models.ext = {
 	 *      alert( oTable.fnVersionCheck( '1.9.0' ) );
 	 *    } );
 	 */
-	"fnVersionCheck": DataTable.fnVersionCheck,
-
+	fnVersionCheck: DataTable.fnVersionCheck,
 
 	/**
 	 * Index for what 'this' index API functions should use
 	 *  @type int
 	 *  @default 0
 	 */
-	"iApiIndex": 0,
-
+	iApiIndex: 0,
 
 	/**
 	 * Pre-processing of filtering data plug-ins - When you assign the sType for a column
-	 * (or have it automatically detected for you by DataTables or a type detection plug-in), 
-	 * you will typically be using this for custom sorting, but it can also be used to provide 
+	 * (or have it automatically detected for you by DataTables or a type detection plug-in),
+	 * you will typically be using this for custom sorting, but it can also be used to provide
 	 * custom filtering by allowing you to pre-processing the data and returning the data in
-	 * the format that should be filtered upon. This is done by adding functions this object 
+	 * the format that should be filtered upon. This is done by adding functions this object
 	 * with a parameter name which matches the sType for that target column. This is the
 	 * corollary of <i>afnSortData</i> for filtering data.
 	 *   <ul>
-     *     <li>
-     *       Function input parameters:
-     *       <ul>
+	 *     <li>
+	 *       Function input parameters:
+	 *       <ul>
 	 *         <li>{*} Data from the column cell to be prepared for filtering</li>
-     *       </ul>
-     *     </li>
+	 *       </ul>
+	 *     </li>
 	 *     <li>
 	 *       Function return:
 	 *       <ul>
@@ -257,10 +249,10 @@ DataTable.models.ext = {
 	 *       </ul>
 	 *     </il>
 	 *   </ul>
-	 * 
+	 *
 	 * Note that as of v1.9, it is typically preferable to use <i>mData</i> to prepare data for
 	 * the different uses that DataTables can put the data to. Specifically <i>mData</i> when
-	 * used as a function will give you a 'type' (sorting, filtering etc) that you can use to 
+	 * used as a function will give you a 'type' (sorting, filtering etc) that you can use to
 	 * prepare the data as required for the different types. As such, this method is deprecated.
 	 *  @type object
 	 *  @default {}
@@ -271,36 +263,32 @@ DataTable.models.ext = {
 	 *      return sData.replace(/\n/g," ").replace( /<.*?>/g, "" );
 	 *    }
 	 */
-	"ofnSearch": {},
-
+	ofnSearch: {},
 
 	/**
 	 * Container for all private functions in DataTables so they can be exposed externally
 	 *  @type object
 	 *  @default {}
 	 */
-	"oApi": {},
-
+	oApi: {},
 
 	/**
 	 * Storage for the various classes that DataTables uses
 	 *  @type object
 	 *  @default {}
 	 */
-	"oStdClasses": {},
-	
+	oStdClasses: {},
 
 	/**
 	 * Storage for the various classes that DataTables uses - jQuery UI suitable
 	 *  @type object
 	 *  @default {}
 	 */
-	"oJUIClasses": {},
-
+	oJUIClasses: {},
 
 	/**
-	 * Pagination plug-in methods - The style and controls of the pagination can significantly 
-	 * impact on how the end user interacts with the data in your table, and DataTables allows 
+	 * Pagination plug-in methods - The style and controls of the pagination can significantly
+	 * impact on how the end user interacts with the data in your table, and DataTables allows
 	 * the addition of pagination controls by extending this object, which can then be enabled
 	 * through the <i>sPaginationType</i> initialisation parameter. Each pagination type that
 	 * is added is an object (the property name of which is what <i>sPaginationType</i> refers
@@ -308,23 +296,23 @@ DataTable.models.ext = {
 	 * control's state.
 	 *   <ul>
 	 *     <li>
-	 *       fnInit -  Initialisation of the paging controls. Called only during initialisation 
-	 *         of the table. It is expected that this function will add the required DOM elements 
-	 *         to the page for the paging controls to work. The element pointer 
-	 *         'oSettings.aanFeatures.p' array is provided by DataTables to contain the paging 
-	 *         controls (note that this is a 2D array to allow for multiple instances of each 
-	 *         DataTables DOM element). It is suggested that you add the controls to this element 
+	 *       fnInit -  Initialisation of the paging controls. Called only during initialisation
+	 *         of the table. It is expected that this function will add the required DOM elements
+	 *         to the page for the paging controls to work. The element pointer
+	 *         'oSettings.aanFeatures.p' array is provided by DataTables to contain the paging
+	 *         controls (note that this is a 2D array to allow for multiple instances of each
+	 *         DataTables DOM element). It is suggested that you add the controls to this element
 	 *         as children
 	 *       <ul>
-     *         <li>
-     *           Function input parameters:
-     *           <ul>
+	 *         <li>
+	 *           Function input parameters:
+	 *           <ul>
 	 *             <li>{object} DataTables settings object: see {@link DataTable.models.oSettings}.</li>
 	 *             <li>{node} Container into which the pagination controls must be inserted</li>
 	 *             <li>{function} Draw callback function - whenever the controls cause a page
 	 *               change, this method must be called to redraw the table.</li>
-     *           </ul>
-     *         </li>
+	 *           </ul>
+	 *         </li>
 	 *         <li>
 	 *           Function return:
 	 *           <ul>
@@ -335,17 +323,17 @@ DataTable.models.ext = {
 	 *     </il>
 	 *     <li>
 	 *       fnInit -  This function is called whenever the paging status of the table changes and is
-	 *         typically used to update classes and/or text of the paging controls to reflex the new 
+	 *         typically used to update classes and/or text of the paging controls to reflex the new
 	 *         status.
 	 *       <ul>
-     *         <li>
-     *           Function input parameters:
-     *           <ul>
+	 *         <li>
+	 *           Function input parameters:
+	 *           <ul>
 	 *             <li>{object} DataTables settings object: see {@link DataTable.models.oSettings}.</li>
 	 *             <li>{function} Draw callback function - in case you need to redraw the table again
 	 *               or attach new event listeners</li>
-     *           </ul>
-     *         </li>
+	 *           </ul>
+	 *         </li>
 	 *         <li>
 	 *           Function return:
 	 *           <ul>
@@ -365,53 +353,53 @@ DataTable.models.ext = {
 	 *        nPrevious = document.createElement( 'span' );
 	 *        nNext = document.createElement( 'span' );
 	 *        nLast = document.createElement( 'span' );
-	 *        
+	 *
 	 *        nFirst.appendChild( document.createTextNode( oSettings.oLanguage.oPaginate.sFirst ) );
 	 *        nPrevious.appendChild( document.createTextNode( oSettings.oLanguage.oPaginate.sPrevious ) );
 	 *        nNext.appendChild( document.createTextNode( oSettings.oLanguage.oPaginate.sNext ) );
 	 *        nLast.appendChild( document.createTextNode( oSettings.oLanguage.oPaginate.sLast ) );
-	 *        
+	 *
 	 *        nFirst.className = "paginate_button first";
 	 *        nPrevious.className = "paginate_button previous";
 	 *        nNext.className="paginate_button next";
 	 *        nLast.className = "paginate_button last";
-	 *        
+	 *
 	 *        nPaging.appendChild( nFirst );
 	 *        nPaging.appendChild( nPrevious );
 	 *        nPaging.appendChild( nNext );
 	 *        nPaging.appendChild( nLast );
-	 *        
+	 *
 	 *        $(nFirst).click( function () {
 	 *          oSettings.oApi._fnPageChange( oSettings, "first" );
 	 *          fnCallbackDraw( oSettings );
 	 *        } );
-	 *        
+	 *
 	 *        $(nPrevious).click( function() {
 	 *          oSettings.oApi._fnPageChange( oSettings, "previous" );
 	 *          fnCallbackDraw( oSettings );
 	 *        } );
-	 *        
+	 *
 	 *        $(nNext).click( function() {
 	 *          oSettings.oApi._fnPageChange( oSettings, "next" );
 	 *          fnCallbackDraw( oSettings );
 	 *        } );
-	 *        
+	 *
 	 *        $(nLast).click( function() {
 	 *          oSettings.oApi._fnPageChange( oSettings, "last" );
 	 *          fnCallbackDraw( oSettings );
 	 *        } );
-	 *        
+	 *
 	 *        $(nFirst).bind( 'selectstart', function () { return false; } );
 	 *        $(nPrevious).bind( 'selectstart', function () { return false; } );
 	 *        $(nNext).bind( 'selectstart', function () { return false; } );
 	 *        $(nLast).bind( 'selectstart', function () { return false; } );
 	 *      },
-	 *      
+	 *
 	 *      "fnUpdate": function ( oSettings, fnCallbackDraw ) {
 	 *        if ( !oSettings.aanFeatures.p ) {
 	 *          return;
 	 *        }
-	 *        
+	 *
 	 *        // Loop over each instance of the pager
 	 *        var an = oSettings.aanFeatures.p;
 	 *        for ( var i=0, iLen=an.length ; i<iLen ; i++ ) {
@@ -424,7 +412,7 @@ DataTable.models.ext = {
 	 *            buttons[0].className = "paginate_enabled_previous";
 	 *            buttons[1].className = "paginate_enabled_previous";
 	 *          }
-	 *          
+	 *
 	 *          if ( oSettings.fnDisplayEnd() == oSettings.fnRecordsDisplay() ) {
 	 *            buttons[2].className = "paginate_disabled_next";
 	 *            buttons[3].className = "paginate_disabled_next";
@@ -437,26 +425,25 @@ DataTable.models.ext = {
 	 *      }
 	 *    };
 	 */
-	"oPagination": {},
-
+	oPagination: {},
 
 	/**
 	 * Sorting plug-in methods - Sorting in DataTables is based on the detected type of the
-	 * data column (you can add your own type detection functions, or override automatic 
-	 * detection using sType). With this specific type given to the column, DataTables will 
+	 * data column (you can add your own type detection functions, or override automatic
+	 * detection using sType). With this specific type given to the column, DataTables will
 	 * apply the required sort from the functions in the object. Each sort type must provide
 	 * two mandatory methods, one each for ascending and descending sorting, and can optionally
 	 * provide a pre-formatting method that will help speed up sorting by allowing DataTables
 	 * to pre-format the sort data only once (rather than every time the actual sort functions
 	 * are run). The two sorting functions are typical Javascript sort methods:
 	 *   <ul>
-     *     <li>
-     *       Function input parameters:
-     *       <ul>
+	 *     <li>
+	 *       Function input parameters:
+	 *       <ul>
 	 *         <li>{*} Data to compare to the second parameter</li>
 	 *         <li>{*} Data to compare to the first parameter</li>
-     *       </ul>
-     *     </li>
+	 *       </ul>
+	 *     </li>
 	 *     <li>
 	 *       Function return:
 	 *       <ul>
@@ -494,8 +481,7 @@ DataTable.models.ext = {
 	 *      }
 	 *    } );
 	 */
-	"oSort": {},
-
+	oSort: {},
 
 	/**
 	 * Version string for plug-ins to check compatibility. Allowed format is
@@ -504,25 +490,22 @@ DataTable.models.ext = {
 	 *  @type string
 	 *  @default Version number
 	 */
-	"sVersion": DataTable.version,
-
+	sVersion: DataTable.version,
 
 	/**
 	 * How should DataTables report an error. Can take the value 'alert' or 'throw'
 	 *  @type string
 	 *  @default alert
 	 */
-	"sErrMode": "alert",
-
+	sErrMode: "alert",
 
 	/**
 	 * Store information for DataTables to access globally about other instances
 	 *  @namespace
 	 *  @private
 	 */
-	"_oExternConfig": {
+	_oExternConfig: {
 		/* int:iNextUnique - next unique number for an instance */
-		"iNextUnique": 0
-	}
+		iNextUnique: 0,
+	},
 };
-

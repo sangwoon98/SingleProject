@@ -1,101 +1,110 @@
 // DATA_TEMPLATE: dom_data
-oTest.fnStart( "oSearch" );
+oTest.fnStart("oSearch");
 
-$(document).ready( function () {
+$(document).ready(function () {
 	/* Check the default */
-	var oTable = $('#example').dataTable();
+	var oTable = $("#example").dataTable();
 	var oSettings = oTable.fnSettings();
-	
-	oTest.fnTest( 
-		"Default values should be blank",
-		null,
-		function () {
-			var bReturn = oSettings.oPreviousSearch.sSearch == "" && 
-			              !oSettings.oPreviousSearch.bRegex;
-			return bReturn;
-		}
-	);
-	
+
+	oTest.fnTest("Default values should be blank", null, function () {
+		var bReturn =
+			oSettings.oPreviousSearch.sSearch == "" && !oSettings.oPreviousSearch.bRegex;
+		return bReturn;
+	});
+
 	/* This test might be considered iffy since the full object isn't given, but it's reasonable to
 	 * expect DataTables to cope with this. It should just assumine regex false
 	 */
-	oTest.fnTest( 
+	oTest.fnTest(
 		"Search term only in object",
 		function () {
 			oSession.fnRestore();
-			oTable = $('#example').dataTable( {
-				"oSearch": {
-					"sSearch": "Mozilla"
-				}
-			} );
+			oTable = $("#example").dataTable({
+				oSearch: {
+					sSearch: "Mozilla",
+				},
+			});
 		},
-		function () { return $('#example tbody tr:eq(0) td:eq(0)').html() == "Gecko"; }
+		function () {
+			return $("#example tbody tr:eq(0) td:eq(0)").html() == "Gecko";
+		}
 	);
-	
-	oTest.fnTest( 
+
+	oTest.fnTest(
 		"New search will kill old one",
 		function () {
 			oTable.fnFilter("Opera");
 		},
-		function () { return $('#example tbody tr:eq(0) td:eq(0)').html() == "Presto"; }
+		function () {
+			return $("#example tbody tr:eq(0) td:eq(0)").html() == "Presto";
+		}
 	);
-	
-	oTest.fnTest( 
+
+	oTest.fnTest(
 		"Search plain text term and escape regex true",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"oSearch": {
-					"sSearch": "DS",
-					"bRegex": false
-				}
-			} );
+			$("#example").dataTable({
+				oSearch: {
+					sSearch: "DS",
+					bRegex: false,
+				},
+			});
 		},
-		function () { return $('#example tbody tr:eq(0) td:eq(1)').html() == "Nintendo DS browser"; }
+		function () {
+			return $("#example tbody tr:eq(0) td:eq(1)").html() == "Nintendo DS browser";
+		}
 	);
-	
-	oTest.fnTest( 
+
+	oTest.fnTest(
 		"Search plain text term and escape regex false",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"oSearch": {
-					"sSearch": "Opera",
-					"bRegex": true
-				}
-			} );
+			$("#example").dataTable({
+				oSearch: {
+					sSearch: "Opera",
+					bRegex: true,
+				},
+			});
 		},
-		function () { return $('#example tbody tr:eq(0) td:eq(0)').html() == "Presto"; }
+		function () {
+			return $("#example tbody tr:eq(0) td:eq(0)").html() == "Presto";
+		}
 	);
-	
-	oTest.fnTest( 
+
+	oTest.fnTest(
 		"Search regex text term and escape regex true",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"oSearch": {
-					"sSearch": "1.*",
-					"bRegex": false
-				}
-			} );
+			$("#example").dataTable({
+				oSearch: {
+					sSearch: "1.*",
+					bRegex: false,
+				},
+			});
 		},
-		function () { return $('#example tbody tr:eq(0) td:eq(0)').html() == "No matching records found"; }
+		function () {
+			return (
+				$("#example tbody tr:eq(0) td:eq(0)").html() == "No matching records found"
+			);
+		}
 	);
-	
-	oTest.fnTest( 
+
+	oTest.fnTest(
 		"Search regex text term and escape regex false",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"oSearch": {
-					"sSearch": "1.*",
-					"bRegex": true
-				}
-			} );
+			$("#example").dataTable({
+				oSearch: {
+					sSearch: "1.*",
+					bRegex: true,
+				},
+			});
 		},
-		function () { return $('#example tbody tr:eq(0) td:eq(0)').html() == "Gecko"; }
+		function () {
+			return $("#example tbody tr:eq(0) td:eq(0)").html() == "Gecko";
+		}
 	);
-	
-	
+
 	oTest.fnComplete();
-} );
+});

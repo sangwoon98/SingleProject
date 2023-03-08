@@ -1,40 +1,37 @@
 // DATA_TEMPLATE: empty_table
-oTest.fnStart( "oLanguage.sUrl" );
+oTest.fnStart("oLanguage.sUrl");
 
 /* Note that we only test the internal storage of language information pulled form a file here
  * as the other language tests will check it goes into the DOM correctly
  */
 
-$(document).ready( function () {
+$(document).ready(function () {
 	/* Check the default */
-	var oTable = $('#example').dataTable( {
-		"bServerSide": true,
-		"sAjaxSource": "../../../examples/server_side/scripts/server_processing.php"
-	} );
+	var oTable = $("#example").dataTable({
+		bServerSide: true,
+		sAjaxSource: "../../../examples/server_side/scripts/server_processing.php",
+	});
 	var oSettings = oTable.fnSettings();
-	
-	oTest.fnTest( 
-		"sUrl is blank by default",
-		null,
-		function () { return oSettings.oLanguage.sUrl == ""; }
-	);
-	
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnTest("sUrl is blank by default", null, function () {
+		return oSettings.oLanguage.sUrl == "";
+	});
+
+	oTest.fnWaitTest(
 		"Loading of German file loads language information",
 		function () {
 			oSession.fnRestore();
-			oTable = $('#example').dataTable( {
-				"bServerSide": true,
-		"sAjaxSource": "../../../examples/server_side/scripts/server_processing.php",
-				"oLanguage": {
-					"sUrl": "../../../examples/examples_support/de_DE.txt"
-				}
-			} );
+			oTable = $("#example").dataTable({
+				bServerSide: true,
+				sAjaxSource: "../../../examples/server_side/scripts/server_processing.php",
+				oLanguage: {
+					sUrl: "../../../examples/examples_support/de_DE.txt",
+				},
+			});
 			oSettings = oTable.fnSettings();
 		},
 		function () {
-			var bReturn = 
+			var bReturn =
 				oSettings.oLanguage.sProcessing == "Bitte warten..." &&
 				oSettings.oLanguage.sLengthMenu == "_MENU_ Einträge anzeigen" &&
 				oSettings.oLanguage.sZeroRecords == "Keine Einträge vorhanden." &&
@@ -47,18 +44,16 @@ $(document).ready( function () {
 				oSettings.oLanguage.oPaginate.sPrevious == "Zurück" &&
 				oSettings.oLanguage.oPaginate.sNext == "Nächster" &&
 				oSettings.oLanguage.oPaginate.sLast == "Letzter";
-				
+
 			return bReturn;
 		}
 	);
-	
+
 	/* One DOM check just to ensure that they go into the DOM */
-	oTest.fnTest(
-		"Loaded language goes into the DOM",
-		null,
-		function () { return document.getElementById('example_info').innerHTML = "1 bis 10 von 57 Einträgen"; }
-	);
-	
-	
+	oTest.fnTest("Loaded language goes into the DOM", null, function () {
+		return (document.getElementById("example_info").innerHTML =
+			"1 bis 10 von 57 Einträgen");
+	});
+
 	oTest.fnComplete();
-} );
+});

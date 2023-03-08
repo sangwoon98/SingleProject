@@ -1,153 +1,144 @@
 // DATA_TEMPLATE: empty_table
-oTest.fnStart( "sDom" );
+oTest.fnStart("sDom");
 
 /* This is going to be brutal on the browser! There is a lot that can be tested here... */
 
-$(document).ready( function () {
+$(document).ready(function () {
 	/* Check the default */
-	var oTable = $('#example').dataTable( {
-		"sAjaxSource": "../../../examples/ajax/sources/objects.txt",
-		"aoColumns": [
-			{ "mData": "engine" },
-			{ "mData": "browser" },
-			{ "mData": "platform" },
-			{ "mData": "version" },
-			{ "mData": "grade" }
-		]
-	} );
+	var oTable = $("#example").dataTable({
+		sAjaxSource: "../../../examples/ajax/sources/objects.txt",
+		aoColumns: [
+			{ mData: "engine" },
+			{ mData: "browser" },
+			{ mData: "platform" },
+			{ mData: "version" },
+			{ mData: "grade" },
+		],
+	});
 	var oSettings = oTable.fnSettings();
-	
-	oTest.fnWaitTest( 
-		"Default DOM varaible",
-		null,
-		function () { return oSettings.sDom == "lfrtip"; }
-	);
-	
-	oTest.fnWaitTest( 
-		"Default DOM in document",
-		null,
-		function () {
-			var nNodes = $('#demo div, #demo table');
-			var nWrapper = document.getElementById('example_wrapper');
-			var nLength = document.getElementById('example_length');
-			var nFilter = document.getElementById('example_filter');
-			var nInfo = document.getElementById('example_info');
-			var nPaging = document.getElementById('example_paginate');
-			var nTable = document.getElementById('example');
-			
-			var bReturn = 
-				nNodes[0] == nWrapper &&
-				nNodes[1] == nLength &&
-				nNodes[2] == nFilter &&
-				nNodes[3] == nTable &&
-				nNodes[4] == nInfo &&
-				nNodes[5] == nPaging;
-			return bReturn;
-		}
-	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest("Default DOM varaible", null, function () {
+		return oSettings.sDom == "lfrtip";
+	});
+
+	oTest.fnWaitTest("Default DOM in document", null, function () {
+		var nNodes = $("#demo div, #demo table");
+		var nWrapper = document.getElementById("example_wrapper");
+		var nLength = document.getElementById("example_length");
+		var nFilter = document.getElementById("example_filter");
+		var nInfo = document.getElementById("example_info");
+		var nPaging = document.getElementById("example_paginate");
+		var nTable = document.getElementById("example");
+
+		var bReturn =
+			nNodes[0] == nWrapper &&
+			nNodes[1] == nLength &&
+			nNodes[2] == nFilter &&
+			nNodes[3] == nTable &&
+			nNodes[4] == nInfo &&
+			nNodes[5] == nPaging;
+		return bReturn;
+	});
+
+	oTest.fnWaitTest(
 		"Check example 1 in code propagates",
 		function () {
 			oSession.fnRestore();
-			oTable = $('#example').dataTable( {
-				"sAjaxSource": "../../../examples/ajax/sources/objects.txt",
-				"aoColumnDefs": [
-					{ "mData": "engine", "aTargets": [0] },
-					{ "mData": "browser", "aTargets": [1] },
-					{ "mData": "platform", "aTargets": [2] },
-					{ "mData": "version", "aTargets": [3] },
-					{ "mData": "grade", "aTargets": [4] }
+			oTable = $("#example").dataTable({
+				sAjaxSource: "../../../examples/ajax/sources/objects.txt",
+				aoColumnDefs: [
+					{ mData: "engine", aTargets: [0] },
+					{ mData: "browser", aTargets: [1] },
+					{ mData: "platform", aTargets: [2] },
+					{ mData: "version", aTargets: [3] },
+					{ mData: "grade", aTargets: [4] },
 				],
-				"sDom": '<"wrapper"flipt>'
-			} );
+				sDom: '<"wrapper"flipt>',
+			});
 			oSettings = oTable.fnSettings();
 		},
-		function () { return oSettings.sDom == '<"wrapper"flipt>'; }
-	);
-	
-	oTest.fnWaitTest( 
-		"Check example 1 in DOM",
-		null,
 		function () {
-			var jqNodes = $('#demo div, #demo table');
-			var nNodes = [];
-			
-			/* Strip the paging nodes */
-			for ( var i=0, iLen=jqNodes.length ; i<iLen ; i++ )
-			{
-				if ( jqNodes[i].getAttribute('id') != "example_previous" &&
-				     jqNodes[i].getAttribute('id') != "example_next" )
-				{
-					nNodes.push( jqNodes[i] );
-				}
-			}
-			
-			var nWrapper = document.getElementById('example_wrapper');
-			var nLength = document.getElementById('example_length');
-			var nFilter = document.getElementById('example_filter');
-			var nInfo = document.getElementById('example_info');
-			var nPaging = document.getElementById('example_paginate');
-			var nTable = document.getElementById('example');
-			var nCustomWrapper = $('div.wrapper')[0];
-			
-			var bReturn = 
-				nNodes[0] == nWrapper &&
-				nNodes[1] == nCustomWrapper &&
-				nNodes[2] == nFilter &&
-				nNodes[3] == nLength &&
-				nNodes[4] == nInfo &&
-				nNodes[5] == nPaging &&
-				nNodes[6] == nTable;
-			return bReturn;
+			return oSettings.sDom == '<"wrapper"flipt>';
 		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest("Check example 1 in DOM", null, function () {
+		var jqNodes = $("#demo div, #demo table");
+		var nNodes = [];
+
+		/* Strip the paging nodes */
+		for (var i = 0, iLen = jqNodes.length; i < iLen; i++) {
+			if (
+				jqNodes[i].getAttribute("id") != "example_previous" &&
+				jqNodes[i].getAttribute("id") != "example_next"
+			) {
+				nNodes.push(jqNodes[i]);
+			}
+		}
+
+		var nWrapper = document.getElementById("example_wrapper");
+		var nLength = document.getElementById("example_length");
+		var nFilter = document.getElementById("example_filter");
+		var nInfo = document.getElementById("example_info");
+		var nPaging = document.getElementById("example_paginate");
+		var nTable = document.getElementById("example");
+		var nCustomWrapper = $("div.wrapper")[0];
+
+		var bReturn =
+			nNodes[0] == nWrapper &&
+			nNodes[1] == nCustomWrapper &&
+			nNodes[2] == nFilter &&
+			nNodes[3] == nLength &&
+			nNodes[4] == nInfo &&
+			nNodes[5] == nPaging &&
+			nNodes[6] == nTable;
+		return bReturn;
+	});
+
+	oTest.fnWaitTest(
 		"Check example 2 in DOM",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"sAjaxSource": "../../../examples/ajax/sources/objects.txt",
-				"aoColumnDefs": [
-					{ "mData": "engine", "aTargets": [0] },
-					{ "mData": "browser", "aTargets": [1] },
-					{ "mData": "platform", "aTargets": [2] },
-					{ "mData": "version", "aTargets": [3] },
-					{ "mData": "grade", "aTargets": [4] }
+			$("#example").dataTable({
+				sAjaxSource: "../../../examples/ajax/sources/objects.txt",
+				aoColumnDefs: [
+					{ mData: "engine", aTargets: [0] },
+					{ mData: "browser", aTargets: [1] },
+					{ mData: "platform", aTargets: [2] },
+					{ mData: "version", aTargets: [3] },
+					{ mData: "grade", aTargets: [4] },
 				],
-				"sDom": '<lf<t>ip>'
-			} );
+				sDom: "<lf<t>ip>",
+			});
 		},
 		function () {
-			var jqNodes = $('#demo div, #demo table');
+			var jqNodes = $("#demo div, #demo table");
 			var nNodes = [];
-			var nCustomWrappers = []
-			
+			var nCustomWrappers = [];
+
 			/* Strip the paging nodes */
-			for ( var i=0, iLen=jqNodes.length ; i<iLen ; i++ )
-			{
-				if ( jqNodes[i].getAttribute('id') != "example_previous" &&
-				     jqNodes[i].getAttribute('id') != "example_next" )
-				{
-					nNodes.push( jqNodes[i] );
+			for (var i = 0, iLen = jqNodes.length; i < iLen; i++) {
+				if (
+					jqNodes[i].getAttribute("id") != "example_previous" &&
+					jqNodes[i].getAttribute("id") != "example_next"
+				) {
+					nNodes.push(jqNodes[i]);
 				}
-				
+
 				/* Only the two custom divs don't have class names */
-				if ( jqNodes[i].className == "" )
-				{
-					nCustomWrappers.push( jqNodes[i] );
+				if (jqNodes[i].className == "") {
+					nCustomWrappers.push(jqNodes[i]);
 				}
 			}
-			
-			var nWrapper = document.getElementById('example_wrapper');
-			var nLength = document.getElementById('example_length');
-			var nFilter = document.getElementById('example_filter');
-			var nInfo = document.getElementById('example_info');
-			var nPaging = document.getElementById('example_paginate');
-			var nTable = document.getElementById('example');
-			
-			var bReturn = 
+
+			var nWrapper = document.getElementById("example_wrapper");
+			var nLength = document.getElementById("example_length");
+			var nFilter = document.getElementById("example_filter");
+			var nInfo = document.getElementById("example_info");
+			var nPaging = document.getElementById("example_paginate");
+			var nTable = document.getElementById("example");
+
+			var bReturn =
 				nNodes[0] == nWrapper &&
 				nNodes[1] == nCustomWrappers[0] &&
 				nNodes[2] == nLength &&
@@ -159,33 +150,33 @@ $(document).ready( function () {
 			return bReturn;
 		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Check no length element",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"sAjaxSource": "../../../examples/ajax/sources/objects.txt",
-				"aoColumnDefs": [
-					{ "mData": "engine", "aTargets": [0] },
-					{ "mData": "browser", "aTargets": [1] },
-					{ "mData": "platform", "aTargets": [2] },
-					{ "mData": "version", "aTargets": [3] },
-					{ "mData": "grade", "aTargets": [4] }
+			$("#example").dataTable({
+				sAjaxSource: "../../../examples/ajax/sources/objects.txt",
+				aoColumnDefs: [
+					{ mData: "engine", aTargets: [0] },
+					{ mData: "browser", aTargets: [1] },
+					{ mData: "platform", aTargets: [2] },
+					{ mData: "version", aTargets: [3] },
+					{ mData: "grade", aTargets: [4] },
 				],
-				"sDom": 'frtip'
-			} );
+				sDom: "frtip",
+			});
 		},
 		function () {
-			var nNodes = $('#demo div, #demo table');
-			var nWrapper = document.getElementById('example_wrapper');
-			var nLength = document.getElementById('example_length');
-			var nFilter = document.getElementById('example_filter');
-			var nInfo = document.getElementById('example_info');
-			var nPaging = document.getElementById('example_paginate');
-			var nTable = document.getElementById('example');
-			
-			var bReturn = 
+			var nNodes = $("#demo div, #demo table");
+			var nWrapper = document.getElementById("example_wrapper");
+			var nLength = document.getElementById("example_length");
+			var nFilter = document.getElementById("example_filter");
+			var nInfo = document.getElementById("example_info");
+			var nPaging = document.getElementById("example_paginate");
+			var nTable = document.getElementById("example");
+
+			var bReturn =
 				nNodes[0] == nWrapper &&
 				null == nLength &&
 				nNodes[1] == nFilter &&
@@ -195,33 +186,33 @@ $(document).ready( function () {
 			return bReturn;
 		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Check no filter element",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"sAjaxSource": "../../../examples/ajax/sources/objects.txt",
-				"aoColumnDefs": [
-					{ "mData": "engine", "aTargets": [0] },
-					{ "mData": "browser", "aTargets": [1] },
-					{ "mData": "platform", "aTargets": [2] },
-					{ "mData": "version", "aTargets": [3] },
-					{ "mData": "grade", "aTargets": [4] }
+			$("#example").dataTable({
+				sAjaxSource: "../../../examples/ajax/sources/objects.txt",
+				aoColumnDefs: [
+					{ mData: "engine", aTargets: [0] },
+					{ mData: "browser", aTargets: [1] },
+					{ mData: "platform", aTargets: [2] },
+					{ mData: "version", aTargets: [3] },
+					{ mData: "grade", aTargets: [4] },
 				],
-				"sDom": 'lrtip'
-			} );
+				sDom: "lrtip",
+			});
 		},
 		function () {
-			var nNodes = $('#demo div, #demo table');
-			var nWrapper = document.getElementById('example_wrapper');
-			var nLength = document.getElementById('example_length');
-			var nFilter = document.getElementById('example_filter');
-			var nInfo = document.getElementById('example_info');
-			var nPaging = document.getElementById('example_paginate');
-			var nTable = document.getElementById('example');
-			
-			var bReturn = 
+			var nNodes = $("#demo div, #demo table");
+			var nWrapper = document.getElementById("example_wrapper");
+			var nLength = document.getElementById("example_length");
+			var nFilter = document.getElementById("example_filter");
+			var nInfo = document.getElementById("example_info");
+			var nPaging = document.getElementById("example_paginate");
+			var nTable = document.getElementById("example");
+
+			var bReturn =
 				nNodes[0] == nWrapper &&
 				nNodes[1] == nLength &&
 				null == nFilter &&
@@ -231,35 +222,35 @@ $(document).ready( function () {
 			return bReturn;
 		}
 	);
-	
+
 	/* Note we don't test for no table as this is not supported (and it would be fairly daft! */
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Check no info element",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"sAjaxSource": "../../../examples/ajax/sources/objects.txt",
-				"aoColumnDefs": [
-					{ "mData": "engine", "aTargets": [0] },
-					{ "mData": "browser", "aTargets": [1] },
-					{ "mData": "platform", "aTargets": [2] },
-					{ "mData": "version", "aTargets": [3] },
-					{ "mData": "grade", "aTargets": [4] }
+			$("#example").dataTable({
+				sAjaxSource: "../../../examples/ajax/sources/objects.txt",
+				aoColumnDefs: [
+					{ mData: "engine", aTargets: [0] },
+					{ mData: "browser", aTargets: [1] },
+					{ mData: "platform", aTargets: [2] },
+					{ mData: "version", aTargets: [3] },
+					{ mData: "grade", aTargets: [4] },
 				],
-				"sDom": 'lfrtp'
-			} );
+				sDom: "lfrtp",
+			});
 		},
 		function () {
-			var nNodes = $('#demo div, #demo table');
-			var nWrapper = document.getElementById('example_wrapper');
-			var nLength = document.getElementById('example_length');
-			var nFilter = document.getElementById('example_filter');
-			var nInfo = document.getElementById('example_info');
-			var nPaging = document.getElementById('example_paginate');
-			var nTable = document.getElementById('example');
-			
-			var bReturn = 
+			var nNodes = $("#demo div, #demo table");
+			var nWrapper = document.getElementById("example_wrapper");
+			var nLength = document.getElementById("example_length");
+			var nFilter = document.getElementById("example_filter");
+			var nInfo = document.getElementById("example_info");
+			var nPaging = document.getElementById("example_paginate");
+			var nTable = document.getElementById("example");
+
+			var bReturn =
 				nNodes[0] == nWrapper &&
 				nNodes[1] == nLength &&
 				nNodes[2] == nFilter &&
@@ -269,33 +260,33 @@ $(document).ready( function () {
 			return bReturn;
 		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Check no paging element",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"sAjaxSource": "../../../examples/ajax/sources/objects.txt",
-				"aoColumnDefs": [
-					{ "mData": "engine", "aTargets": [0] },
-					{ "mData": "browser", "aTargets": [1] },
-					{ "mData": "platform", "aTargets": [2] },
-					{ "mData": "version", "aTargets": [3] },
-					{ "mData": "grade", "aTargets": [4] }
+			$("#example").dataTable({
+				sAjaxSource: "../../../examples/ajax/sources/objects.txt",
+				aoColumnDefs: [
+					{ mData: "engine", aTargets: [0] },
+					{ mData: "browser", aTargets: [1] },
+					{ mData: "platform", aTargets: [2] },
+					{ mData: "version", aTargets: [3] },
+					{ mData: "grade", aTargets: [4] },
 				],
-				"sDom": 'lfrti'
-			} );
+				sDom: "lfrti",
+			});
 		},
 		function () {
-			var nNodes = $('#demo div, #demo table');
-			var nWrapper = document.getElementById('example_wrapper');
-			var nLength = document.getElementById('example_length');
-			var nFilter = document.getElementById('example_filter');
-			var nInfo = document.getElementById('example_info');
-			var nPaging = document.getElementById('example_paginate');
-			var nTable = document.getElementById('example');
-			
-			var bReturn = 
+			var nNodes = $("#demo div, #demo table");
+			var nWrapper = document.getElementById("example_wrapper");
+			var nLength = document.getElementById("example_length");
+			var nFilter = document.getElementById("example_filter");
+			var nInfo = document.getElementById("example_info");
+			var nPaging = document.getElementById("example_paginate");
+			var nTable = document.getElementById("example");
+
+			var bReturn =
 				nNodes[0] == nWrapper &&
 				nNodes[1] == nLength &&
 				nNodes[2] == nFilter &&
@@ -305,7 +296,6 @@ $(document).ready( function () {
 			return bReturn;
 		}
 	);
-	
-	
+
 	oTest.fnComplete();
-} );
+});

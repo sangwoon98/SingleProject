@@ -27,10 +27,9 @@ browser, but needs to redraw with canvas text when exporting as an image.
 
 */
 
-(function($) {
-
+(function ($) {
 	var options = {
-		canvas: true
+		canvas: true,
 	};
 
 	var render, getTextInfo, addText;
@@ -40,7 +39,6 @@ browser, but needs to redraw with canvas text when exporting as an image.
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 
 	function init(plot, classes) {
-
 		var Canvas = classes.Canvas;
 
 		// We only want to replace the functions once; the second time around
@@ -48,15 +46,14 @@ browser, but needs to redraw with canvas text when exporting as an image.
 		// prototype functions is a disaster, and needs to be changed ASAP.
 
 		if (render == null) {
-			getTextInfo = Canvas.prototype.getTextInfo,
-			addText = Canvas.prototype.addText,
-			render = Canvas.prototype.render;
+			(getTextInfo = Canvas.prototype.getTextInfo),
+				(addText = Canvas.prototype.addText),
+				(render = Canvas.prototype.render);
 		}
 
 		// Finishes rendering the canvas, including overlaid text
 
-		Canvas.prototype.render = function() {
-
+		Canvas.prototype.render = function () {
 			if (!plot.getOptions().canvas) {
 				return render.call(this);
 			}
@@ -77,7 +74,6 @@ browser, but needs to redraw with canvas text when exporting as an image.
 								updateStyles = true;
 							for (var key in styleCache) {
 								if (hasOwnProperty.call(styleCache, key)) {
-
 									var info = styleCache[key];
 
 									if (!info.active) {
@@ -115,7 +111,6 @@ browser, but needs to redraw with canvas text when exporting as an image.
 									context.textBaseline = "top";
 
 									for (var i = 0; i < lines.length; ++i) {
-
 										var line = lines[i],
 											linex = x;
 
@@ -174,8 +169,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 		//     },
 		// }
 
-		Canvas.prototype.getTextInfo = function(layer, text, font, angle) {
-
+		Canvas.prototype.getTextInfo = function (layer, text, font, angle) {
 			if (!plot.getOptions().canvas) {
 				return getTextInfo.call(this, layer, text, font, angle);
 			}
@@ -189,7 +183,16 @@ browser, but needs to redraw with canvas text when exporting as an image.
 			// If the font is a font-spec object, generate a CSS definition
 
 			if (typeof font === "object") {
-				textStyle = font.style + " " + font.variant + " " + font.weight + " " + font.size + "px " + font.family;
+				textStyle =
+					font.style +
+					" " +
+					font.variant +
+					" " +
+					font.weight +
+					" " +
+					font.size +
+					"px " +
+					font.family;
 			} else {
 				textStyle = font;
 			}
@@ -211,19 +214,18 @@ browser, but needs to redraw with canvas text when exporting as an image.
 			info = styleCache[text];
 
 			if (info == null) {
-
 				var context = this.context;
 
 				// If the font was provided as CSS, create a div with those
 				// classes and examine it to generate a canvas font spec.
 
 				if (typeof font !== "object") {
-
-					var element = $("<div></div>").html(text)
+					var element = $("<div></div>")
+						.html(text)
 						.addClass(typeof font === "string" ? font : null)
 						.css({
 							position: "absolute",
-							top: -9999
+							top: -9999,
 						})
 						.appendTo(this.getTextLayer(layer));
 
@@ -233,13 +235,22 @@ browser, but needs to redraw with canvas text when exporting as an image.
 						weight: element.css("font-weight"),
 						size: parseInt(element.css("font-size"), 10),
 						family: element.css("font-family"),
-						color: element.css("color")
+						color: element.css("color"),
 					};
 
 					element.remove();
 				}
 
-				textStyle = font.style + " " + font.variant + " " + font.weight + " " + font.size + "px " + font.family;
+				textStyle =
+					font.style +
+					" " +
+					font.variant +
+					" " +
+					font.weight +
+					" " +
+					font.size +
+					"px " +
+					font.family;
 
 				// Create a new info object, initializing the dimensions to
 				// zero so we can count them up line-by-line.
@@ -253,8 +264,8 @@ browser, but needs to redraw with canvas text when exporting as an image.
 					lines: [],
 					font: {
 						definition: textStyle,
-						color: font.color
-					}
+						color: font.color,
+					},
 				};
 
 				context.save();
@@ -268,10 +279,10 @@ browser, but needs to redraw with canvas text when exporting as an image.
 				var lines = (text + "").replace(/<br ?\/?>|\r\n|\r/g, "\n").split("\n");
 
 				for (var i = 0; i < lines.length; ++i) {
-
 					var lineText = lines[i],
 						measured = context.measureText(lineText),
-						lineWidth, lineHeight;
+						lineWidth,
+						lineHeight;
 
 					lineWidth = measured.width;
 
@@ -291,7 +302,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 					info.lines.push({
 						text: lineText,
 						width: lineWidth,
-						height: lineHeight
+						height: lineHeight,
 					});
 				}
 
@@ -303,8 +314,16 @@ browser, but needs to redraw with canvas text when exporting as an image.
 
 		// Adds a text string to the canvas text overlay.
 
-		Canvas.prototype.addText = function(layer, x, y, text, font, angle, halign, valign) {
-
+		Canvas.prototype.addText = function (
+			layer,
+			x,
+			y,
+			text,
+			font,
+			angle,
+			halign,
+			valign
+		) {
 			if (!plot.getOptions().canvas) {
 				return addText.call(this, layer, x, y, text, font, angle, halign, valign);
 			}
@@ -336,7 +355,6 @@ browser, but needs to redraw with canvas text when exporting as an image.
 		init: init,
 		options: options,
 		name: "canvas",
-		version: "1.0"
+		version: "1.0",
 	});
-
 })(jQuery);

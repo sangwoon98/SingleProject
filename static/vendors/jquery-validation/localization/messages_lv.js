@@ -19,7 +19,11 @@
 		minlength: $.validator.format("Lūdzu, ievadiet vismaz {0} rakstzīmes."),
 		rangelength: $.validator.format("Lūdzu ievadiet {0} līdz {1} rakstzīmes."),
 		range: $.validator.format("Lūdzu, ievadiet skaitli no {0} līdz {1}."),
-		max: $.validator.format("Lūdzu, ievadiet skaitli, kurš ir mazāks vai vienāds ar {0}."),
-		min: $.validator.format("Lūdzu, ievadiet skaitli, kurš ir lielāks vai vienāds ar {0}.")
+		max: $.validator.format(
+			"Lūdzu, ievadiet skaitli, kurš ir mazāks vai vienāds ar {0}."
+		),
+		min: $.validator.format(
+			"Lūdzu, ievadiet skaitli, kurš ir lielāks vai vienāds ar {0}."
+		),
 	});
-}(jQuery));
+})(jQuery);

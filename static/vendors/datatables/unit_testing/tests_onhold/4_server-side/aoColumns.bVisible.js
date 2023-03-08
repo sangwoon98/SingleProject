@@ -1,51 +1,47 @@
 // DATA_TEMPLATE: empty_table
-oTest.fnStart( "aoColumns.bVisible" );
+oTest.fnStart("aoColumns.bVisible");
 
-$(document).ready( function () {
+$(document).ready(function () {
 	/* Check the default */
-	var oTable = $('#example').dataTable( {
-		"bServerSide": true,
-		"sAjaxSource": "../../../examples/server_side/scripts/server_processing.php"
-	} );
+	var oTable = $("#example").dataTable({
+		bServerSide: true,
+		sAjaxSource: "../../../examples/server_side/scripts/server_processing.php",
+	});
 	var oSettings = oTable.fnSettings();
-	
-	oTest.fnWaitTest( 
-		"All columns are visible by default",
-		null,
-		function () { return $('#example tbody tr:eq(0) td').length == 5; }
-	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest("All columns are visible by default", null, function () {
+		return $("#example tbody tr:eq(0) td").length == 5;
+	});
+
+	oTest.fnWaitTest(
 		"Can hide one column and it removes td column from DOM",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"bServerSide": true,
-		"sAjaxSource": "../../../examples/server_side/scripts/server_processing.php",
-				"aoColumns": [
-					null,
-					{ "bVisible": false },
-					null,
-					null,
-					null
-				]
-			} );
+			$("#example").dataTable({
+				bServerSide: true,
+				sAjaxSource: "../../../examples/server_side/scripts/server_processing.php",
+				aoColumns: [null, { bVisible: false }, null, null, null],
+			});
 		},
-		function () { return $('#example tbody tr:eq(0) td').length == 4; }
+		function () {
+			return $("#example tbody tr:eq(0) td").length == 4;
+		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Can hide one column and it removes thead th column from DOM",
 		null,
-		function () { return $('#example thead tr:eq(0) th').length == 4; }
+		function () {
+			return $("#example thead tr:eq(0) th").length == 4;
+		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"The correct thead column has been hidden",
 		null,
 		function () {
-			var jqNodes = $('#example thead tr:eq(0) th');
-			var bReturn = 
+			var jqNodes = $("#example thead tr:eq(0) th");
+			var bReturn =
 				jqNodes[0].innerHTML == "Rendering engine" &&
 				jqNodes[1].innerHTML == "Platform(s)" &&
 				jqNodes[2].innerHTML == "Engine version" &&
@@ -53,13 +49,13 @@ $(document).ready( function () {
 			return bReturn;
 		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"The correct tbody column has been hidden",
 		null,
 		function () {
-			var jqNodes = $('#example tbody tr:eq(0) td');
-			var bReturn = 
+			var jqNodes = $("#example tbody tr:eq(0) td");
+			var bReturn =
 				jqNodes[0].innerHTML == "Gecko" &&
 				jqNodes[1].innerHTML == "Win 98+ / OSX.2+" &&
 				jqNodes[2].innerHTML == "1.7" &&
@@ -67,57 +63,58 @@ $(document).ready( function () {
 			return bReturn;
 		}
 	);
-	
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Can hide multiple columns and it removes td column from DOM",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"bServerSide": true,
-		"sAjaxSource": "../../../examples/server_side/scripts/server_processing.php",
-				"aoColumns": [
+			$("#example").dataTable({
+				bServerSide: true,
+				sAjaxSource: "../../../examples/server_side/scripts/server_processing.php",
+				aoColumns: [
 					null,
-					{ "bVisible": false },
-					{ "bVisible": false },
+					{ bVisible: false },
+					{ bVisible: false },
 					null,
-					{ "bVisible": false }
-				]
-			} );
+					{ bVisible: false },
+				],
+			});
 		},
-		function () { return $('#example tbody tr:eq(0) td').length == 2; }
+		function () {
+			return $("#example tbody tr:eq(0) td").length == 2;
+		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Multiple hide - removes thead th column from DOM",
 		null,
-		function () { return $('#example thead tr:eq(0) th').length == 2; }
+		function () {
+			return $("#example thead tr:eq(0) th").length == 2;
+		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Multiple hide - the correct thead columns have been hidden",
 		null,
 		function () {
-			var jqNodes = $('#example thead tr:eq(0) th');
-			var bReturn = 
+			var jqNodes = $("#example thead tr:eq(0) th");
+			var bReturn =
 				jqNodes[0].innerHTML == "Rendering engine" &&
-				jqNodes[1].innerHTML == "Engine version"
+				jqNodes[1].innerHTML == "Engine version";
 			return bReturn;
 		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Multiple hide - the correct tbody columns have been hidden",
 		null,
 		function () {
-			var jqNodes = $('#example tbody tr:eq(0) td');
-			var bReturn = 
-				jqNodes[0].innerHTML == "Gecko" &&
-				jqNodes[1].innerHTML == "1.7"
+			var jqNodes = $("#example tbody tr:eq(0) td");
+			var bReturn =
+				jqNodes[0].innerHTML == "Gecko" && jqNodes[1].innerHTML == "1.7";
 			return bReturn;
 		}
 	);
-	
-	
+
 	oTest.fnComplete();
-} );
+});

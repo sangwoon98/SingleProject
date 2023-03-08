@@ -5,11 +5,6 @@ from tkinter import N
 from django.shortcuts import render,redirect
 from member.models import Member
 
-
-# def logout(request):
-#     request.session.clear()
-#     return redirect('/')
-
 def coupon(request):
     return render(request,'coupon.html')
 
@@ -27,9 +22,7 @@ def pw_change(request):
         now_pw=request.POST.get('now_pw')
         new_pw=request.POST.get('new_pw')
         new_pw_re=request.POST.get('new_pw_re')
-        
-        print(qs.M_pw)
-        print(new_pw)
+
         if M_pw==now_pw:    # pw 가 일치할떼
             if new_pw==new_pw_re:  
                 qs.M_pw=new_pw
@@ -54,7 +47,6 @@ def pw_change(request):
 def change(request):
     
     if request.method=='POST':
-        print('Post')
 
         email=request.POST.get('email')
         email02=request.POST.get('email02')
@@ -69,7 +61,6 @@ def change(request):
         year=request.POST.get('year')
         month=request.POST.get('month')
         date=request.POST.get('date')
-
         name=request.session['session_NAME']
         id=request.session['session_ID']
     
@@ -113,37 +104,7 @@ def change(request):
         request.session['session_NAME']=qs.M_name
 
         return redirect('mypage:mypage')
-
-        # print('name: ',name)
-        # print('id: ',id)
-        # print('password: ',pw)
-        # print('email: ',email)
-        # print('email02: ',email02)
-        # print('email_tail: ',email_tail)
-        # print('address: ',address)
-        # print('address02: ',address02)
-        # print('email_check: ',email_check)
-        # print('sms_check: ',sms_check)
-        # print('sms: ',sms)
-        # print('sms02: ',sms02)
-        # print('sms03: ',sms03)
-        # print('year: ',year)
-        # print('month: ',month)
-        # print('date: ',date)
-        # print('date_of_birth: ',date_of_birth)
-        # print('Post out')
-        # print(request.session['session_PW'])
-
-        
-        # qs=Member(M_name=name, M_id=id, M_pw=pw, M_email=email, M_address=address,\
-        #     M_email_check=email_check, M_sms_check=sms_check, M_sms=sms, M_date_of_birth=date_of_birth)
-        # qs.save()
-        
        
-        
-  
-        
-        
         
     else:
         M_id=request.session['session_ID']
@@ -171,7 +132,6 @@ def change(request):
             month=date_of_birth[1][1]
         else:
             month=date_of_birth[1][0:2]
-        print(month)
         
         month=date_of_birth[1]
         
@@ -179,14 +139,10 @@ def change(request):
             date=date_of_birth[1][1]
         else:
             date=date_of_birth[2][0:2]
-        print(date)
         date=date_of_birth[2]
-        
-        print(year)
         
         context={'email_check':email_check,'sms_check':sms_check,'email0':email0,'email1':email1,'address0':address0,\
             'address1':address1,'sms0':sms0,'sms1':sms1,'sms2':sms2,'year':year,'month':month,'date':date}
-        print(email_check)
         
         return render(request,'change_info.html',context)
 
@@ -197,8 +153,6 @@ def get_leave(request):
         re_id=request.session.get('session_ID')
         id=request.POST.get('id')
         pw=request.POST.get('pw')
-        print(id)
-        print(pw)
         
         if re_id!=id:
             context={'msg2':'본인의 계정이 아닙니다. 삭제가 불가능 합니다.'}

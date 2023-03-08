@@ -70,11 +70,7 @@ def check_id(request):
     print('hi')
     id = request.GET['id']
     print(id)
-    # 데이터 프레임 -> json으로 보내야함
-    # body = df.to_json() #컬럼을 기준으로 변환
-    # body_json = {}
-    # body_json['json_data'] = json.loads(id) # 한번더 가져와야함
-    # print(body_json)
+   
     try: #등록된 아이디라도 있나? 확인
         qs=Member.objects.get(M_id=id)
             
@@ -90,31 +86,11 @@ def check_id(request):
         context={'msg':msg}
         return JsonResponse(context,safe=False)
 
-
-     
-    # json_data = json.loads(request) 
-    # print('view post : ',json_data.get('name')) 
-    # context = {'name': json_data.get('name'),'age':json_data.get('age')}
-    
-
    
  
 def register03(request):
     return render(request,'step03.html')
-    #     try: #등록된 아이디가 있나? 확인
-    #         qs=Member.objects.get(M_id=id)   
-    #     except Member.DoesNotExist:
-    #         qs=None
-            
-    #     if qs:
-    #         msg='패스워드가 일치하지 않습니다. 비밀번호를 다시 입력해주세요.'
-    #         context={'msg':msg,'id':id}
-    #         return render(request,'login.html',context)
-    #     else:
-    #         msg='아이디가 존재하지 않습니다. 아이디를 다시 입력해주세요.'
-    #         context={'msg':msg}
-    #         return render(request,'login.html',context)
-        
+
    
     
 def register04(request):
@@ -134,22 +110,7 @@ def register04(request):
     year=request.POST.get('year')
     month=request.POST.get('month')
     date=request.POST.get('date')
-    # print('name: ',name)
-    # print('id: ',id)
-    # print('password: ',password)
-    # print('email: ',email)
-    # print('email02: ',email02)
-    # print('email_tail: ',email_tail)
-    # print('address: ',address)
-    # print('address02: ',address02)
-    # print('email_check: ',email_check)
-    # print('sms_check: ',sms_check)
-    # print('sms: ',sms)
-    # print('sms02: ',sms02)
-    # print('sms03: ',sms03)
-    # print('year: ',year)
-    # print('month: ',month)
-    # print('date: ',date)
+  
     
     
     #email 재조합
@@ -165,7 +126,7 @@ def register04(request):
     sms=sms+'-'+sms02+'-'+sms03
     
     #생년월일 재조합
-    # 포스트 데이터는 무조건 str형태로 들어오나 봄
+    # 포스트 데이터는 무조건 str형태로
     if (year!='#') and (month!='#')and (date!='#'):
         month=int(month)
         date=int(date)
@@ -177,12 +138,6 @@ def register04(request):
     else:
         date_of_birth='#/#/#'
         
-        
-    # print(email)
-    # print(address)
-    # print(sms)
-    # print(date_of_birth)
-    
     qs=Member(M_name=name, M_id=id, M_pw=password, M_email=email, M_address=address,\
         M_email_check=email_check, M_sms_check=sms_check, M_sms=sms, M_date_of_birth=date_of_birth)
     qs.save()

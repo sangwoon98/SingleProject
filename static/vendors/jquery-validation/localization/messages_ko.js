@@ -20,6 +20,6 @@
 		rangelength: $.format("문자 길이를 {0} 에서 {1} 사이의로 입력하세요."),
 		range: $.format("{0} 에서 {1} 값을 입력하세요."),
 		max: $.format("{0} 이하의 값을 입력하세요."),
-		min: $.format("{0} 이상의 값을 입력하세요.")
+		min: $.format("{0} 이상의 값을 입력하세요."),
 	});
-}(jQuery));
+})(jQuery);

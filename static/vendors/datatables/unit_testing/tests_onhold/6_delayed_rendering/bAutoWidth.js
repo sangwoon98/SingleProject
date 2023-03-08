@@ -1,32 +1,28 @@
 // DATA_TEMPLATE: empty_table
-oTest.fnStart( "bAutoWidth" );
+oTest.fnStart("bAutoWidth");
 
 /* It's actually a little tricky to test this. We can't test absolute numbers because
  * different browsers and different platforms will render the width of the columns slightly
- * differently. However, we certainly can test the principle of what should happen (column 
+ * differently. However, we certainly can test the principle of what should happen (column
  * width doesn't change over pages)
  */
 
-$(document).ready( function () {
+$(document).ready(function () {
 	/* Check the default */
-	var oTable = $('#example').dataTable( {
-		"sAjaxSource": "../../../examples/ajax/sources/arrays.txt",
-		"bDeferRender": true
-	} );
+	var oTable = $("#example").dataTable({
+		sAjaxSource: "../../../examples/ajax/sources/arrays.txt",
+		bDeferRender: true,
+	});
 	var oSettings = oTable.fnSettings();
-	
-	oTest.fnWaitTest( 
-		"Auto width is enabled by default",
-		null,
-		function () { return oSettings.oFeatures.bAutoWidth; }
-	);
-	
-	oTest.fnWaitTest( 
-		"First column has a width assigned to it",
-		null,
-		function () { return $('#example thead th:eq(0)').attr('style').match(/width/i); }
-	);
-	
+
+	oTest.fnWaitTest("Auto width is enabled by default", null, function () {
+		return oSettings.oFeatures.bAutoWidth;
+	});
+
+	oTest.fnWaitTest("First column has a width assigned to it", null, function () {
+		return $("#example thead th:eq(0)").attr("style").match(/width/i);
+	});
+
 	/*
 	This would seem like a better test - but there appear to be difficulties with tables
 	which are bigger (calculated) than there is actually room for. I suspect this is actually
@@ -78,28 +74,32 @@ $(document).ready( function () {
 		}
 	);
 	*/
-	
+
 	/* Check can disable */
-	oTest.fnWaitTest( 
+	oTest.fnWaitTest(
 		"Auto width can be disabled",
 		function () {
 			oSession.fnRestore();
-			oTable = $('#example').dataTable( {
-				"sAjaxSource": "../../../examples/ajax/sources/arrays.txt",
-				"bDeferRender": true,
-				"bAutoWidth": false
-			} );
-	 		oSettings = oTable.fnSettings();
+			oTable = $("#example").dataTable({
+				sAjaxSource: "../../../examples/ajax/sources/arrays.txt",
+				bDeferRender: true,
+				bAutoWidth: false,
+			});
+			oSettings = oTable.fnSettings();
 		},
-		function () { return oSettings.oFeatures.bAutoWidth == false; }
+		function () {
+			return oSettings.oFeatures.bAutoWidth == false;
+		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"First column does not have a width assigned to it",
 		null,
-		function () { return $('#example thead th:eq(0)').attr('style') == null; }
+		function () {
+			return $("#example thead th:eq(0)").attr("style") == null;
+		}
 	);
-	
+
 	/*
 	oTest.fnWaitTest( 
 		"Check column widths on first page do not match second page",
@@ -124,22 +124,23 @@ $(document).ready( function () {
 		}
 	);
 	*/
-	
+
 	/* Enable makes no difference */
-	oTest.fnWaitTest( 
+	oTest.fnWaitTest(
 		"Auto width enabled override",
 		function () {
 			oSession.fnRestore();
-			oTable = $('#example').dataTable( {
-				"sAjaxSource": "../../../examples/ajax/sources/arrays.txt",
-				"bDeferRender": true,
-				"bAutoWidth": true
-			} );
-	 		oSettings = oTable.fnSettings();
+			oTable = $("#example").dataTable({
+				sAjaxSource: "../../../examples/ajax/sources/arrays.txt",
+				bDeferRender: true,
+				bAutoWidth: true,
+			});
+			oSettings = oTable.fnSettings();
 		},
-		function () { return oSettings.oFeatures.bAutoWidth; }
+		function () {
+			return oSettings.oFeatures.bAutoWidth;
+		}
 	);
-	
-	
+
 	oTest.fnComplete();
-} );
+});

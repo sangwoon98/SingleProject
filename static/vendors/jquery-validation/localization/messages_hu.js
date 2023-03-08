@@ -7,7 +7,9 @@
 		required: "Kötelező megadni.",
 		maxlength: $.validator.format("Legfeljebb {0} karakter hosszú legyen."),
 		minlength: $.validator.format("Legalább {0} karakter hosszú legyen."),
-		rangelength: $.validator.format("Legalább {0} és legfeljebb {1} karakter hosszú legyen."),
+		rangelength: $.validator.format(
+			"Legalább {0} és legfeljebb {1} karakter hosszú legyen."
+		),
 		email: "Érvényes e-mail címnek kell lennie.",
 		url: "Érvényes URL-nek kell lennie.",
 		date: "Dátumnak kell lennie.",
@@ -19,6 +21,6 @@
 		min: $.validator.format("Nem lehet kisebb, mint {0}."),
 		creditcard: "Érvényes hitelkártyaszámnak kell lennie.",
 		remote: "Kérem javítsa ki ezt a mezőt.",
-		dateISO: "Kérem írjon be egy érvényes dátumot (ISO)."
+		dateISO: "Kérem írjon be egy érvényes dátumot (ISO).",
 	});
-}(jQuery));
+})(jQuery);

@@ -17,9 +17,17 @@
 		accept: "Proszę o podanie wartości z prawidłowym rozszerzeniem.",
 		maxlength: $.validator.format("Proszę o podanie nie więcej niż {0} znaków."),
 		minlength: $.validator.format("Proszę o podanie przynajmniej {0} znaków."),
-		rangelength: $.validator.format("Proszę o podanie wartości o długości od {0} do {1} znaków."),
-		range: $.validator.format("Proszę o podanie wartości z przedziału od {0} do {1}."),
-		max: $.validator.format("Proszę o podanie wartości mniejszej bądź równej {0}."),
-		min: $.validator.format("Proszę o podanie wartości większej bądź równej {0}.")
+		rangelength: $.validator.format(
+			"Proszę o podanie wartości o długości od {0} do {1} znaków."
+		),
+		range: $.validator.format(
+			"Proszę o podanie wartości z przedziału od {0} do {1}."
+		),
+		max: $.validator.format(
+			"Proszę o podanie wartości mniejszej bądź równej {0}."
+		),
+		min: $.validator.format(
+			"Proszę o podanie wartości większej bądź równej {0}."
+		),
 	});
-}(jQuery));
+})(jQuery);

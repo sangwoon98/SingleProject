@@ -17,15 +17,23 @@
 		accept: "Veuillez fournir une valeur avec une extension valide.",
 		maxlength: $.validator.format("Veuillez fournir au plus {0} caractères."),
 		minlength: $.validator.format("Veuillez fournir au moins {0} caractères."),
-		rangelength: $.validator.format("Veuillez fournir une valeur qui contient entre {0} et {1} caractères."),
+		rangelength: $.validator.format(
+			"Veuillez fournir une valeur qui contient entre {0} et {1} caractères."
+		),
 		range: $.validator.format("Veuillez fournir une valeur entre {0} et {1}."),
-		max: $.validator.format("Veuillez fournir une valeur inférieur ou égal à {0}."),
-		min: $.validator.format("Veuillez fournir une valeur supérieur ou égal à {0}."),
+		max: $.validator.format(
+			"Veuillez fournir une valeur inférieur ou égal à {0}."
+		),
+		min: $.validator.format(
+			"Veuillez fournir une valeur supérieur ou égal à {0}."
+		),
 		maxWords: $.validator.format("Veuillez fournir au plus {0} mots."),
 		minWords: $.validator.format("Veuillez fournir au moins {0} mots."),
 		rangeWords: $.validator.format("Veuillez fournir entre {0} et {1} mots."),
-		letterswithbasicpunc: "Veuillez fournir seulement des lettres et des signes de ponctuation.",
-		alphanumeric: "Veuillez fournir seulement des lettres, nombres, espaces et soulignages",
+		letterswithbasicpunc:
+			"Veuillez fournir seulement des lettres et des signes de ponctuation.",
+		alphanumeric:
+			"Veuillez fournir seulement des lettres, nombres, espaces et soulignages",
 		lettersonly: "Veuillez fournir seulement des lettres.",
 		nowhitespace: "Veuillez ne pas inscrire d'espaces blancs.",
 		ziprange: "Veuillez fournir un code postal entre 902xx-xxxx et 905-xx-xxxx.",
@@ -36,12 +44,14 @@
 		phoneUS: "Veuillez fournir un numéro de téléphone valide.",
 		phoneUK: "Veuillez fournir un numéro de téléphone valide.",
 		mobileUK: "Veuillez fournir un numéro de téléphone mobile valide.",
-		strippedminlength: $.validator.format("Veuillez fournir au moins {0} caractères."),
+		strippedminlength: $.validator.format(
+			"Veuillez fournir au moins {0} caractères."
+		),
 		email2: "Veuillez fournir une adresse électronique valide.",
 		url2: "Veuillez fournir une adresse URL valide.",
 		creditcardtypes: "Veuillez fournir un numéro de carte de crédit valide.",
 		ipv4: "Veuillez fournir une adresse IP v4 valide.",
 		ipv6: "Veuillez fournir une adresse IP v6 valide.",
-		require_from_group: "Veuillez fournir au moins {0} de ces champs."
+		require_from_group: "Veuillez fournir au moins {0} de ces champs.",
 	});
-}(jQuery));
+})(jQuery);

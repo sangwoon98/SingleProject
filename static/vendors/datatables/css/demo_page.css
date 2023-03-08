@@ -1,4 +1,3 @@
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * General page setup
  */
@@ -10,13 +9,11 @@
 	background-color: #fff;
 }
 
-
 #dt_example #container {
 	width: 800px;
 	margin: 30px auto;
 	padding: 0;
 }
-
 
 #dt_example #footer {
 	margin: 50px auto 0 auto;
@@ -35,7 +32,7 @@
 	font-size: 1.3em;
 	font-weight: bold;
 	line-height: 1.6em;
-	color: #4E6CA3;
+	color: #4e6ca3;
 }
 
 #dt_example .spacer {
@@ -49,8 +46,8 @@
 
 #dt_example pre {
 	padding: 15px;
-	background-color: #F5F5F5;
-	border: 1px solid #CCCCCC;
+	background-color: #f5f5f5;
+	border: 1px solid #cccccc;
 }
 
 #dt_example h1 {
@@ -58,8 +55,8 @@
 	font-size: 1.3em;
 	font-weight: normal;
 	line-height: 1.6em;
-	color: #4E6CA3;
-	border-bottom: 1px solid #B0BED9;
+	color: #4e6ca3;
+	border-bottom: 1px solid #b0bed9;
 	clear: both;
 }
 
@@ -67,12 +64,12 @@
 	font-size: 1.2em;
 	font-weight: normal;
 	line-height: 1.6em;
-	color: #4E6CA3;
+	color: #4e6ca3;
 	clear: both;
 }
 
 #dt_example a {
-	color: #0063DC;
+	color: #0063dc;
 	text-decoration: none;
 }
 
@@ -81,7 +78,7 @@
 }
 
 #dt_example ul {
-	color: #4E6CA3;
+	color: #4e6ca3;
 }
 
 .css_right {
@@ -100,7 +97,7 @@
 
 #demo_info {
 	padding: 5px;
-	border: 1px solid #B0BED9;
+	border: 1px solid #b0bed9;
 	height: 100px;
 	width: 100%;
 	overflow: auto;
@@ -112,11 +109,11 @@
 	white-space: nowrap;
 	font-size: 0.9em;
 
-	color: #D14;
-	background-color: #F7F7F9;
+	color: #d14;
+	background-color: #f7f7f9;
 
-	border: 1px solid #E1E1E8;
+	border: 1px solid #e1e1e8;
 	-webkit-border-radius: 3px;
-	   -moz-border-radius: 3px;
-	        border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
 }

@@ -1,65 +1,56 @@
 // DATA_TEMPLATE: empty_table
-oTest.fnStart( "oLanguage.oPaginate" );
+oTest.fnStart("oLanguage.oPaginate");
 
 /* Note that the paging language information only has relevence in full numbers */
 
-$(document).ready( function () {
+$(document).ready(function () {
 	/* Check the default */
-	var oTable = $('#example').dataTable( {
-		"bServerSide": true,
-		"sAjaxSource": "../../../examples/server_side/scripts/server_processing.php",
-		"sPaginationType": "full_numbers"
-	} );
+	var oTable = $("#example").dataTable({
+		bServerSide: true,
+		sAjaxSource: "../../../examples/server_side/scripts/server_processing.php",
+		sPaginationType: "full_numbers",
+	});
 	var oSettings = oTable.fnSettings();
-	
-	oTest.fnWaitTest( 
-		"oLanguage.oPaginate defaults",
-		null,
-		function () {
-			var bReturn = 
-				oSettings.oLanguage.oPaginate.sFirst == "First" &&
-				oSettings.oLanguage.oPaginate.sPrevious == "Previous" &&
-				oSettings.oLanguage.oPaginate.sNext == "Next" &&
-				oSettings.oLanguage.oPaginate.sLast == "Last";
-			return bReturn;
-		}
-	);
-	
-	oTest.fnTest( 
-		"oLanguage.oPaginate defaults are in the DOM",
-		null,
-		function () {
-			var bReturn = 
-				$('#example_paginate .first').html() == "First" &&
-				$('#example_paginate .previous').html() == "Previous" &&
-				$('#example_paginate .next').html() == "Next" &&
-				$('#example_paginate .last').html() == "Last";
-			return bReturn;
-		}
-	);
-	
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest("oLanguage.oPaginate defaults", null, function () {
+		var bReturn =
+			oSettings.oLanguage.oPaginate.sFirst == "First" &&
+			oSettings.oLanguage.oPaginate.sPrevious == "Previous" &&
+			oSettings.oLanguage.oPaginate.sNext == "Next" &&
+			oSettings.oLanguage.oPaginate.sLast == "Last";
+		return bReturn;
+	});
+
+	oTest.fnTest("oLanguage.oPaginate defaults are in the DOM", null, function () {
+		var bReturn =
+			$("#example_paginate .first").html() == "First" &&
+			$("#example_paginate .previous").html() == "Previous" &&
+			$("#example_paginate .next").html() == "Next" &&
+			$("#example_paginate .last").html() == "Last";
+		return bReturn;
+	});
+
+	oTest.fnWaitTest(
 		"oLanguage.oPaginate can be defined",
 		function () {
 			oSession.fnRestore();
-			oTable = $('#example').dataTable( {
-				"bServerSide": true,
-		"sAjaxSource": "../../../examples/server_side/scripts/server_processing.php",
-				"sPaginationType": "full_numbers",
-				"oLanguage": {
-					"oPaginate": {
-						"sFirst":    "unit1",
-						"sPrevious": "test2",
-						"sNext":     "unit3",
-						"sLast":     "test4"
-					}
-				}
-			} );
+			oTable = $("#example").dataTable({
+				bServerSide: true,
+				sAjaxSource: "../../../examples/server_side/scripts/server_processing.php",
+				sPaginationType: "full_numbers",
+				oLanguage: {
+					oPaginate: {
+						sFirst: "unit1",
+						sPrevious: "test2",
+						sNext: "unit3",
+						sLast: "test4",
+					},
+				},
+			});
 			oSettings = oTable.fnSettings();
 		},
 		function () {
-			var bReturn = 
+			var bReturn =
 				oSettings.oLanguage.oPaginate.sFirst == "unit1" &&
 				oSettings.oLanguage.oPaginate.sPrevious == "test2" &&
 				oSettings.oLanguage.oPaginate.sNext == "unit3" &&
@@ -67,20 +58,19 @@ $(document).ready( function () {
 			return bReturn;
 		}
 	);
-	
-	oTest.fnTest( 
+
+	oTest.fnTest(
 		"oLanguage.oPaginate definitions are in the DOM",
 		null,
 		function () {
-			var bReturn = 
-				$('#example_paginate .first').html() == "unit1" &&
-				$('#example_paginate .previous').html() == "test2" &&
-				$('#example_paginate .next').html() == "unit3" &&
-				$('#example_paginate .last').html() == "test4";
+			var bReturn =
+				$("#example_paginate .first").html() == "unit1" &&
+				$("#example_paginate .previous").html() == "test2" &&
+				$("#example_paginate .next").html() == "unit3" &&
+				$("#example_paginate .last").html() == "test4";
 			return bReturn;
 		}
 	);
-	
-	
+
 	oTest.fnComplete();
-} );
+});

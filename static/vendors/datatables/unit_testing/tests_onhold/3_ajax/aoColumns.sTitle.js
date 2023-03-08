@@ -1,19 +1,19 @@
 // DATA_TEMPLATE: empty_table
-oTest.fnStart( "aoColumns.sTitle" );
+oTest.fnStart("aoColumns.sTitle");
 
-$(document).ready( function () {
+$(document).ready(function () {
 	/* Check the default */
-	var oTable = $('#example').dataTable( {
-		"sAjaxSource": "../../../examples/ajax/sources/arrays.txt"
-	} );
+	var oTable = $("#example").dataTable({
+		sAjaxSource: "../../../examples/ajax/sources/arrays.txt",
+	});
 	var oSettings = oTable.fnSettings();
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"If not given, then the columns titles are empty",
 		null,
 		function () {
-			var jqNodes = $('#example thead tr:eq(0) th');
-			var bReturn = 
+			var jqNodes = $("#example thead tr:eq(0) th");
+			var bReturn =
 				jqNodes[0].innerHTML == "Rendering engine" &&
 				jqNodes[1].innerHTML == "Browser" &&
 				jqNodes[2].innerHTML == "Platform(s)" &&
@@ -22,25 +22,19 @@ $(document).ready( function () {
 			return bReturn;
 		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Can set a single column title - and others are read from DOM",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"sAjaxSource": "../../../examples/ajax/sources/arrays.txt",
-				"aoColumns": [
-					null,
-					{ "sTitle": 'unit test' },
-					null,
-					null,
-					null
-				]
-			} );
+			$("#example").dataTable({
+				sAjaxSource: "../../../examples/ajax/sources/arrays.txt",
+				aoColumns: [null, { sTitle: "unit test" }, null, null, null],
+			});
 		},
 		function () {
-			var jqNodes = $('#example thead tr:eq(0) th');
-			var bReturn = 
+			var jqNodes = $("#example thead tr:eq(0) th");
+			var bReturn =
 				jqNodes[0].innerHTML == "Rendering engine" &&
 				jqNodes[1].innerHTML == "unit test" &&
 				jqNodes[2].innerHTML == "Platform(s)" &&
@@ -49,25 +43,25 @@ $(document).ready( function () {
 			return bReturn;
 		}
 	);
-	
-	oTest.fnWaitTest( 
+
+	oTest.fnWaitTest(
 		"Can set multiple column titles",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"sAjaxSource": "../../../examples/ajax/sources/arrays.txt",
-				"aoColumns": [
+			$("#example").dataTable({
+				sAjaxSource: "../../../examples/ajax/sources/arrays.txt",
+				aoColumns: [
 					null,
-					{ "sTitle": 'unit test 1' },
+					{ sTitle: "unit test 1" },
 					null,
 					null,
-					{ "sTitle": 'unit test 2' }
-				]
-			} );
+					{ sTitle: "unit test 2" },
+				],
+			});
 		},
 		function () {
-			var jqNodes = $('#example thead tr:eq(0) th');
-			var bReturn = 
+			var jqNodes = $("#example thead tr:eq(0) th");
+			var bReturn =
 				jqNodes[0].innerHTML == "Rendering engine" &&
 				jqNodes[1].innerHTML == "unit test 1" &&
 				jqNodes[2].innerHTML == "Platform(s)" &&
@@ -76,7 +70,6 @@ $(document).ready( function () {
 			return bReturn;
 		}
 	);
-	
-	
+
 	oTest.fnComplete();
-} );
+});

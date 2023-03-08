@@ -1,5 +1,5 @@
 .table-toolbar {
-    margin-bottom: 15px;
+	margin-bottom: 15px;
 }
 
 div.dataTables_length label {
@@ -39,12 +39,27 @@ table.table thead .sorting_desc_disabled {
 	*cursor: hand;
 }
 
-table.table thead .sorting { background: url('../vendors/datatables/images/sort_both.png') no-repeat center right; }
-table.table thead .sorting_asc { background: url('../vendors/datatables/images/sort_asc.png') no-repeat center right; }
-table.table thead .sorting_desc { background: url('../vendors/datatables/images/sort_desc.png') no-repeat center right; }
+table.table thead .sorting {
+	background: url("../vendors/datatables/images/sort_both.png") no-repeat center
+		right;
+}
+table.table thead .sorting_asc {
+	background: url("../vendors/datatables/images/sort_asc.png") no-repeat center
+		right;
+}
+table.table thead .sorting_desc {
+	background: url("../vendors/datatables/images/sort_desc.png") no-repeat center
+		right;
+}
 
-table.table thead .sorting_asc_disabled { background: url('../vendors/datatables/images/sort_asc_disabled.png') no-repeat center right; }
-table.table thead .sorting_desc_disabled { background: url('../vendors/datatables/images/sort_desc_disabled.png') no-repeat center right; }
+table.table thead .sorting_asc_disabled {
+	background: url("../vendors/datatables/images/sort_asc_disabled.png") no-repeat
+		center right;
+}
+table.table thead .sorting_desc_disabled {
+	background: url("../vendors/datatables/images/sort_desc_disabled.png")
+		no-repeat center right;
+}
 
 table.dataTable th:active {
 	outline: none;
@@ -77,15 +92,12 @@ div.dataTables_scrollFoot table {
 	border-top: none;
 }
 
-
-
-
 /*
  * TableTools styles
  */
 .table tbody tr.active td,
 .table tbody tr.active th {
-	background-color: #08C;
+	background-color: #08c;
 	color: white;
 }
 
@@ -112,7 +124,6 @@ div.DTTT .btn {
 div.DTTT .btn:hover {
 	text-decoration: none !important;
 }
-
 
 ul.DTTT_dropdown.dropdown-menu a {
 	color: #333 !important; /* needed only when demo_page.css is included */
@@ -143,7 +154,7 @@ div.DTTT_print_info p {
 }
 
 .dataTables_wrapper .row {
-	margin-left:0px;
+	margin-left: 0px;
 }
 
 /*

@@ -20,6 +20,6 @@
 		rangelength: $.validator.format("Prosimo, vnesite od {0} do {1} znakov."),
 		range: $.validator.format("Prosimo, vnesite vrednost med {0} in {1}."),
 		max: $.validator.format("Prosimo, vnesite vrednost manjšo ali enako {0}."),
-		min: $.validator.format("Prosimo, vnesite vrednost večjo ali enako {0}.")
+		min: $.validator.format("Prosimo, vnesite vrednost večjo ali enako {0}."),
 	});
-}(jQuery));
+})(jQuery);

@@ -5,14 +5,14 @@
 	TEMPLATE CODE: 	S-0003
     VERSION:         1.1          	
  *******************************************/
-	/********************************************
+/********************************************
    HTML ELEMENTS
 ********************************************/ /* Top elements */
-	/** { margin:0; padding: 0; }*/
+/** { margin:0; padding: 0; }*/
 body {
 	background-color: #000;
 	color: #555;
-	font: 78%/ 1.6 Verdana, 'Trebuchet MS', arial, sans-serif;
+	font: 78%/ 1.6 Verdana, "Trebuchet MS", arial, sans-serif;
 	text-align: center;
 	margin: 15px 0;
 }
@@ -31,8 +31,10 @@ a:hover {
 }
 
 /* headers */
-h1,h2,h3 {
-	font-family: 'Trebuchet MS', Arial, sans-serif;
+h1,
+h2,
+h3 {
+	font-family: "Trebuchet MS", Arial, sans-serif;
 	font-weight: bold;
 }
 
@@ -54,7 +56,9 @@ h3 {
 	margin: 16px 0 0 18px;
 }
 
-h1,h2,h3 {
+h1,
+h2,
+h3 {
 	padding: 0;
 }
 
@@ -64,22 +68,24 @@ p {
 }
 
 p.error {
-	color: #CC0033;
+	color: #cc0033;
 }
 
-ul,ol {
+ul,
+ol {
 	margin: 10px 6px;
 	padding: 0 15px;
 	color: #006699;
 }
 
-ul span,ol span {
+ul span,
+ol span {
 	color: #666666;
 }
 
 /* images */
 img {
-	border: 2px solid #CCC;
+	border: 2px solid #ccc;
 }
 
 img.float-right {
@@ -96,11 +102,11 @@ code {
 	text-align: left;
 	display: block;
 	overflow: auto;
-	font: 500 1em/ 1.5em 'Lucida Console', 'courier new', monospace;
+	font: 500 1em/ 1.5em "Lucida Console", "courier new", monospace;
 	/* white-space: pre; */
-	background: #FAFAFA;
-	border: 1px solid #EAEAEA;
-	border-left: 5px solid #72A545;
+	background: #fafafa;
+	border: 1px solid #eaeaea;
+	border-left: 5px solid #72a545;
 }
 
 acronym {
@@ -111,10 +117,10 @@ acronym {
 blockquote {
 	margin: 15px;
 	padding: 0 0 0 32px;
-	background: #FAFAFA url(quote.gif) no-repeat 5px 10px !important;
+	background: #fafafa url(quote.gif) no-repeat 5px 10px !important;
 	background-position: 8px 10px;
-	border: 1px solid #EAEAEA;
-	border-left: 5px solid #72A545;
+	border: 1px solid #eaeaea;
+	border-left: 5px solid #72a545;
 	font-weight: bold;
 }
 
@@ -148,7 +154,7 @@ legend {
 	font-size: 1.2em;
 	padding: 0 12px;
 	font-weight: 900;
-	background-color: #F9F9F9;
+	background-color: #f9f9f9;
 }
 
 fieldset fieldset legend {
@@ -161,7 +167,7 @@ fieldset fieldset legend {
 input {
 	padding: 3px;
 	margin: 4px 0;
-	border: 1px solid #CFCED3;
+	border: 1px solid #cfced3;
 	font: normal 1em Verdana, sans-serif;
 	color: #777;
 }
@@ -179,19 +185,19 @@ textarea {
 input.button {
 	margin: 0;
 	font: bold 12px Arial, Sans-serif;
-	border: 1px solid #EAEAEA;
+	border: 1px solid #eaeaea;
 	padding: 3px 4px;
-	background: #CCC url(buttonbg.gif) repeat-x left bottom;
+	background: #ccc url(buttonbg.gif) repeat-x left bottom;
 	color: #333; /* color: #339900; */
 	cursor: pointer;
 }
 
 input.submitbutton {
 	background-color: #006699;
-	color: #FFF;
+	color: #fff;
 	background-image: none;
 	font-weight: 900;
-	border: 1px solid #EAEAEA;
+	border: 1px solid #eaeaea;
 	margin: 0 0 0 200px;
 }
 
@@ -207,8 +213,8 @@ input.submitbutton {
 }
 
 #sidebar #search .textbox {
-	background: #FFF url(input.png) no-repeat top left;
-	border: 1px solid #EAEAEA;
+	background: #fff url(input.png) no-repeat top left;
+	border: 1px solid #eaeaea;
 	font-size: 11px;
 	padding: 3px;
 	width: 110px;
@@ -217,8 +223,8 @@ input.submitbutton {
 #sidebar #search input.searchbutton {
 	margin: 0;
 	font: bold 100% Arial, Sans-serif;
-	border: 1px solid #CCC;
-	background: #CCC url(buttonbg.gif) repeat-x left bottom;
+	border: 1px solid #ccc;
+	background: #ccc url(buttonbg.gif) repeat-x left bottom;
 	padding: 1px;
 	height: 25px;
 	color: #333;
@@ -232,7 +238,7 @@ input.submitbutton {
 	margin: 0 auto;
 	padding: 0;
 	text-align: left;
-	background-color: #FFF;
+	background-color: #fff;
 	width: 790px;
 }
 
@@ -258,9 +264,9 @@ input.submitbutton {
 	float: right;
 	margin: 39px 58px 0 0;
 	padding: 0;
-	font: bolder 3.2em 'Trebuchet MS', Arial, Sans-serif;
+	font: bolder 3.2em "Trebuchet MS", Arial, Sans-serif;
 	letter-spacing: -2px;
-	color: #FFF;
+	color: #fff;
 	text-transform: none;
 	/* change the values of top and right to adjust the position of the logo*/
 	top: 35px;
@@ -271,16 +277,16 @@ input.submitbutton {
 	float: right;
 	margin: 0 38px 0 0;
 	padding: 0;
-	font: bold 1.5em 'Trebuchet MS', Arial, Sans-serif;
+	font: bold 1.5em "Trebuchet MS", Arial, Sans-serif;
 	text-transform: none;
 	letter-spacing: 1px;
-	color: #FFF;
+	color: #fff;
 	clear: both;
 	text-align: right;
 }
 
 #header h1#logo-text span {
-	color: #CFCED3;
+	color: #cfced3;
 }
 
 /* menu tabs */
@@ -291,7 +297,7 @@ input.submitbutton {
 	width: 100%;
 	height: 25px;
 	background: #000;
-	font: bold 1.1em Verdana, Tahoma, 'Trebuchet MS', Sans-serif;
+	font: bold 1.1em Verdana, Tahoma, "Trebuchet MS", Sans-serif;
 }
 
 #header-tabs ul {
@@ -319,7 +325,7 @@ input.submitbutton {
 	display: block;
 	background: url(tabright.gif) no-repeat right top;
 	padding: 7px 15px 4px 8px;
-	color: #CCC;
+	color: #ccc;
 }
 
 /* Commented Backslash Hack hides rule from IE5-Mac \*/
@@ -329,7 +335,7 @@ input.submitbutton {
 
 /* End IE5-Mac hack */
 #header-tabs a:hover span {
-	color: #FFF;
+	color: #fff;
 }
 
 #header-tabs a:hover {
@@ -346,7 +352,7 @@ input.submitbutton {
 
 #header-tabs #current a span {
 	background-position: 100% -42px;
-	color: #FFF;
+	color: #fff;
 }
 
 /* main content */
@@ -354,7 +360,7 @@ input.submitbutton {
 	width: 748px;
 	margin: 0;
 	padding: 8px 16px;
-	background-color: #F9F9F9;
+	background-color: #f9f9f9;
 	border-left: 5px solid #000;
 	border-right: 5px solid #000;
 }
@@ -367,7 +373,8 @@ input.submitbutton {
 }
 
 /* sidebar */
-#sidebar { /*	float: right;
+#sidebar {
+	/*	float: right;
 	width: 245px;
 	margin: 0 0 10px 0; padding: 0;
 	background-color: inherit;	*/
@@ -376,7 +383,7 @@ input.submitbutton {
 
 #sidebar h1 {
 	padding: 8px 0px 3px 25px;
-	background: url(square_arrow.gif) no-repeat 0% .7em;
+	background: url(square_arrow.gif) no-repeat 0% 0.7em;
 	text-transform: none;
 	color: #339900;
 }
@@ -399,7 +406,7 @@ input.submitbutton {
 	text-decoration: none;
 	padding: 2px 5px 2px 10px;
 	background: #f2f2f2;
-	border-left: 5px solid #CCC;
+	border-left: 5px solid #ccc;
 	min-height: 18px;
 }
 
@@ -411,14 +418,14 @@ input.submitbutton {
 	padding: 2px 5px 2px 10px;
 	background: #f2f2f2;
 	color: #339900;
-	border-left: 5px solid #72A545;
+	border-left: 5px solid #72a545;
 }
 
 /* footer */
 #footer {
 	clear: both;
 	height: 40px;
-	color: #CCC;
+	color: #ccc;
 	background: #000;
 	margin: 0;
 	font-size: 92%;
@@ -427,7 +434,7 @@ input.submitbutton {
 #footer a {
 	text-decoration: none;
 	font-weight: bold;
-	color: #FFF;
+	color: #fff;
 }
 
 #footer #footer-left {
@@ -473,15 +480,15 @@ input.submitbutton {
 }
 
 .gray {
-	color: #CCC;
+	color: #ccc;
 }
 
 .comments {
 	color: #333;
-	background: #FFF;
+	background: #fff;
 	text-align: right;
-	border-top: 1px dashed #EFF0F1;
-	border-bottom: 1px dashed #EFF0F1;
+	border-top: 1px dashed #eff0f1;
+	border-bottom: 1px dashed #eff0f1;
 	padding: 5px 0;
 	margin-top: 20px;
 }
@@ -496,9 +503,10 @@ body .mainText {
 	font-size: 12px;
 }
 
-#demoText h1,.mainText h1 {
+#demoText h1,
+.mainText h1 {
 	font-size: 130%;
-	color: #0099FF;
+	color: #0099ff;
 	text-decoration: none;
 	font-family: Arial, Helvetica, sans-serif;
 	margin: 5px 4px 5px 24px;
@@ -528,20 +536,20 @@ body .mainText {
 
 .mainText table {
 	width: 95%;
-	border: 1px solid #0099FF;
+	border: 1px solid #0099ff;
 	border-collapse: collapse;
 	margin: 18px 7px;
 }
 
 .mainText table td {
-	background-color: #99CCFF;
+	background-color: #99ccff;
 	color: #000033;
 	padding: 4px;
 }
 
 .mainText table th {
 	background-color: #000033;
-	color: #99CCFF;
+	color: #99ccff;
 	padding: 4px;
 }
 
@@ -566,15 +574,15 @@ body .mainText {
 /* ------------- form specific styles are here  -------------- */
 fieldset {
 	margin: 0;
-	border: 1px solid #C3DE00;
+	border: 1px solid #c3de00;
 	padding: 10px;
 	/*border:none;
 padding:0;*/
-	color: #7563A5;
+	color: #7563a5;
 }
 
 legend {
-	background-color: #FFFFFF;
+	background-color: #ffffff;
 	text-align: center;
 	color: #097981;
 	padding: 0 12px;
@@ -589,10 +597,11 @@ label {
 	float: left;
 	clear: left;
 	display: block;
-	color: #7563A5;
+	color: #7563a5;
 }
 
-label.checkbox,label.textarea {
+label.checkbox,
+label.textarea {
 	border: none;
 }
 
@@ -604,7 +613,9 @@ label.lgfield {
 	width: 100%;
 }
 
-fieldset input,fieldset select,fieldset textarea {
+fieldset input,
+fieldset select,
+fieldset textarea {
 	margin-left: 10px;
 	margin-bottom: 8px;
 }
@@ -613,7 +624,8 @@ select.longfield {
 	margin: 0 0 0 115px;
 }
 
-input [type="radio"],input [type="checkbox"] {
+input [type="radio"],
+input [type="checkbox"] {
 	margin: 2px 0 0 4px;
 }
 
@@ -657,10 +669,10 @@ div.buttonWrapper {
 	float: none;
 	clear: none;
 	display: inline;
-	color: #CC3366;
+	color: #cc3366;
 	font-size: 10px;
 	border: none;
-	border-top: 1px dotted #CC3366;
+	border-top: 1px dotted #cc3366;
 }
 
 div.requiredNotice {
@@ -678,7 +690,8 @@ h3.stepHeader {
 	color: #676cac;
 }
 
-ul#stepForm,ul#stepForm li {
+ul#stepForm,
+ul#stepForm li {
 	margin: 0;
 	padding: 0;
 }
@@ -688,7 +701,9 @@ ul#stepForm li {
 }
 
 /* Form Buttons  */
-input.submitbutton,.nextbutton,.prevbutton {
+input.submitbutton,
+.nextbutton,
+.prevbutton {
 	width: 100px;
 	height: 40px;
 	background-color: #663399;
@@ -696,7 +711,7 @@ input.submitbutton,.nextbutton,.prevbutton {
 	border: 1px solid #339933;
 	cursor: pointer;
 	text-align: center;
-	color: #FFFFFF;
+	color: #ffffff;
 	margin: 7px;
 }
 

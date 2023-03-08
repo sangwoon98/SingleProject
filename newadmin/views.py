@@ -1,4 +1,3 @@
-
 from http.client import HTTPResponse
 from multiprocessing import context
 from event.models import E_board
@@ -9,13 +8,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.paginator import Paginator
 from django.db.models import F
 from event.views import event
-
-
 from member.models import Member
 from fboard.models import Fboard
-
-
-
 
 #-------------------임시 페이지 이동 관리------------------------------#
 
@@ -28,16 +22,12 @@ def admin(request):
 def form(request):
     return render(request,'form.html')
 
-
-
 #----------------main-----------------------------------_#
 
 def main_list(request):
     board=TopImages.objects.order_by('T_no')
     context={'board':board}
     return render(request,'main_list.html',context)
-
-
 
 def main_write(request):
     if request.method=="GET":
@@ -51,11 +41,10 @@ def main_write(request):
         qs.save()
         allno=TopImages.objects.order_by('T_no')
         for i,no in enumerate(allno):
-            no.T_no=i+1
+            no.T_no = i + 1
             no.save()
         return redirect('newadmin:main_list')
     
-
 def main_top_view(request,no):
     if request.method=="GET":
         board=TopImages.objects.get(T_no=no)
@@ -70,14 +59,10 @@ def main_top_view(request,no):
             image=sub_image
             
         qs=TopImages.objects.get(T_no=no) #db가져오기
-        print('db: ',no)  #고유값
-        print('main_no: ',main_no) #변동값
         if no!=main_no: #변동 사항이 있다면?
             if no<main_no:
-                print('크게 해줘')
                 TopImages.objects.filter(T_no__lte=main_no).update(T_no=F('T_no')-1)
             else:
-                print('작게 해줘')
                 TopImages.objects.filter(T_no__gte=main_no).update(T_no=F('T_no')+1)
         qs.T_no=main_no
         qs.T_title=main_title
@@ -85,8 +70,6 @@ def main_top_view(request,no):
         qs.save()
         allno=TopImages.objects.order_by('T_no')
         for i,no in enumerate(allno):
-            print(no.T_no)
-            print(i+1)
             no.T_no=i+1
             no.save()
         return redirect('newadmin:main_list')
@@ -106,15 +89,11 @@ def main_multi_delete(request):
             no.save()
         return JsonResponse(safe=False)
     
-        
-
 def main_top_delete(request,no):
     
     return render(request,'main_top_view.html')
    
     
-
-
 #----------------main끝-----------------------------------_#
 
 
@@ -123,12 +102,10 @@ def main_top_delete(request,no):
 
 def event_write(request):
     if request.method=='GET':
-        print('get호출')
         return render(request,'event_write.html')
     else:
         #이미지는 테이블 속성 값으로 이미지 자체로 저장되어있는 것이 아닌 
-        # '/media/이미지이름.png' 처럼 path가 저장된다.
-        print('post호출')               
+        # '/media/이미지이름.png' 처럼 path가 저장된다.               
         event_no=int(request.POST.get('event_no'))
         progress=request.POST.get('progress')
         event_title=request.POST.get('event_title')
@@ -138,77 +115,41 @@ def event_write(request):
         image=request.FILES.get('image')
         image02=request.FILES.get('image02')
         nowpage=1
-        
-        print('event_no: ',event_no)
-        print('progress: ',progress)
-        print('event_content: ',event_content)
-        print('event_title: ',event_title)
-        print('event_srart: ',event_srart)
-        print('event_end: ',event_end)  
-        print('image: ',image)
-        print('image: ',image02)
-        
         event_no=event_no
-        print('event_no: ',event_no)
-        print('event_no: ',event_no)
-        # Fboard.objects.filter(f_group=f_group,f_step__gt=f_step).update(f_step=F('f_step')+1)  #f_step =f_step 같은거 말고 더큰거
         
         #----------------------numbering--------------------------------
  
         if E_board.objects.exists():
-            print(E_board.objects.latest('E_event_no').E_event_no)
             max_no=E_board.objects.latest('E_event_no').E_event_no
             if max_no<event_no:
                 event_no=max_no+1
-                print(event_no)
             else:
                 E_board.objects.filter(E_event_no__gt=event_no-1).update(E_event_no=F('E_event_no')+1)
-            print(event_no)
             qs = E_board(E_event_no=event_no,E_progress=progress,E_title=event_title,\
             E_content=event_content,E_start_day=event_srart,\
             E_end_day=event_end,E_image=image,E_image02=image02)
             qs.save()
-            
-            
             
         else:
-            print('초기 값 입니다.')
             qs = E_board(E_event_no=event_no,E_progress=progress,E_title=event_title,\
             E_content=event_content,E_start_day=event_srart,\
             E_end_day=event_end,E_image=image,E_image02=image02)
             qs.save()
-            
-        # print('maxnum: ',max_no)
-        # print('maxnum: ',type(max_no))
-            
-        # max_no=E_board.objects.latest('E_event_no')
-        # if max_no<event_no:
-        #     event_no=max_no+1
-        # if max_no==event_no:
-        #     event_no=event_no+1
         
         #----------------------numbering end--------------------------------
-       
-       
       
         return redirect('newadmin:event_list',nowpage)
     
 
 def event_list(request,nowpage):
-    print('12345')
     allno=E_board.objects.order_by('E_event_no')
     for i,no in enumerate(allno):
-        print(i+1)
-        print(no.E_event_no)
-        print(type(no.E_event_no))
         no.E_event_no=i+1
         no.save()
-    print('12345')
     
     qs = E_board.objects.order_by('E_event_no')
     # 페이징 처리 - request:str타입
     # page = int(request.GET.get('nowpage',1)) # page변수 전달, 없으면 1
-    print("nowpage : ",nowpage)
     paginator = Paginator(qs,100)     # 1페이지 나타낼수 있는 게시글 수 설정.  
     event_list = paginator.get_page(nowpage) # 요청한 페이지의 게시글 10개를 전달
     context={'event_list':event_list,'nowpage':nowpage}
@@ -216,22 +157,10 @@ def event_list(request,nowpage):
 
 
 def event_delete(request,nowpage,no):
-    print("nowpage : ",nowpage)
     qs = E_board.objects.get(E_no=no)
     qs.delete()
     allno=E_board.objects.order_by('E_event_no')
-    
     return redirect('newadmin:event_list',nowpage)
-
-# def event_multi_delete(request,nowpage):
-#     print('event_multi_delete')
-#     print("nowpage : ",nowpage)
-#     checkbox=request.POST.getlist('checkbox[]')
-#     print(checkbox)
-#     for box in checkbox:
-#         qs=E_board.objects.get(E_no=box)
-#         qs.delete()
-#     return redirect('newadmin:event_list',nowpage)
 
 @csrf_exempt 
 def event_multi_delete(request):
@@ -244,11 +173,8 @@ def event_multi_delete(request):
             qs.delete()
         return JsonResponse(safe=False)
     
-        
-    
 def event_list_view(request,nowpage,event_no):
     if request.method=='GET':
-        print('get')
         board=E_board.objects.get(E_no=event_no) #원래 넘버에서 보드 들고오기
         context={'nowpage':nowpage,'no':event_no,'board':board} 
         return render(request,'event_list_view.html',context)
@@ -264,37 +190,18 @@ def event_list_view(request,nowpage,event_no):
         sub_image=request.POST.get('sub_image') 
         sub_image02=request.POST.get('sub_image02') 
         event_change_no=int(request.POST.get('event_no'))  #변경 됐을수도 있는 넘버
-        print(event_change_no)
-        
-        print('progress: ',event_progress)
-        print('event_content: ',event_content)
-        print('event_title: ',event_title)
-        print('event_srart: ',event_srart)
-        print('event_end: ',event_end)
-        print('image: ',image)
-        print('image02: ',image02)
-        print('sub_image: ',sub_image)
+
         if image==None:
             image=sub_image
         if image02==None:
             image02=sub_image02
 
-            
-        # print(E_board.objects.latest('E_event_no').E_event_no)
-        # max_no=E_board.objects.latest('E_event_no').E_event_no
-        # print('max_no: ', max_no)
-        print('event_change_no: ', event_change_no)
         if event_change_no!=qs.E_event_no: #변경이 되었는가?
             if qs.E_event_no<event_change_no:
                 E_board.objects.filter(E_event_no__lte=event_change_no).update(E_event_no=F('E_event_no')-1)
-                print('11111')
             else:
-                print('2222')
                 E_board.objects.filter(E_event_no__gte=event_change_no).update(E_event_no=F('E_event_no')+1)
-            print(event_change_no)
-        print('33333')
-        print(event_change_no)
-            
+
         qs.E_event_no=event_change_no
         qs.E_progress=event_progress
         qs.E_title=event_title
@@ -305,32 +212,13 @@ def event_list_view(request,nowpage,event_no):
         qs.E_image02=image02
         qs.save()
         
-        print('12345')
         allno=E_board.objects.order_by('E_event_no')
         for i,no in enumerate(allno):
-            print(i+1)
-            print(no.E_event_no)
-            print(type(no.E_event_no))
             no.E_event_no=i+1
-            no.save()
-        print('12345')
-        
-     
-        # qs = E_board(E_event_no=event_no,E_progress=event_progress,E_title=event_title,\
-        # E_content=event_content,E_start_day=event_srart,\
-        # E_end_day=event_end,E_image=image)
-        # qs.save()
-
-        
-        
-        
-        
-       
+            no.save()       
         return redirect('newadmin:event_list',nowpage)
     
-    
-    
-    
+
     #----------------------member 관리------------------------------#
 
 
@@ -338,7 +226,6 @@ def member_list(request,nowpage):
     qs = Member.objects.all()
     # 페이징 처리 - request:str타입
     # page = int(request.GET.get('nowpage',1)) # page변수 전달, 없으면 1
-    print("nowpage : ",nowpage)
     paginator = Paginator(qs,100)     # 1페이지 나타낼수 있는 게시글 수 설정.  
     member_list = paginator.get_page(nowpage) # 요청한 페이지의 게시글 10개를 전달
     context={'member_list':member_list,'nowpage':nowpage}
@@ -347,10 +234,7 @@ def member_list(request,nowpage):
 @csrf_exempt 
 def member_multi_delete(request):
     
-    print('hi')
     ids = request.GET['ids']
-    print('ids: ',ids)
-    print(ids.split(' '))
     id_list=ids.split(' ')
     if ids:
         for id in id_list:
@@ -358,13 +242,10 @@ def member_multi_delete(request):
             qs.delete()
         return JsonResponse(safe=False)
 
-
-
 def community_list(request,nowpage):
     qs = Fboard.objects.all()
     # 페이징 처리 - request:str타입
     # page = int(request.GET.get('nowpage',1)) # page변수 전달, 없으면 1
-    print("nowpage : ",nowpage)
     paginator = Paginator(qs,100)     # 1페이지 나타낼수 있는 게시글 수 설정.  
     community_list = paginator.get_page(nowpage) # 요청한 페이지의 게시글 10개를 전달
     context={'community_list':community_list,'nowpage':nowpage}
@@ -372,7 +253,6 @@ def community_list(request,nowpage):
 
 @csrf_exempt 
 def community_multi_delete(request):
-
     ids = request.GET['ids']
     id_list=ids.split(' ')
     if ids:

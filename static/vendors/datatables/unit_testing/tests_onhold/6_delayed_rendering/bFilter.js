@@ -1,47 +1,48 @@
 // DATA_TEMPLATE: empty_table
-oTest.fnStart( "bFilter" );
+oTest.fnStart("bFilter");
 
-$(document).ready( function () {
+$(document).ready(function () {
 	/* Check the default */
-	$('#example').dataTable( {
-		"sAjaxSource": "../../../examples/ajax/sources/arrays.txt",
-		"bDeferRender": true
-	} );
-	
-	oTest.fnWaitTest( 
-		"Filtering div exists by default",
-		null,
-		function () { return document.getElementById('example_filter') != null; }
-	);
-	
+	$("#example").dataTable({
+		sAjaxSource: "../../../examples/ajax/sources/arrays.txt",
+		bDeferRender: true,
+	});
+
+	oTest.fnWaitTest("Filtering div exists by default", null, function () {
+		return document.getElementById("example_filter") != null;
+	});
+
 	/* Check can disable */
-	oTest.fnWaitTest( 
+	oTest.fnWaitTest(
 		"Fltering can be disabled",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"sAjaxSource": "../../../examples/ajax/sources/arrays.txt",
-				"bDeferRender": true,
-				"bFilter": false
-			} );
+			$("#example").dataTable({
+				sAjaxSource: "../../../examples/ajax/sources/arrays.txt",
+				bDeferRender: true,
+				bFilter: false,
+			});
 		},
-		function () { return document.getElementById('example_filter') == null; }
+		function () {
+			return document.getElementById("example_filter") == null;
+		}
 	);
-	
+
 	/* Enable makes no difference */
-	oTest.fnWaitTest( 
+	oTest.fnWaitTest(
 		"Filtering enabled override",
 		function () {
 			oSession.fnRestore();
-			$('#example').dataTable( {
-				"sAjaxSource": "../../../examples/ajax/sources/arrays.txt",
-				"bDeferRender": true,
-				"bFilter": true
-			} );
+			$("#example").dataTable({
+				sAjaxSource: "../../../examples/ajax/sources/arrays.txt",
+				bDeferRender: true,
+				bFilter: true,
+			});
 		},
-		function () { return document.getElementById('example_filter') != null; }
+		function () {
+			return document.getElementById("example_filter") != null;
+		}
 	);
-	
-	
+
 	oTest.fnComplete();
-} );
+});

@@ -1,6 +1,3 @@
-
-
-
 /**
  * Template object for the way in which DataTables holds information about
  * search information for the global filter and individual column filters.
@@ -12,14 +9,14 @@ DataTable.models.oSearch = {
 	 *  @type boolean
 	 *  @default true
 	 */
-	"bCaseInsensitive": true,
+	bCaseInsensitive: true,
 
 	/**
 	 * Applied search term
 	 *  @type string
 	 *  @default <i>Empty string</i>
 	 */
-	"sSearch": "",
+	sSearch: "",
 
 	/**
 	 * Flag to indicate if the search term should be interpreted as a
@@ -28,13 +25,12 @@ DataTable.models.oSearch = {
 	 *  @type boolean
 	 *  @default false
 	 */
-	"bRegex": false,
+	bRegex: false,
 
 	/**
 	 * Flag to indicate if DataTables is to use its smart filtering or not.
 	 *  @type boolean
 	 *  @default true
 	 */
-	"bSmart": true
+	bSmart: true,
 };
-
