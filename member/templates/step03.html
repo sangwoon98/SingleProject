@@ -26,8 +26,6 @@
 	</script>
 <script>
 	$(function(){
-		console.log('hi function')
-		//$('#myname').text('홍예나됐다')
 		
 		const div=document.getElementById('same');
 		const div2=document.getElementById('diff');
@@ -36,22 +34,18 @@
 
 			
 		$("#password02").blur(function(){ //해당 id를 벗어 났을때 동작
-			console.log('1')
 			if($("#password").val()!=$('#password02').val()){
 				$("#password02").val('');
-				//$("#password02").focus();
 				const div=document.getElementById('same');
 				const div2=document.getElementById('diff');
 				div.style.display='none';
 				div2.style.display='';
-				console.log('1_1');
 			}
 			else{
 				const div=document.getElementById('same');
 				const div2=document.getElementById('diff');
 				div.style.display=''
 				div2.style.display='none';
-				console.log('2')
 			}
 		}),
 		
@@ -59,7 +53,6 @@
 		
 		$('#name').keyup(function (e) {
 			let content = $(this).val();
-			console.log(content)
 			// 글자수 세기
 			if (content.length == 0 || content == '') {
 				console.log(content.length)

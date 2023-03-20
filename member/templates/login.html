@@ -4,11 +4,17 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
   $(function() {
+    console.log(msg)
     var msg = $('#msg').val()
     if (msg == '패스워드가') {
       $('#loginType').focus()
       $('#passType').focus()
-    } else {
+    } else if(msg == '아이디가') {
+      confirmA=confirm('아이디가 존재하지 않습니다. 회원가입 페이지로 이동 하시겠습니까?')
+      if(confirmA){
+        location.href='/member/register'
+      }
+    } else{
       $('#loginType').focus()
     }
   })
@@ -95,7 +101,7 @@
             </div>
           </div>
     </form>
-    <h3>비회원 주문 조회</h3>
+    {% comment %} <h3>비회원 주문 조회</h3>
     <div class="informbox">
       <div class="inform">
         <ul>
@@ -115,7 +121,7 @@
           <a href="#" class="nbtn">회원가입</a>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
   </div>
 </div>
 <!-- //contents -->

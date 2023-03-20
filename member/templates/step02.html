@@ -2,6 +2,45 @@
 <!--endblock 으로 바꿔서 맨아래 삽입  
 	 키워드  1.대량구매  2.개인정보 -->
 <!-- container -->
+<head>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+
+$(function(){
+const agreeCheckbox1 = document.getElementById('agree1');
+const agreeCheckbox2 = document.getElementById('agree2');
+const agreeCheckbox3 = document.getElementById('agree3');
+const joinButton = document.querySelector('.btnArea .bCenter li:last-child a');
+
+function checkAgreement() {
+  if (agreeCheckbox1.checked && agreeCheckbox2.checked && agreeCheckbox3.checked) {
+    joinButton.classList.remove('sbtnMiniDisabled');
+    joinButton.href = "{%url 'member:register03'%}";
+  } else {
+    joinButton.classList.add('sbtnMiniDisabled');
+    joinButton.removeAttribute('href');
+  }
+}
+
+function handleJoinButtonClick(event) {
+  if (!agreeCheckbox1.checked || !agreeCheckbox2.checked || !agreeCheckbox3.checked) {
+    event.preventDefault();
+    alert('모든 약관에 동의해주세요.');
+  }
+}
+
+agreeCheckbox1.addEventListener('change', checkAgreement);
+agreeCheckbox2.addEventListener('change', checkAgreement);
+agreeCheckbox3.addEventListener('change', checkAgreement);
+joinButton.addEventListener('click', handleJoinButtonClick);
+})
+  </script>
+
+
+</head>
+
+<body>
 <div id="container">
   <div id="location">
     <ol>
@@ -444,5 +483,6 @@
     </div>
   </div>
   <!-- //contents -->
-</div>undefined</div>undefined
+</div></div>
+</body>
 <!-- //container --> {% endblock content-block  %}

@@ -12,6 +12,7 @@ from django.http import JsonResponse
 def f_modify(request, nowpage, f_No):
     if request.method == "GET":
         board = Fboard.objects.get(f_No=f_No)
+        print('board: ',board)
         context = {"board": board, "nowpage": nowpage}
         return render(request, "comment_modify.html", context)
 

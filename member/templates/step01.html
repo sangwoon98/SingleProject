@@ -56,7 +56,7 @@
         <div class="stepWrap">
           <div class="step stepon">
             <p class="web">STEP 01</p>
-            <p class="txt">실명확인</p>
+            <p class="txt">회원가입 시작</p>
             <p class="ck">
               <img src="/static/images/bg/bg_step.png" alt="현재위치" />
             </p>
@@ -83,19 +83,19 @@
         <!-- //STEP -->
         <div class="alertBox">
           <ul>
-            <li>회원님의 실명확인 및 가입 여부를 확인하는 절차입니다.</li>
-            <li>회원님의 개인 정보 보호를 위해 실명확인을 실시하고 있습니다.</li>
+            <li>회원가입 절차를 진행합니다.</li>
+            {% comment %} <li>회원님의 개인 정보 보호를 위해 실명확인을 실시하고 있습니다.</li> {% endcomment %}
           </ul>
         </div>
         <!-- Btn Area -->
         <div class="btnAreaCenter">
-          <a href="{%url 'member:register02'%}" class="gbtn">휴대폰인증</a>
+          <a href="{%url 'member:register02'%}" class="gbtn">동의</a>
           </li>
         </div>
         <!-- //Btn Area -->
       </div>
     </div>
     <!-- //contents -->
-  </div>undefined
-</div>undefined
+  </div>
+</div>
 <!-- //container --> {% endblock content-block  %}

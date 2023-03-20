@@ -2,6 +2,7 @@
 <!--endblock 으로 바꿔서 맨아래 삽입  
 	 키워드  1.대량구매  2.개인정보 -->
 <!-- container -->
+<head>
 <script>
   function codeAddress() {
     console.log('hello world')
@@ -24,21 +25,19 @@
         console.log(html)
         if (data.reply_list.length >= 1) {
           for (var i in data.reply_list) {
-            html += ' < ul > ';
-            html += ' < li class = "name" > '+data.reply_list[i].fields.R_writer+' < span > ['+data.reply_list[i].fields.R_createdate.substring(0,10)+' & nbsp & nbsp '+data.reply_list[i].fields.R_createdate.substring(11,19)+'] < /span> < /li>';
-            html += ' < li class = "txt" > '+data.reply_list[i].fields.R_content+' < /li>';
-            html += ' < li class = "btn" > ';
+            html += ' <ul> ';
+            html += ' <li class = "name" > '+data.reply_list[i].fields.R_writer+' <span>['+data.reply_list[i].fields.R_createdate.substring(0,10)+' & nbsp & nbsp '+data.reply_list[i].fields.R_createdate.substring(11,19)+'] </span></li>';
+            html += ' <li class = "txt" > '+data.reply_list[i].fields.R_content+' </li>';
+            html += ' <li class = "btn" > ';
             if (myid == data.reply_list[i].fields.R_writer) {
-              html += ' < a onclick = "reply_repair('+i+')"
-              class = "rebtn" > 수정 < /a>';
-              html += ' < a onclick = "reply_delete('+i+')"
-              class = "rebtn" > 삭제 < /a>';
+              html += ' <a onclick = "reply_repair('+i+')"class = "rebtn" > 수정 </a>';
+              html += ' <a onclick = "reply_delete('+i+')"class = "rebtn" > 삭제 </a>';
             }
-            html += ' < /li>';
-            html += ' < /ul>';
+            html += ' </li>';
+            html += ' </ul>';
           }
         } else {
-          html = " < tr > < td > 데이터 없음 < /td> < /tr>"; 
+          html = " <tr><td> 댓글이 존재 하지 않습니다. </td></tr>"; 
         }
         $('#replyBox').html(html);
       }, //성공시의 if 마무리
@@ -50,7 +49,9 @@
   }
   window.onload = codeAddress;
 </script>
+
 <script>
+  
   function reply_submit() {
     console.log('nbtnMini_start')
     var lowcontent = document.getElementById('lowcontent').value;
@@ -69,25 +70,23 @@
         console.log(html)
         if (data.reply_list.length >= 1) {
           for (var i in data.reply_list) {
-            html += ' < ul > ';
-            html += ' < li class = "name" > '+data.reply_list[i].fields.R_writer+' < span > ['+data.reply_list[i].fields.R_createdate.substring(0,10)+' & nbsp & nbsp '+data.reply_list[i].fields.R_createdate.substring(11,19)+'] < /span> < /li>';
+            html += ' <ul> ';
+            html += ' <li class = "name">'+data.reply_list[i].fields.R_writer+' <span>['+data.reply_list[i].fields.R_createdate.substring(0,10)+' & nbsp & nbsp '+data.reply_list[i].fields.R_createdate.substring(11,19)+'] </span> </li>';
             if (myid != data.reply_list[i].fields.R_writer) {
-              html += ' < li class = "txt" > '+data.reply_list[i].fields.R_content+' < /li>';
-              html += ' < li class = "btn" > ';
+              html += ' <li class = "txt">'+data.reply_list[i].fields.R_content+' </li>';
+              html += ' <li class = "btn">';
             }
             if (myid == data.reply_list[i].fields.R_writer) {
-              html += ' < li class = "txt" > '+data.reply_list[i].fields.R_content+' < /li>';
-              html += ' < li class = "btn" > ';
-              html += ' < a onclick = "reply_repair('+i+')"
-              class = "rebtn" > 수정 < /a>';
-              html += ' < a onclick = "reply_delete('+i+')"
-              class = "rebtn" > 삭제 < /a>';
+              html += '<li class = "txt">'+data.reply_list[i].fields.R_content+'</li>';
+              html += '<li class = "btn">';
+              html += '<a onclick = "reply_repair('+i+')"class = "rebtn"> 수정 </a>';
+              html += '<a onclick = "reply_delete('+i+')"class = "rebtn"> 삭제 </a>';
             }
-            html += ' < /li>';
-            html += ' < /ul>';
+            html += '</li>';
+            html += '</ul>';
           }
         } else {
-          html = " < tr > < td > 데이터 없음 < /td> < /tr>"; 
+          html = "<tr><td> 데이터 없음 </td></tr>"; 
         }
         $('#replyBox').html(html);
         $("#lowcontent").val('');
@@ -119,30 +118,26 @@
         if (data.reply_list.length >= 1) {
           for (var i in data.reply_list) {
             console.log(data.reply_list[i].fields.R_no)
-            html += ' < ul > ';
-            html += ' < li class = "name" > '+data.reply_list[i].fields.R_writer+' < span > ['+data.reply_list[i].fields.R_createdate.substring(0,10)+' & nbsp & nbsp '+data.reply_list[i].fields.R_createdate.substring(11,19)+'] < /span> < /li>';
+            html += ' <ul> ';
+            html += ' <li class = "name" > '+data.reply_list[i].fields.R_writer+' <span> ['+data.reply_list[i].fields.R_createdate.substring(0,10)+' & nbsp & nbsp '+data.reply_list[i].fields.R_createdate.substring(11,19)+'] </span> </li>';
             if (i != a) {
-              html += ' < li class = "txt" > '+data.reply_list[i].fields.R_content+' < /li>';
-              html += ' < li class = "btn" > ';
+              html += ' <li class = "txt"> '+data.reply_list[i].fields.R_content+' </li>';
+              html += ' <li class = "btn"> ';
               if (myid == data.reply_list[i].fields.R_writer) {
-                html += ' < a onclick = "reply_repair('+i+')"
-                class = "rebtn" > 수정 < /a>';
-                html += ' < a onclick = "reply_delete('+i+')"
-                class = "rebtn" > 삭제 < /a>';
+                html += ' <a onclick = "reply_repair('+i+')"class = "rebtn"> 수정 </a>';
+                html += ' <a onclick = "reply_delete('+i+')"class = "rebtn"> 삭제 </a>';
               }
             }
             if (i == a) {
-              html += ' < textarea id = "text'+i+'" > '+data.reply_list[i].fields.R_content+' < /textarea>';
-              html += ' < li class = "btn" > ';
-              html += ' < a onclick = "reply_enter('+data.reply_list[i].fields.R_no+','+i+')"
-              class = "rebtn" > 확인 < /a>';
-              html += ' < a onclick = "reply_delete('+i+')"
-              class = "rebtn" > 삭제 < /a>';
-            } else html += ' < /li>';
-            html += ' < /ul>';
+              html += ' <textarea id = "text'+i+'">'+data.reply_list[i].fields.R_content+' </textarea>';
+              html += ' <li class = "btn"> ';
+              html += ' <a onclick = "reply_enter('+data.reply_list[i].fields.R_no+','+i+')"class = "rebtn"> 확인 </a>';
+              html += ' <a onclick = "reply_delete('+i+')"class = "rebtn"> 삭제 </a>';
+            } else html += ' </li>';
+            html += ' </ul>';
           }
         } else {
-          html = " < tr > < td > 데이터 없음 < /td> < /tr>"; 
+          html = "<tr><td> 데이터 없음 </td></tr>"; 
         }
         $('#replyBox').html(html);
         $("#lowcontent").val('');
@@ -178,21 +173,19 @@
         console.log(html)
         if (data.reply_list.length >= 1) {
           for (var i in data.reply_list) {
-            html += ' < ul > ';
-            html += ' < li class = "name" > '+data.reply_list[i].fields.R_writer+' < span > ['+data.reply_list[i].fields.R_createdate.substring(0,10)+' & nbsp & nbsp '+data.reply_list[i].fields.R_createdate.substring(11,19)+'] < /span> < /li>';
-            html += ' < li class = "txt" > '+data.reply_list[i].fields.R_content+' < /li>';
-            html += ' < li class = "btn" > ';
+            html += ' <ul> ';
+            html += ' <li class = "name" > '+data.reply_list[i].fields.R_writer+' <span> ['+data.reply_list[i].fields.R_createdate.substring(0,10)+' & nbsp & nbsp '+data.reply_list[i].fields.R_createdate.substring(11,19)+'] </span> </li>';
+            html += ' <li class = "txt" > '+data.reply_list[i].fields.R_content+' </li>';
+            html += ' <li class = "btn" > ';
             if (myid == data.reply_list[i].fields.R_writer) {
-              html += ' < a onclick = "reply_repair('+i+')"
-              class = "rebtn" > 수정 < /a>';
-              html += ' < a onclick = "reply_delete('+i+')"
-              class = "rebtn" > 삭제 < /a>';
+              html += ' <a onclick = "reply_repair('+i+')"class = "rebtn"> 수정 </a>';
+              html += ' <a onclick = "reply_delete('+i+')"class = "rebtn"> 삭제 </a>';
             }
-            html += ' < /li>';
-            html += ' < /ul>';
+            html += ' </li>';
+            html += ' </ul>';
           }
         } else {
-          html = " < tr > < td > 데이터 없음 < /td> < /tr>"; 
+          html = " <tr><td> 데이터 없음 </td> </tr>"; 
         }
         $('#replyBox').html(html);
         $("#lowcontent").val('');
@@ -226,21 +219,19 @@
           console.log(html)
           if (data.reply_list.length >= 1) {
             for (var i in data.reply_list) {
-              html += ' < ul > ';
-              html += ' < li class = "name" > '+data.reply_list[i].fields.R_writer+' < span > ['+data.reply_list[i].fields.R_createdate.substring(0,10)+' & nbsp & nbsp '+data.reply_list[i].fields.R_createdate.substring(11,19)+'] < /span> < /li>';
-              html += ' < li class = "txt" > '+data.reply_list[i].fields.R_content+' < /li>';
-              html += ' < li class = "btn" > ';
+              html += ' <ul > ';
+              html += ' <li class = "name">'+data.reply_list[i].fields.R_writer+'<span>['+data.reply_list[i].fields.R_createdate.substring(0,10)+' & nbsp & nbsp '+data.reply_list[i].fields.R_createdate.substring(11,19)+'] < /span> < /li>';
+              html += ' <li class = "txt">'+data.reply_list[i].fields.R_content+'</li>';
+              html += ' <li class = "btn">';
               if (myid == data.reply_list[i].fields.R_writer) {
-                html += ' < a onclick = "reply_repair('+i+')"
-                class = "rebtn" > 수정 < /a>';
-                html += ' < a onclick = "reply_delete('+i+')"
-                class = "rebtn" > 삭제 < /a>';
+                html += ' <a onclick = "reply_repair('+i+')"class = "rebtn"> 수정 </a>';
+                html += ' <a onclick = "reply_delete('+i+')"class = "rebtn"> 삭제 </a>';
               }
-              html += ' < /li>';
-              html += ' < /ul>';
+              html += ' </li>';
+              html += ' </ul>';
             }
           } else {
-            html = " < tr > < td > 데이터 없음 < /td> < /tr>"; 
+            html = "<tr><td> 데이터 없음 </td></tr>"; 
           }
           $('#replyBox').html(html);
           $("#lowcontent").val('');
@@ -253,16 +244,18 @@
     }
   }
   console.log(data)
-  },
+
+  {% comment %} },
   error: function(error) {
   console.log('error')
   console.log(error);
   }
   })
-  } {
-    % endcomment %
-  }
+  } {% endcomment %}
 </script>
+</head>
+
+<body>
 <input type='hidden' id='myid' value={{request.session.session_ID}}></input>
 <input type='hidden' id='E_no' value={{board.E_no}}></input>
 <div id="container">
@@ -381,4 +374,5 @@
     <!-- //contents -->
     <script type="text/javascript" src="/static/js/jquery.fancybox-1.3.4.pack.js"></script>
     <link rel="stylesheet" type="text/css" href="/static/css/jquery.fancybox-1.3.4.css" />
+  </body>
     <script type="text/javascript"></script> {% endblock content-block  %}

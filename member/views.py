@@ -50,6 +50,7 @@ def login(request):
                 msg='아이디가 존재하지 않습니다. 아이디를 다시 입력해주세요.'
                 context={'msg':msg}
                 return render(request,'login.html',context)
+                # return render(request,'step01.html',context)
                 
 
         
